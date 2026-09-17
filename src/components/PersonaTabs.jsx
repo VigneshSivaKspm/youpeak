@@ -114,7 +114,7 @@ const CONTENT = {
   },
   partner: {
     headline: "Earn ₹200 Per Active Referral",
-    sub: "Join the Peak Partner Program. Earn ₹100 when your friend registers + ₹100 when they hit 100 watch-minutes. Digital Development Partners also earn 50% of local ad revenues, 10% on creator earnings, and 20% on tasker rewards they manage.",
+    sub: "Join the Peak Partner Program. Earn ₹100 on registration + ₹100 after 100 watch-minutes per user. District Digital Partners earn tiered commissions: 15% VIP Creator onboarding, 10% Tasker onboarding, 30% on Local Business Ads, 20% Digital Partner commission, and 10% on Video Unlocks (max ₹1,000).",
     image: "/assets/referral_image.png",
     imageFallback:
       "https://placehold.co/360x360/f59e0b/fff?text=Refer+%26+Earn",
@@ -135,14 +135,14 @@ const CONTENT = {
       },
       {
         icon: Briefcase,
-        title: "10% Creator · 20% Tasker Commission",
-        sub: "Weekly Monday payout on managed network",
+        title: "15% VIP Creator · 10% Tasker Onboarding",
+        sub: "Commission on every onboarding in your district",
         iconClass: "icon-purple",
       },
       {
         icon: Infinity,
-        title: "50% Local Ad Revenue Share",
-        sub: "Digital Development Partners — weekly direct",
+        title: "30% Local Ads · 20% Digital Partner",
+        sub: "Earn on ad margins & district expansion",
         iconClass: "icon-cyan",
       },
     ],

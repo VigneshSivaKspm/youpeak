@@ -28,7 +28,7 @@ const FAQS = [
     icon: Users,
     iconClass: "icon-purple",
     q: "How exactly does the referral system work?",
-    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when your friend registers via OTP, and another ₹100 (held 48h) when they complete 100 watch-minutes within 7 days. Referred users must be first-time installers with genuine watch time. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per registration. Paid-tier taskers earn 10% of whatever Starter Pass their referred friend purchases. Digital Development Partners additionally earn 10% on creator earnings and 20% on tasker earnings they manage, plus 50% of local ad revenue — all paid weekly every Monday.",
+    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when your friend registers via OTP, and another ₹100 (held 48h) when they complete 100 watch-minutes within 7 days. Referred users must be first-time installers with genuine watch time. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per registration. Paid-tier taskers earn 10% of whatever Starter Pass their referred friend purchases. District Digital Partners earn tiered commissions: 10% Video Unlocks (max ₹1,000), 10% Tasker Onboarding, 15% VIP Creator Pass sales, 20% Digital Partner, and 30% margin on Local Business Ads — all paid weekly every Monday.",
   },
   {
     icon: BarChart2,

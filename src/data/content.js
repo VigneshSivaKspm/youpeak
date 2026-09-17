@@ -248,7 +248,7 @@ export const APP_FEATURES = [
     icon: "Users2",
     title: "Peak Partner Referrals",
     description:
-      "Earn up to ₹200 per active user — ₹100 on registration + ₹100 after 100 watch-minutes. Digital Development Partners earn 50% of local ad revenues, 10% on creator earnings, and 20% on tasker rewards. All paid weekly every Monday.",
+      "Earn up to ₹200 per active user — ₹100 on registration + ₹100 after 100 watch-minutes. District Digital Partners earn: 10% Video Unlocks (max ₹1,000), 10% Tasker Onboarding, 15% VIP Creator Onboarding, 20% Digital Partner commission, and 30% margin on Local Business Ads — all paid weekly every Monday.",
     tag: "Viral Growth",
   },
   {
@@ -345,7 +345,7 @@ export const FAQS = [
   },
   {
     q: "How does the Referral program work?",
-    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user you bring in — ₹100 (held 24h) when they register via your link + OTP, and ₹100 (held 48h post-task) when they complete 100 genuine watch-minutes within 7 days. Referred users must be first-time installers. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per successful registration; paid-tier taskers earn 10% of their referred friend's Starter Pass value. Digital Development Partners additionally earn 10% on managed creator earnings and 20% on managed tasker rewards — all paid every Monday.",
+    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when they register via your link + OTP, and ₹100 (held 48h post-task) when they complete 100 genuine watch-minutes within 7 days. Referred users must be first-time installers. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per successful registration; paid-tier taskers earn 10% of their referred friend's Starter Pass value. District Digital Partners additionally earn: 10% on Video Unlocks (max ₹1,000), 10% on Tasker Onboarding, 15% on VIP Creator Pass sales, 20% Digital Partner commission, and 30% margin on Local Business Ads — all paid weekly every Monday.",
   },
   {
     q: "How do Creator VIP Passes work?",
