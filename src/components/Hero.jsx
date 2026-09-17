@@ -24,7 +24,7 @@ const TICKER_ITEMS = [
   { icon: Smartphone, text: "Android & iOS" },
   { icon: Coins, text: "100 Coins = ₹1 INR" },
   { icon: TrendingUp, text: "Up to 90% Ad Revenue" },
-  { icon: Users, text: "₹200 Per Referral" },
+  { icon: Users, text: "Earn Up to ₹200 Per Referral" },
   { icon: Trophy, text: "250K+ Active Users" },
   { icon: TrendingUp, text: "₹2.4 Cr+ Paid Out" },
   { icon: Zap, text: "Instant UPI Cashouts" },
@@ -33,7 +33,7 @@ const TICKER_ITEMS = [
   { icon: Smartphone, text: "Android & iOS" },
   { icon: Coins, text: "100 Coins = ₹1 INR" },
   { icon: TrendingUp, text: "Up to 90% Ad Revenue" },
-  { icon: Users, text: "₹200 Per Referral" },
+  { icon: Users, text: "Earn Up to ₹200 Per Referral" },
 ];
 
 export default function Hero({ onOpenQr }) {
@@ -133,8 +133,8 @@ export default function Hero({ onOpenQr }) {
                 },
                 {
                   icon: Users,
-                  val: "₹200/friend",
-                  sub: "2-Stage referrals",
+                  val: "₹200/Referral",
+                  sub: "Peak Partner 2-Stage",
                   color: "text-violet-400",
                 },
               ].map((b, i) => (

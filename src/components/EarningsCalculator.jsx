@@ -10,11 +10,46 @@ import {
 } from "lucide-react";
 
 const TIERS = [
-  { id: "free", name: "Free", price: 0, cap: 500, capINR: 5 },
-  { id: "bronze", name: "Bronze", price: 999, cap: 2000, capINR: 20 },
-  { id: "silver", name: "Silver", price: 2499, cap: 4000, capINR: 40 },
-  { id: "gold", name: "Gold", price: 4999, cap: 12000, capINR: 120 },
-  { id: "platinum", name: "Platinum", price: 9999, cap: 16667, capINR: 166.67 },
+  {
+    id: "free",
+    name: "Free",
+    price: 0,
+    cap: 500,
+    capINR: 5,
+    referralBonus: 200,
+  },
+  {
+    id: "bronze",
+    name: "Bronze",
+    price: 999,
+    cap: 2000,
+    capINR: 20,
+    referralBonus: 200,
+  },
+  {
+    id: "silver",
+    name: "Silver",
+    price: 2499,
+    cap: 4000,
+    capINR: 40,
+    referralBonus: 200,
+  },
+  {
+    id: "gold",
+    name: "Gold",
+    price: 4999,
+    cap: 12000,
+    capINR: 120,
+    referralBonus: 200,
+  },
+  {
+    id: "platinum",
+    name: "Platinum",
+    price: 9999,
+    cap: 16667,
+    capINR: 166.67,
+    referralBonus: 200,
+  },
 ];
 
 function Slider({
@@ -81,7 +116,7 @@ export default function EarningsCalculator({ onOpenQr }) {
   const raw = watchCoins + engCoins + adCoins + checkIn;
   const capped = Math.min(raw, activeTier.cap);
   const dailyINR = capped / 100;
-  const monthly = Math.round(dailyINR * 30 + refs * 200);
+  const monthly = Math.round(dailyINR * 30 + refs * activeTier.referralBonus);
 
   useEffect(() => {
     let current = displayed;
@@ -212,7 +247,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                   step={1}
                   onChange={setRefs}
                   colorClass="text-amber-400"
-                  hint={["0 (Solo)", "30 friends = ₹6,000 bonus"]}
+                  hint={[
+                    "0 (Solo)",
+                    `30 referrals = ₹${(30 * activeTier.referralBonus).toLocaleString("en-IN")} bonus`,
+                  ]}
                 />
               </div>
 
@@ -284,7 +322,11 @@ export default function EarningsCalculator({ onOpenQr }) {
                     }}
                   >
                     <div className="text-amber-400 font-black text-xl">
-                      ₹{refs * 200}
+                      ₹
+                      {(refs * activeTier.referralBonus).toLocaleString(
+                        "en-IN",
+                        { maximumFractionDigits: 2 },
+                      )}
                     </div>
                     <div className="text-white/40 text-[11px] mt-1">
                       Referral Bonus

@@ -99,7 +99,7 @@ const TASKER_TIERS = [
     price: "₹9,999",
     period: "One-time",
     monthlyMax: "₹5,000+",
-    dailyCap: "₹167",
+    dailyCap: "₹166.67",
     popular: false,
     credits: "₹10,000 Ad Credits FREE",
     features: [
@@ -119,44 +119,59 @@ const CREATOR_TIERS = [
   {
     name: "Classic",
     price: "Free",
+    period: "Always Free",
     subs: "0+ Subs",
     split: "50%",
+    shortsShare: "50%",
+    fanFunding: "70%",
     max: "₹1,000/video",
     color: "from-gray-500 to-gray-600",
     TierIcon: Tag,
   },
   {
     name: "Starter VIP",
-    price: "₹2,999",
-    subs: "Any Subs",
+    price: "₹4,999/yr",
+    period: "Annual — Early Bird",
+    subs: "< 5,000 Subs",
     split: "60%",
+    shortsShare: "55%",
+    fanFunding: "80%",
     max: "₹2,000/video",
     color: "from-emerald-500 to-teal-500",
     TierIcon: Award,
   },
   {
     name: "Silver VIP",
-    price: "₹1,999",
-    subs: "1K–10K Subs",
-    split: "70%",
+    price: "₹2,999/yr",
+    period: "Annual",
+    subs: "5K–25K Subs",
+    split: "65%",
+    shortsShare: "60%",
+    fanFunding: "85%",
     max: "₹5,000/video",
     color: "from-blue-500 to-cyan-500",
     TierIcon: Award,
   },
   {
     name: "Gold VIP",
-    price: "₹1,499",
-    subs: "10K–100K Subs",
-    split: "80%",
+    price: "₹1,499/yr",
+    period: "Annual",
+    subs: "25K–100K Subs",
+    split: "75%",
+    shortsShare: "65%",
+    fanFunding: "90%",
     max: "₹15,000/video",
     color: "from-amber-400 to-orange-500",
     TierIcon: Crown,
   },
   {
     name: "Platinum VIP",
-    price: "Invite Only",
+    price: "Free",
+    period: "Auto-Unlocked",
     subs: "100K+ Subs",
-    split: "90%",
+    split: "80%",
+    shortsShare: "70%",
+    fanFunding: "90%",
     max: "Unlimited",
     color: "from-violet-500 to-purple-600",
     TierIcon: Gem,
@@ -331,22 +346,32 @@ export default function TiersPricing() {
                       {t.price}
                     </div>
                     <div className="text-white/30 text-[11px]">
-                      One-time upgrade
+                      {t.period}
                     </div>
                   </div>
 
-                  <div className="space-y-3 flex-1 mb-6">
+                  <div className="space-y-2 flex-1 mb-6">
                     <div
                       className="p-3 rounded-xl"
                       style={{ background: "rgba(255,255,255,0.04)" }}
                     >
                       <div className="flex items-center gap-1.5 text-[10px] text-white/30 mb-1">
-                        <TrendingUp className="w-3 h-3" /> Your Revenue Share
+                        <TrendingUp className="w-3 h-3" /> Long-Video Ad Share
                       </div>
                       <div
                         className={`font-black text-3xl bg-gradient-to-r ${t.color} bg-clip-text text-transparent`}
                       >
                         {t.split}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="text-[10px] p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                        <div className="text-white/30">Shorts</div>
+                        <div className="text-white/70 font-bold">{t.shortsShare}</div>
+                      </div>
+                      <div className="text-[10px] p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                        <div className="text-white/30">Fan Funding</div>
+                        <div className="text-white/70 font-bold">{t.fanFunding}</div>
                       </div>
                     </div>
                     <div className="text-[11px] text-white/40">

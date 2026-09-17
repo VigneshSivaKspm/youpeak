@@ -1,6 +1,6 @@
 export const APP_INFO = {
   name: "YouPeak",
-  company: "Legendary One",
+  company: "YouPeak Digital Solutions Pvt Ltd",
   tagline: "Watch. Create. Earn. Repeat.",
   heroTitle: "Turn Your Screen Time Into Real Income",
   heroSubtitle:
@@ -12,7 +12,7 @@ export const APP_INFO = {
   supportEmail: "support@youpeak.in",
   grievanceEmail: "grievance@youpeak.in",
   phone: "+91 (080) 4567-8900",
-  address: "Legendary One Media Tech Pvt Ltd, Bengaluru, Karnataka, India",
+  address: "YouPeak Digital Solutions Pvt Ltd, Bengaluru, Karnataka, India",
 };
 
 export const PLATFORM_STATS = [
@@ -27,9 +27,9 @@ export const PLATFORM_STATS = [
     subtext: "Directly to UPI & bank accounts",
   },
   {
-    label: "Creator Ad Revenue Split",
+    label: "Creator Revenue Share",
     value: "Up to 90%",
-    subtext: "Industry highest creator share",
+    subtext: "Fan Funding · 80% Long-Video · 0% Merch",
   },
   {
     label: "Payout Turnaround",
@@ -160,43 +160,72 @@ export const CREATOR_TIERS = [
   {
     tier: "Classic Pass",
     price: "Free",
+    period: "Always Free",
     subs: "0+ Subs",
     split: "50% Creator / 50% Platform",
+    shortsShare: "50% Creator",
+    fanFunding: "70% Creator / 30% Platform",
+    watchTimePool: "50% Pool",
+    merchFee: "5% Platform Fee",
+    brandConnect: "10% Platform Fee",
     maxVideo: "₹1,000 / video",
-    highlight: "Standard monetization automatically enabled on launch.",
+    highlight: "Standard monetization auto-enabled. 5% merch fee. 10% BrandConnect fee.",
   },
   {
     tier: "Starter VIP Pass",
-    price: "₹2,999",
-    subs: "< 1,000 Subs",
+    price: "₹4,999/yr",
+    period: "Annual — Early Bird",
+    subs: "< 5,000 Subs",
     split: "60% Creator / 40% Platform",
+    shortsShare: "55% Creator",
+    fanFunding: "80% Creator / 20% Platform",
+    watchTimePool: "60% Pool",
+    merchFee: "0% Platform Fee",
+    brandConnect: "100% Creator Earnings",
     maxVideo: "₹2,000 / video",
-    highlight: "Accelerate your channel from day one with boosted revenue.",
+    highlight: "Early Bird: First 1,000 creators lock in this rate permanently. 0% merch & BrandConnect fees.",
   },
   {
     tier: "Silver VIP Pass",
-    price: "₹1,999",
-    subs: "1K – 10K Subs",
-    split: "70% Creator / 30% Platform",
+    price: "₹2,999/yr",
+    period: "Annual",
+    subs: "5K – 25K Subs",
+    split: "65% Creator / 35% Platform",
+    shortsShare: "60% Creator",
+    fanFunding: "85% Creator / 15% Platform",
+    watchTimePool: "65% Pool",
+    merchFee: "0% Platform Fee",
+    brandConnect: "100% Creator Earnings",
     maxVideo: "₹5,000 / video",
-    highlight:
-      "Preferred rate card as your community reaches 1,000+ followers.",
+    highlight: "Preferred rate card as your community reaches 5,000+ followers. 0% merch & BrandConnect fees.",
   },
   {
     tier: "Gold VIP Pass",
-    price: "₹1,499",
-    subs: "10K – 100K Subs",
-    split: "80% Creator / 20% Platform",
+    price: "₹1,499/yr",
+    period: "Annual",
+    subs: "25K – 100K Subs",
+    split: "75% Creator / 25% Platform",
+    shortsShare: "65% Creator",
+    fanFunding: "90% Creator / 10% Platform (Direct UPI)",
+    watchTimePool: "75% Pool",
+    merchFee: "0% Platform Fee",
+    brandConnect: "100% Creator Earnings",
     maxVideo: "₹15,000 / video",
-    highlight: "Premium partner status with prioritized recommendations.",
+    highlight: "Premium partner status. 90% fan funding via Direct UPI. 0% merch & BrandConnect fees.",
   },
   {
     tier: "Platinum VIP Pass",
-    price: "Invite / 100K+",
+    price: "Free (100K+ Subs)",
+    period: "Auto-Unlocked",
     subs: "100,000+ Subs",
-    split: "90% Creator / 10% Platform",
+    split: "80% Creator / 20% Platform",
+    shortsShare: "70% Creator",
+    fanFunding: "90% Creator / 10% Platform (Direct UPI)",
+    watchTimePool: "80% Pool",
+    merchFee: "0% Platform Fee",
+    brandConnect: "100% Creator Earnings",
     maxVideo: "Unlimited",
-    highlight: "Unmatched 90% revenue share + dedicated brand sponsorships.",
+    highlight: "Auto-unlocked at 100K+ subscribers. Full 0% fee stack. 70% shorts. 90% fan funding.",
   },
 ];
 
@@ -217,9 +246,9 @@ export const APP_FEATURES = [
   },
   {
     icon: "Users2",
-    title: "2-Stage Peak Partner Referrals",
+    title: "Peak Partner Referrals",
     description:
-      "Earn ₹100 immediately when your friend signs up (Stage 1), another ₹100 when they complete 100 watch-minutes (Stage 2), plus 10% on paid upgrades.",
+      "Earn up to ₹200 per active user — ₹100 on registration + ₹100 after 100 watch-minutes. Digital Development Partners earn 50% of local ad revenues, 10% on creator earnings, and 20% on tasker rewards. All paid weekly every Monday.",
     tag: "Viral Growth",
   },
   {
@@ -231,9 +260,9 @@ export const APP_FEATURES = [
   },
   {
     icon: "Lock",
-    title: "Pay-Per-View & Private Channels",
+    title: "6-Stream Creator Monetization",
     description:
-      "Creators can lock exclusive masterclasses, behind-the-scenes, and premium reels behind coin unlocks with an 80/10/10 instant creator revenue split.",
+      "Earn across Long-Video Ads (up to 80%), Shorts (up to 70%), Fan Funding (up to 90% via Direct UPI), Premium Watch Time Pool, 0% Merch Store fees, and 100% BrandConnect sponsorship payouts — all on VIP passes.",
     tag: "Creator Economy",
   },
   {
@@ -299,7 +328,7 @@ export const TESTIMONIALS = [
     location: "Pune, Maharashtra",
     avatar:
       "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=120&h=120&q=80",
-    text: "The 2-stage referral system is unbeatable. I invited around 60 friends from my university campus. Between the ₹100 sign-up bonus and the 10% tier commission, I made over ₹14,000 in my first 45 days!",
+    text: "The Peak Partner referral program is unbeatable! I shared my link with 60 friends from my university campus. ₹100 hit my wallet when each one signed up, then another ₹100 when they hit 100 watch-minutes. That's ₹12,000 in just 45 days — with more coming in weekly!",
     rating: 5,
     verifiedPayout: "₹14,200 Withdrawn",
   },
@@ -315,16 +344,16 @@ export const FAQS = [
     a: "The conversion rate is transparent and fixed at 100 Coins = ₹1 INR. For example, 50,000 coins equal ₹500 INR. Once you reach the minimum threshold, you can request an instant withdrawal straight to your UPI ID or bank account.",
   },
   {
-    q: "How does the 2-Stage Referral program work?",
-    a: "When your friend joins using your referral link, you receive Stage 1 reward of ₹100 in your pending balance (held for 24 hours for fraud prevention). When your referred friend completes 100 watch-minutes within 7 days, you receive Stage 2 reward of another ₹100! Plus, if they purchase any membership tier, you earn an instant 10% commission.",
+    q: "How does the Referral program work?",
+    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user you bring in — ₹100 (held 24h) when they register via your link + OTP, and ₹100 (held 48h post-task) when they complete 100 genuine watch-minutes within 7 days. Referred users must be first-time installers. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per successful registration; paid-tier taskers earn 10% of their referred friend's Starter Pass value. Digital Development Partners additionally earn 10% on managed creator earnings and 20% on managed tasker rewards — all paid every Monday.",
   },
   {
     q: "How do Creator VIP Passes work?",
-    a: "All creators start with a 50/50 ad-revenue split on the Classic Free pass. By upgrading to a Creator VIP Pass (Starter, Silver, Gold, or Platinum), you unlock higher revenue splits up to 90% and higher maximum earning caps per video. It pays for itself rapidly as your viewership increases.",
+    a: "All creators start with a 50/50 ad-revenue split on the free Classic Pass. By upgrading to a Creator VIP Pass you unlock higher splits across all 6 revenue streams: Long-Video Ad Revenue goes from 50% up to 80%, Shorts ad share from 50% up to 70%, Fan Funding & Memberships from 70% up to 90% (via Direct UPI bypassing app store fees), Premium Watch Time Pool from 50% up to 80%, Merch Store drops from 5% fee to 0%, and BrandConnect goes from 10% fee to 100% creator earnings. Starter VIP (₹4,999/yr, < 5K subs), Silver VIP (₹2,999/yr, 5K–25K), Gold VIP (₹1,499/yr, 25K–100K), Platinum VIP (Free, auto-unlocked at 100K+ subs).",
   },
   {
     q: "What payment methods are supported for withdrawals?",
-    a: "We support direct UPI transfers (PhonePe, Google Pay, Paytm, BHIM) as well as NEFT/IMPS direct bank transfers processed securely through Razorpay.",
+    a: "We support direct UPI transfers (PhonePe, Google Pay, Paytm, BHIM) as well as NEFT/IMPS direct bank transfers processed securely through Razorpay. For Taskers: first withdrawal requires ₹100 minimum (10,000 Coins); subsequent withdrawals require ₹500 minimum (50,000 Coins). For Peak Partners & Digital Development Partners: minimum withdrawal is ₹500, processed weekly every Monday directly to your verified UPI or Bank Account.",
   },
   {
     q: "Is YouPeak legal and compliant in India?",

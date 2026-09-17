@@ -28,13 +28,13 @@ const FAQS = [
     icon: Users,
     iconClass: "icon-purple",
     q: "How exactly does the referral system work?",
-    a: "Share your unique referral link. When your friend signs up: you get ₹100 (held 24h). When they watch 100 minutes total: you get another ₹100 (held 48h). If they buy a membership tier, you also earn 10% commission. So referring 10 friends = up to ₹2,000 bonus!",
+    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when your friend registers via OTP, and another ₹100 (held 48h) when they complete 100 watch-minutes within 7 days. Referred users must be first-time installers with genuine watch time. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per registration. Paid-tier taskers earn 10% of whatever Starter Pass their referred friend purchases. Digital Development Partners additionally earn 10% on creator earnings and 20% on tasker earnings they manage, plus 50% of local ad revenue — all paid weekly every Monday.",
   },
   {
     icon: BarChart2,
     iconClass: "icon-blue",
     q: "What do Creator VIP Passes do?",
-    a: "By default, you get a 50/50 ad revenue split. Creator VIP Passes upgrade this to 60%, 70%, 80%, or up to 90% depending on your subscriber count. More subscribers = higher split, and you can unlock it early by purchasing the pass.",
+    a: "By default, you get a 50% long-video ad split on the free Classic Pass. Creator VIP Passes upgrade all 6 revenue streams: long-video splits rise to 60% (Starter), 65% (Silver), 75% (Gold), and 80% (Platinum). Shorts ad share goes from 50% up to 70%. Fan Funding reaches 90% via Direct UPI — bypassing 30% app store fees. VIP members pay 0% merch fees and receive 100% of BrandConnect sponsorships. Platinum VIP is auto-unlocked free at 100K+ subscribers.",
   },
   {
     icon: Zap,

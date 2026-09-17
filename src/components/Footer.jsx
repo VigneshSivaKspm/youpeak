@@ -56,7 +56,7 @@ export default function Footer() {
                   You<span className="text-gradient-primary">Peak</span>
                 </span>
                 <p className="text-[10px] text-white/30 -mt-0.5">
-                  by Legendary One
+                  YouPeak Digital Solutions Pvt Ltd
                 </p>
               </div>
             </div>
@@ -180,7 +180,7 @@ export default function Footer() {
         {/* BOTTOM BAR */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.04]">
           <p className="text-xs text-white/25 text-center sm:text-left">
-            © 2024 YouPeak by Legendary One. All rights reserved.
+            © 2026 YouPeak Digital Solutions Pvt Ltd. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-xs text-white/20">
             <a
