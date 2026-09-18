@@ -7,6 +7,11 @@ import {
   Users,
   Wallet,
   Coins,
+  Film,
+  Calendar,
+  CheckCircle2,
+  Zap,
+  Clock,
 } from "lucide-react";
 
 const TIERS = [
@@ -48,6 +53,14 @@ const TIERS = [
     price: 9999,
     cap: 16667,
     capINR: 166.67,
+    referralBonus: 200,
+  },
+  {
+    id: "diamond",
+    name: "Diamond",
+    price: 24999,
+    cap: 33333,
+    capINR: 333.33,
     referralBonus: 200,
   },
 ];
@@ -109,13 +122,17 @@ export default function EarningsCalculator({ onOpenQr }) {
 
   const activeTier = TIERS.find((t) => t.id === tier);
 
-  const watchCoins = Math.floor((watch / 10) * 12) + (watch >= 120 ? 500 : 0);
-  const engCoins = engage * 4;
-  const adCoins = 20 * 25;
-  const checkIn = 25;
-  const raw = watchCoins + engCoins + adCoins + checkIn;
-  const capped = Math.min(raw, activeTier.cap);
-  const dailyINR = capped / 100;
+  // Activity score scales smoothly with user engagement
+  const watchFactor = watch / 180;
+  const engageFactor = engage / 60;
+  const activityIntensity = Math.min(
+    1.0,
+    0.2 + watchFactor * 0.5 + engageFactor * 0.3,
+  );
+  const dailyINR = Math.min(
+    activeTier.capINR,
+    Math.round(activeTier.capINR * activityIntensity * 100) / 100,
+  );
   const monthly = Math.round(dailyINR * 30 + refs * activeTier.referralBonus);
 
   useEffect(() => {
@@ -188,7 +205,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                 <p className="text-xs font-bold uppercase tracking-wider text-white/40 mb-4">
                   Step 1: Choose Your Starter Pass
                 </p>
-                <div className="grid grid-cols-5 gap-2">
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                   {TIERS.map((t) => (
                     <button
                       key={t.id}
@@ -343,6 +360,28 @@ export default function EarningsCalculator({ onOpenQr }) {
                   {comparisonText()}
                 </div>
 
+                {/* PAYOUT THRESHOLD PILL */}
+                <div
+                  className="p-3 rounded-xl text-left border border-white/5 space-y-1"
+                  style={{ background: "rgba(255,255,255,0.03)" }}
+                >
+                  <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">
+                    <Zap className="w-3 h-3" /> Payout Thresholds
+                  </div>
+                  <div className="text-[11px] text-white/70">
+                    First Payout:{" "}
+                    <span className="text-white font-bold">Min. ₹100</span>{" "}
+                    (Immediate)
+                  </div>
+                  <div className="text-[11px] text-white/50">
+                    2nd onwards:{" "}
+                    <span className="text-white/80 font-bold">Min. ₹500</span>{" "}
+                    (Taskers) /{" "}
+                    <span className="text-white/80 font-bold">₹1,000</span>{" "}
+                    (Creators)
+                  </div>
+                </div>
+
                 {/* CTA */}
                 <a
                   href="#download"
@@ -356,6 +395,141 @@ export default function EarningsCalculator({ onOpenQr }) {
                 >
                   Scan QR to download <ArrowRight className="w-3 h-3" />
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* UPDATED PAYOUT RULES & SCHEDULES */}
+        <div className="mt-10 max-w-4xl mx-auto">
+          <div
+            className="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden"
+            style={{
+              border: "1px solid rgba(16,185,129,0.25)",
+              boxShadow: "0 0 50px rgba(16,185,129,0.08)",
+            }}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-white/5">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3 h-3" /> Updated Policy
+                </span>
+                <h3 className="font-display font-black text-2xl text-white mt-2">
+                  Updated Payout Rules & Schedules
+                </h3>
+              </div>
+              <div className="text-xs text-white/50 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
+                Instant UPI & Bank Settlement
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* TASKERS CARD */}
+              <div
+                className="p-5 rounded-2xl border border-white/5 flex flex-col justify-between"
+                style={{ background: "rgba(255,255,255,0.02)" }}
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center text-white shadow-lg">
+                      <Wallet className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-black text-white text-base">
+                        For Taskers
+                      </h4>
+                      <p className="text-[11px] text-white/40">
+                        Watch, like, comment & daily tasks
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2.5 text-xs">
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                      <span className="text-white/70 font-medium">
+                        First Payout
+                      </span>
+                      <span className="font-black text-emerald-400 text-sm">
+                        Min. ₹100
+                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                          Immediate withdrawal
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5">
+                      <span className="text-white/70 font-medium">
+                        Subsequent Payouts
+                      </span>
+                      <span className="font-black text-white text-sm">
+                        Min. ₹500
+                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                          2nd onwards (Instant 24/7)
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-[11px] text-white/40">
+                  <Zap className="w-3.5 h-3.5 text-amber-400" />
+                  Disbursed instantly to PhonePe, Google Pay, Paytm or UPI ID.
+                </div>
+              </div>
+
+              {/* CREATORS CARD */}
+              <div
+                className="p-5 rounded-2xl border border-white/5 flex flex-col justify-between"
+                style={{ background: "rgba(255,255,255,0.02)" }}
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white shadow-lg">
+                      <Film className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-black text-white text-base">
+                        For Creators
+                      </h4>
+                      <p className="text-[11px] text-white/40">
+                        Ad splits, shorts, fan funding & VIP perks
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2.5 text-xs">
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                      <span className="text-white/70 font-medium">
+                        First Payout
+                      </span>
+                      <span className="font-black text-emerald-400 text-sm">
+                        Min. ₹100
+                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                          Immediate withdrawal
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-violet-500/5 border border-violet-500/10">
+                      <span className="text-white/70 font-medium">
+                        Subsequent Payouts
+                      </span>
+                      <span className="font-black text-violet-300 text-sm">
+                        Min. ₹1,000
+                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                          2nd onwards (Monthly cycle)
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-[11px] text-white/40">
+                  <Calendar className="w-3.5 h-3.5 text-violet-400" />
+                  Processed on a flexible monthly cycle between the 21st and
+                  26th of every month.
+                </div>
               </div>
             </div>
           </div>

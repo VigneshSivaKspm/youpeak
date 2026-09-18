@@ -154,11 +154,37 @@ export const TASKER_TIERS = [
       "Exclusive Platinum Leaderboard perks",
     ],
   },
+  {
+    id: "diamond",
+    name: "Diamond Pass",
+    level: "Special Pass",
+    price: 24999,
+    priceLabel: "₹24,999",
+    period: "Annual Pass",
+    popular: false,
+    badge: "Special Pass",
+    dailyCapCoins: 33333,
+    dailyCapINR: 333.33,
+    monthlyEarning: "₹10,000",
+    adLimit: "20 Ads / day",
+    likeLimit: "120 Likes / day",
+    commentLimit: "60 Comments / day",
+    adCredits: "25,000 Ad Credits Granted",
+    features: [
+      "Unlock up to ₹10,000 monthly income",
+      "20 Ads per day",
+      "10% Referral Bonus",
+      "25,000 Ad Credits Granted",
+      "(Daily Caps): 20 Ads / 120 Likes / 60 Comments",
+      "VIP priority instant 1-click cashouts 24/7",
+    ],
+  },
 ];
 
 export const CREATOR_TIERS = [
   {
     tier: "Classic Pass",
+    level: "Level 1",
     price: "Free",
     period: "Always Free",
     subs: "0+ Subs",
@@ -169,13 +195,21 @@ export const CREATOR_TIERS = [
     merchFee: "5% Platform Fee",
     brandConnect: "10% Platform Fee",
     maxVideo: "₹1,000 / video",
-    highlight: "Standard monetization auto-enabled. 5% merch fee. 10% BrandConnect fee.",
+    highlight:
+      "Standard monetization auto-enabled. 5% merch fee. 10% BrandConnect fee.",
   },
   {
-    tier: "Starter VIP Pass",
-    price: "₹4,999/yr",
-    period: "Annual — Early Bird",
+    tier: "Starter VIP Pass — ₹4,999/year",
+    name: "Starter VIP Pass",
+    level: "Level 2",
+    badge: "Launch Special",
+    price: "₹4,999/year",
+    period: "Annual — Launch Special",
     subs: "< 5,000 Subs",
+    subtext:
+      "Available for the first 1,000 creators or during the 3-month launch window.",
+    keyHighlight:
+      "Early creators lock in this ₹4,999 annual renewal rate permanently (Standard price: ₹19,999/year after the threshold).",
     split: "60% Creator / 40% Platform",
     shortsShare: "55% Creator",
     fanFunding: "80% Creator / 20% Platform",
@@ -183,7 +217,8 @@ export const CREATOR_TIERS = [
     merchFee: "0% Platform Fee",
     brandConnect: "100% Creator Earnings",
     maxVideo: "₹2,000 / video",
-    highlight: "Early Bird: First 1,000 creators lock in this rate permanently. 0% merch & BrandConnect fees.",
+    highlight:
+      "Launch Special: Available for the first 1,000 creators or during the 3-month launch window. Early creators lock in this ₹4,999 annual renewal rate permanently (Standard price: ₹19,999/year after the threshold).",
   },
   {
     tier: "Silver VIP Pass",
@@ -197,7 +232,8 @@ export const CREATOR_TIERS = [
     merchFee: "0% Platform Fee",
     brandConnect: "100% Creator Earnings",
     maxVideo: "₹5,000 / video",
-    highlight: "Preferred rate card as your community reaches 5,000+ followers. 0% merch & BrandConnect fees.",
+    highlight:
+      "Preferred rate card as your community reaches 5,000+ followers. 0% merch & BrandConnect fees.",
   },
   {
     tier: "Gold VIP Pass",
@@ -211,7 +247,8 @@ export const CREATOR_TIERS = [
     merchFee: "0% Platform Fee",
     brandConnect: "100% Creator Earnings",
     maxVideo: "₹15,000 / video",
-    highlight: "Premium partner status. 90% fan funding via Direct UPI. 0% merch & BrandConnect fees.",
+    highlight:
+      "Premium partner status. 90% fan funding via Direct UPI. 0% merch & BrandConnect fees.",
   },
   {
     tier: "Platinum VIP Pass",
@@ -225,7 +262,8 @@ export const CREATOR_TIERS = [
     merchFee: "0% Platform Fee",
     brandConnect: "100% Creator Earnings",
     maxVideo: "Unlimited",
-    highlight: "Auto-unlocked at 100K+ subscribers. Full 0% fee stack. 70% shorts. 90% fan funding.",
+    highlight:
+      "Auto-unlocked at 100K+ subscribers. Full 0% fee stack. 70% shorts. 90% fan funding.",
   },
 ];
 
@@ -352,8 +390,8 @@ export const FAQS = [
     a: "All creators start with a 50/50 ad-revenue split on the free Classic Pass. By upgrading to a Creator VIP Pass you unlock higher splits across all 6 revenue streams: Long-Video Ad Revenue goes from 50% up to 80%, Shorts ad share from 50% up to 70%, Fan Funding & Memberships from 70% up to 90% (via Direct UPI bypassing app store fees), Premium Watch Time Pool from 50% up to 80%, Merch Store drops from 5% fee to 0%, and BrandConnect goes from 10% fee to 100% creator earnings. Starter VIP (₹4,999/yr, < 5K subs), Silver VIP (₹2,999/yr, 5K–25K), Gold VIP (₹1,499/yr, 25K–100K), Platinum VIP (Free, auto-unlocked at 100K+ subs).",
   },
   {
-    q: "What payment methods are supported for withdrawals?",
-    a: "We support direct UPI transfers (PhonePe, Google Pay, Paytm, BHIM) as well as NEFT/IMPS direct bank transfers processed securely through Razorpay. For Taskers: first withdrawal requires ₹100 minimum (10,000 Coins); subsequent withdrawals require ₹500 minimum (50,000 Coins). For Peak Partners & Digital Development Partners: minimum withdrawal is ₹500, processed weekly every Monday directly to your verified UPI or Bank Account.",
+    q: "What payment methods and payout rules apply for withdrawals?",
+    a: "We support direct UPI transfers (PhonePe, Google Pay, Paytm, BHIM) and NEFT/IMPS bank transfers processed securely through Razorpay. For Taskers: First Payout is Minimum ₹100 (Immediate withdrawal); Subsequent Payouts (2nd onwards) require Minimum ₹500. For Creators: First Payout is Minimum ₹100 (Immediate withdrawal); Subsequent Payouts (2nd onwards) require Minimum ₹1,000, processed on a flexible Monthly Payout Cycle between the 21st and 26th of every month.",
   },
   {
     q: "Is YouPeak legal and compliant in India?",

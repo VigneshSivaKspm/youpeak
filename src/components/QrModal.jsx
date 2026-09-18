@@ -1,8 +1,9 @@
 import React from "react";
 import { X, QrCode, Smartphone } from "lucide-react";
+import { APP_INFO } from "../data/content";
 
 export default function QrModal({ onClose }) {
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent("https://play.google.com/store/apps/details?id=com.legendaryone.youpeak")}&color=10b981&bgcolor=020608&qzone=2`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(APP_INFO.playStoreUrl)}&color=10b981&bgcolor=020608&qzone=2`;
 
   return (
     <div

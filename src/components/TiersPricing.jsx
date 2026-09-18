@@ -10,12 +10,14 @@ import {
   Gem,
   Crown,
   TrendingUp,
+  Sparkles,
 } from "lucide-react";
 
 const TASKER_TIERS = [
   {
     id: "free",
     name: "Free",
+    level: "Level 0",
     price: "₹0",
     period: "Always free",
     monthlyMax: "₹150",
@@ -36,6 +38,7 @@ const TASKER_TIERS = [
   {
     id: "bronze",
     name: "Bronze",
+    level: "Level 1",
     price: "₹999",
     period: "One-time",
     monthlyMax: "₹600",
@@ -56,6 +59,7 @@ const TASKER_TIERS = [
   {
     id: "silver",
     name: "Silver",
+    level: "Level 2",
     price: "₹2,499",
     period: "One-time",
     monthlyMax: "₹1,200",
@@ -76,6 +80,7 @@ const TASKER_TIERS = [
   {
     id: "gold",
     name: "Gold",
+    level: "Level 3",
     price: "₹4,999",
     period: "One-time",
     monthlyMax: "₹3,600",
@@ -96,6 +101,7 @@ const TASKER_TIERS = [
   {
     id: "platinum",
     name: "Platinum",
+    level: "Level 4",
     price: "₹9,999",
     period: "One-time",
     monthlyMax: "₹5,000+",
@@ -113,11 +119,34 @@ const TASKER_TIERS = [
     btnClass: "bg-gradient-to-r from-violet-500 to-purple-600 text-white",
     TierIcon: Gem,
   },
+  {
+    id: "diamond",
+    name: "Diamond Pass",
+    level: "Special Pass",
+    badge: "Special Pass",
+    price: "₹24,999",
+    period: "/ year",
+    monthlyMax: "₹10,000",
+    dailyCap: "₹333.33",
+    popular: false,
+    credits: "25,000 Ad Credits FREE",
+    features: [
+      "Unlock up to ₹10,000 monthly income",
+      "20 ads per day",
+      "10% Referral Bonus",
+      "25,000 Ad Credits FREE",
+      "(Daily Caps): 20 Ads / 120 Likes / 60 Comments",
+    ],
+    color: "from-cyan-400 via-blue-500 to-indigo-500",
+    btnClass: "bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-white shadow-lg shadow-cyan-500/25",
+    TierIcon: Sparkles,
+  },
 ];
 
 const CREATOR_TIERS = [
   {
     name: "Classic",
+    level: "Level 1",
     price: "Free",
     period: "Always Free",
     subs: "0+ Subs",
@@ -129,10 +158,14 @@ const CREATOR_TIERS = [
     TierIcon: Tag,
   },
   {
-    name: "Starter VIP",
-    price: "₹4,999/yr",
-    period: "Annual — Early Bird",
+    name: "Starter VIP Pass",
+    level: "Level 2",
+    badge: "Launch Special",
+    price: "₹4,999/year",
+    period: "Annual — Launch Special",
     subs: "< 5,000 Subs",
+    subtext: "Available for the first 1,000 creators or during the 3-month launch window.",
+    keyHighlight: "Early creators lock in this ₹4,999 annual renewal rate permanently (Standard price: ₹19,999/year after the threshold).",
     split: "60%",
     shortsShare: "55%",
     fanFunding: "80%",
@@ -142,6 +175,7 @@ const CREATOR_TIERS = [
   },
   {
     name: "Silver VIP",
+    level: "Level 3",
     price: "₹2,999/yr",
     period: "Annual",
     subs: "5K–25K Subs",
@@ -154,6 +188,7 @@ const CREATOR_TIERS = [
   },
   {
     name: "Gold VIP",
+    level: "Level 4",
     price: "₹1,499/yr",
     period: "Annual",
     subs: "25K–100K Subs",
@@ -166,6 +201,7 @@ const CREATOR_TIERS = [
   },
   {
     name: "Platinum VIP",
+    level: "Level 5",
     price: "Free",
     period: "Auto-Unlocked",
     subs: "100K+ Subs",
@@ -226,15 +262,20 @@ export default function TiersPricing() {
 
         {/* TASKER TIERS */}
         {mode === "tasker" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {TASKER_TIERS.map((t) => {
               const TierIcon = t.TierIcon;
               return (
                 <div
                   key={t.id}
-                  className={`tier-card relative flex flex-col glass-card ${t.popular ? "tier-card-popular" : ""}`}
+                  className={`tier-card relative flex flex-col glass-card ${t.popular || t.badge ? "tier-card-popular" : ""}`}
                   style={
-                    t.popular
+                    t.badge
+                      ? {
+                          border: "2px solid rgba(56,189,248,0.5)",
+                          boxShadow: "0 0 40px rgba(56,189,248,0.15)",
+                        }
+                      : t.popular
                       ? {
                           border: "2px solid rgba(16,185,129,0.5)",
                           boxShadow: "0 0 40px rgba(16,185,129,0.15)",
@@ -242,29 +283,40 @@ export default function TiersPricing() {
                       : { border: "1px solid rgba(255,255,255,0.06)" }
                   }
                 >
-                  {t.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-black text-white bg-gradient-to-r from-emerald-500 to-cyan-500 shadow-lg whitespace-nowrap flex items-center gap-1.5">
+                  {t.badge ? (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-black text-white bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 shadow-lg whitespace-nowrap flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 fill-white" /> {t.badge}
+                    </div>
+                  ) : t.popular ? (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-black text-white bg-gradient-to-r from-emerald-500 to-cyan-500 shadow-lg whitespace-nowrap flex items-center gap-1.5">
                       <Star className="w-3 h-3 fill-white" /> Most Popular
                     </div>
-                  )}
+                  ) : null}
 
                   <div
-                    className={`h-1 rounded-full bg-gradient-to-r ${t.color} mb-6`}
+                    className={`h-1 rounded-full bg-gradient-to-r ${t.color} mb-5`}
                   />
 
-                  <div className="flex items-center gap-2 mb-1">
-                    <div
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br ${t.color} shadow`}
-                    >
-                      <TierIcon className="w-3.5 h-3.5 text-white" />
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br ${t.color} shadow shrink-0`}
+                      >
+                        <TierIcon className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <h3 className="font-display font-black text-sm text-white">
+                        {t.name}
+                      </h3>
                     </div>
-                    <h3 className="font-display font-black text-base text-white">
-                      {t.name}
-                    </h3>
+                    {t.level && (
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white/10 text-white/70 whitespace-nowrap">
+                        {t.level}
+                      </span>
+                    )}
                   </div>
 
                   <div className="mt-3 mb-1">
-                    <div className="font-display font-black text-3xl text-white">
+                    <div className="font-display font-black text-2xl text-white">
                       {t.price}
                     </div>
                     <div className="text-white/40 text-[11px]">{t.period}</div>
@@ -294,7 +346,7 @@ export default function TiersPricing() {
                     {t.features.map((f, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-[12px] text-white/55"
+                        className="flex items-start gap-1.5 text-[11px] text-white/60 leading-tight"
                       >
                         <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                         {f}
@@ -304,7 +356,7 @@ export default function TiersPricing() {
 
                   <a
                     href="#download"
-                    className={`w-full py-3 rounded-xl text-[12px] font-black text-center block transition-all ${t.btnClass}`}
+                    className={`w-full py-2.5 rounded-xl text-[12px] font-black text-center block transition-all ${t.btnClass}`}
                   >
                     {t.price === "₹0" ? "Start Free Now" : `Get ${t.name}`}
                   </a>
@@ -322,24 +374,50 @@ export default function TiersPricing() {
               return (
                 <div
                   key={i}
-                  className="tier-card glass-card flex flex-col"
-                  style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+                  className={`tier-card glass-card flex flex-col relative ${t.badge ? "tier-card-popular" : ""}`}
+                  style={
+                    t.badge
+                      ? {
+                          border: "2px solid rgba(16,185,129,0.5)",
+                          boxShadow: "0 0 40px rgba(16,185,129,0.15)",
+                        }
+                      : { border: "1px solid rgba(255,255,255,0.06)" }
+                  }
                 >
+                  {t.badge && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-black text-white bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg whitespace-nowrap flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 fill-white" /> {t.badge}
+                    </div>
+                  )}
+
                   <div
                     className={`h-1 rounded-full bg-gradient-to-r ${t.color} mb-5`}
                   />
 
-                  <div className="flex items-center gap-2 mb-1">
-                    <div
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br ${t.color} shadow`}
-                    >
-                      <TierIcon className="w-3.5 h-3.5 text-white" />
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br ${t.color} shadow`}
+                      >
+                        <TierIcon className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <h3 className="font-display font-black text-sm text-white">
+                        {t.name}
+                      </h3>
                     </div>
-                    <h3 className="font-display font-black text-sm text-white">
-                      {t.name}
-                    </h3>
+                    {t.level && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/10 text-white/70">
+                        {t.level}
+                      </span>
+                    )}
                   </div>
                   <div className="text-[11px] text-white/40 mt-1">{t.subs}</div>
+
+                  {t.subtext && (
+                    <div className="text-[11px] text-emerald-400 font-semibold mt-2 leading-tight">
+                      {t.subtext}
+                    </div>
+                  )}
 
                   <div className="mt-4 mb-3">
                     <div className="font-display font-black text-2xl text-white">
@@ -349,6 +427,13 @@ export default function TiersPricing() {
                       {t.period}
                     </div>
                   </div>
+
+                  {t.keyHighlight && (
+                    <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-300 mb-3 leading-snug">
+                      <strong className="text-white block mb-0.5 font-bold">Key Highlight:</strong>
+                      {t.keyHighlight}
+                    </div>
+                  )}
 
                   <div className="space-y-2 flex-1 mb-6">
                     <div
@@ -396,9 +481,8 @@ export default function TiersPricing() {
           </div>
         )}
 
-        <p className="text-center text-white/20 text-xs mt-10">
-          100% matched Ad Credits deposited immediately on tier purchase. All
-          prices are one-time. No recurring subscription.
+        <p className="text-center text-white/40 text-xs mt-10 max-w-2xl mx-auto leading-relaxed">
+          100% matched Ad Credits deposited immediately on tier purchase. Viewer passes (Levels 1–4) are one-time passes; Diamond Pass & Creator VIP passes renew annually. No hidden fees.
         </p>
       </div>
     </section>

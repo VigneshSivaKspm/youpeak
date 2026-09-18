@@ -39,8 +39,8 @@ const FAQS = [
   {
     icon: Zap,
     iconClass: "icon-cyan",
-    q: "How fast are withdrawals?",
-    a: "Instant. Once you tap withdraw and your UPI transfer is initiated via Razorpay, it typically hits your account in 2–10 seconds. Bank transfers (NEFT/IMPS) take 1–2 hours.",
+    q: "How fast are withdrawals and what are the payout rules?",
+    a: "Withdrawals hit your account instantly via UPI or bank transfer through Razorpay. For Taskers: First Payout is Minimum ₹100 (Immediate withdrawal), and subsequent payouts (2nd onwards) are Minimum ₹500. For Creators: First Payout is Minimum ₹100 (Immediate withdrawal), and subsequent payouts (2nd onwards) are Minimum ₹1,000, processed on a flexible Monthly Payout Cycle between the 21st and 26th of every month.",
   },
   {
     icon: Shield,

@@ -47,9 +47,6 @@ export default function Navbar({ onOpenQr }) {
             <span className="font-display font-black text-xl text-white tracking-tight">
               You<span className="text-gradient-primary">Peak</span>
             </span>
-            <p className="text-[10px] text-white/40 font-medium -mt-0.5">
-              by Legendary One
-            </p>
           </div>
         </a>
 
