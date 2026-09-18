@@ -121,8 +121,8 @@ export default function Hero({ onOpenQr }) {
               {[
                 {
                   icon: Wallet,
-                  val: "₹5/day Free",
-                  sub: "Free forever plan",
+                  val: "Up to ₹333.33/day",
+                  sub: "Pass Maximum Income",
                   color: "text-emerald-400",
                 },
                 {

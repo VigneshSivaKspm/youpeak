@@ -16,11 +16,11 @@ import {
 const TASKER_TIERS = [
   {
     id: "free",
-    name: "Free",
-    level: "Level 0",
+    name: "Free Tasker",
+    level: "Level 1",
     price: "₹0",
     period: "Always free",
-    monthlyMax: "₹150",
+    monthlyMax: "₹150.00",
     dailyCap: "₹5",
     popular: false,
     credits: null,
@@ -37,11 +37,11 @@ const TASKER_TIERS = [
   },
   {
     id: "bronze",
-    name: "Bronze",
-    level: "Level 1",
+    name: "Bronze Starter",
+    level: "Starter",
     price: "₹999",
     period: "One-time",
-    monthlyMax: "₹600",
+    monthlyMax: "₹600.00",
     dailyCap: "₹20",
     popular: false,
     credits: "₹1,000 Ad Credits FREE",
@@ -58,11 +58,11 @@ const TASKER_TIERS = [
   },
   {
     id: "silver",
-    name: "Silver",
+    name: "Silver Intermediate",
     level: "Level 2",
     price: "₹2,499",
     period: "One-time",
-    monthlyMax: "₹1,200",
+    monthlyMax: "₹1,200.00",
     dailyCap: "₹40",
     popular: true,
     credits: "₹2,500 Ad Credits FREE",
@@ -79,11 +79,11 @@ const TASKER_TIERS = [
   },
   {
     id: "gold",
-    name: "Gold",
+    name: "Gold Advanced",
     level: "Level 3",
     price: "₹4,999",
     period: "One-time",
-    monthlyMax: "₹3,600",
+    monthlyMax: "₹3,600.00",
     dailyCap: "₹120",
     popular: false,
     credits: "₹5,000 Ad Credits FREE",
@@ -100,16 +100,16 @@ const TASKER_TIERS = [
   },
   {
     id: "platinum",
-    name: "Platinum",
+    name: "Platinum Regional Pro",
     level: "Level 4",
     price: "₹9,999",
     period: "One-time",
-    monthlyMax: "₹5,000+",
+    monthlyMax: "₹5,000.00",
     dailyCap: "₹166.67",
     popular: false,
     credits: "₹10,000 Ad Credits FREE",
     features: [
-      "Up to ₹167/day",
+      "Up to ₹166.67/day",
       "20 ads per day",
       "60 likes per day",
       "30 comments per day",
@@ -126,7 +126,7 @@ const TASKER_TIERS = [
     badge: "Special Pass",
     price: "₹24,999",
     period: "/ year",
-    monthlyMax: "₹10,000",
+    monthlyMax: "₹10,000.00",
     dailyCap: "₹333.33",
     popular: false,
     credits: "25,000 Ad Credits FREE",
@@ -138,7 +138,8 @@ const TASKER_TIERS = [
       "(Daily Caps): 20 Ads / 120 Likes / 60 Comments",
     ],
     color: "from-cyan-400 via-blue-500 to-indigo-500",
-    btnClass: "bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-white shadow-lg shadow-cyan-500/25",
+    btnClass:
+      "bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-white shadow-lg shadow-cyan-500/25",
     TierIcon: Sparkles,
   },
 ];
@@ -164,8 +165,10 @@ const CREATOR_TIERS = [
     price: "₹4,999/year",
     period: "Annual — Launch Special",
     subs: "< 5,000 Subs",
-    subtext: "Available for the first 1,000 creators or during the 3-month launch window.",
-    keyHighlight: "Early creators lock in this ₹4,999 annual renewal rate permanently (Standard price: ₹19,999/year after the threshold).",
+    subtext:
+      "Available for the first 1,000 creators or during the 3-month launch window.",
+    keyHighlight:
+      "Early creators lock in this ₹4,999 annual renewal rate permanently (Standard price: ₹19,999/year after the threshold).",
     split: "60%",
     shortsShare: "55%",
     fanFunding: "80%",
@@ -276,11 +279,11 @@ export default function TiersPricing() {
                           boxShadow: "0 0 40px rgba(56,189,248,0.15)",
                         }
                       : t.popular
-                      ? {
-                          border: "2px solid rgba(16,185,129,0.5)",
-                          boxShadow: "0 0 40px rgba(16,185,129,0.15)",
-                        }
-                      : { border: "1px solid rgba(255,255,255,0.06)" }
+                        ? {
+                            border: "2px solid rgba(16,185,129,0.5)",
+                            boxShadow: "0 0 40px rgba(16,185,129,0.15)",
+                          }
+                        : { border: "1px solid rgba(255,255,255,0.06)" }
                   }
                 >
                   {t.badge ? (
@@ -423,14 +426,14 @@ export default function TiersPricing() {
                     <div className="font-display font-black text-2xl text-white">
                       {t.price}
                     </div>
-                    <div className="text-white/30 text-[11px]">
-                      {t.period}
-                    </div>
+                    <div className="text-white/30 text-[11px]">{t.period}</div>
                   </div>
 
                   {t.keyHighlight && (
                     <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-300 mb-3 leading-snug">
-                      <strong className="text-white block mb-0.5 font-bold">Key Highlight:</strong>
+                      <strong className="text-white block mb-0.5 font-bold">
+                        Key Highlight:
+                      </strong>
                       {t.keyHighlight}
                     </div>
                   )}
@@ -450,13 +453,23 @@ export default function TiersPricing() {
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="text-[10px] p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                      <div
+                        className="text-[10px] p-2 rounded-lg"
+                        style={{ background: "rgba(255,255,255,0.03)" }}
+                      >
                         <div className="text-white/30">Shorts</div>
-                        <div className="text-white/70 font-bold">{t.shortsShare}</div>
+                        <div className="text-white/70 font-bold">
+                          {t.shortsShare}
+                        </div>
                       </div>
-                      <div className="text-[10px] p-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                      <div
+                        className="text-[10px] p-2 rounded-lg"
+                        style={{ background: "rgba(255,255,255,0.03)" }}
+                      >
                         <div className="text-white/30">Fan Funding</div>
-                        <div className="text-white/70 font-bold">{t.fanFunding}</div>
+                        <div className="text-white/70 font-bold">
+                          {t.fanFunding}
+                        </div>
                       </div>
                     </div>
                     <div className="text-[11px] text-white/40">
@@ -482,7 +495,9 @@ export default function TiersPricing() {
         )}
 
         <p className="text-center text-white/40 text-xs mt-10 max-w-2xl mx-auto leading-relaxed">
-          100% matched Ad Credits deposited immediately on tier purchase. Viewer passes (Levels 1–4) are one-time passes; Diamond Pass & Creator VIP passes renew annually. No hidden fees.
+          100% matched Ad Credits deposited immediately on tier purchase. Viewer
+          passes (Levels 1–4) are one-time passes; Diamond Pass & Creator VIP
+          passes renew annually. No hidden fees.
         </p>
       </div>
     </section>

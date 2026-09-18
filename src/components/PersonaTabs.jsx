@@ -49,7 +49,7 @@ const CONTENT = {
     image: "/assets/wallet_image.png",
     imageFallback:
       "https://placehold.co/360x360/10b981/fff?text=Watch+%26+Earn",
-    badge: "₹5 to ₹167/day",
+    badge: "Per day/ ₹333.33",
     badgeColor: "text-emerald-400",
     points: [
       {

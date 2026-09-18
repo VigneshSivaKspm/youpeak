@@ -18,50 +18,74 @@ const TIERS = [
   {
     id: "free",
     name: "Free",
+    fullName: "Level 1 Tasker (Free)",
     price: 0,
+    priceLabel: "Free",
     cap: 500,
     capINR: 5,
-    referralBonus: 200,
+    monthlyCap: 150,
+    referralBonus: 2.5, // 250 Coins = ₹2.50
+    referralLabel: "250 Coins (₹2.50) / ref",
   },
   {
     id: "bronze",
     name: "Bronze",
+    fullName: "Bronze Tasker (Starter)",
     price: 999,
+    priceLabel: "₹999",
     cap: 2000,
     capINR: 20,
-    referralBonus: 200,
+    monthlyCap: 600,
+    referralBonus: 99.9, // 10% = ₹99.90
+    referralLabel: "10% (₹99.90) / ref",
   },
   {
     id: "silver",
     name: "Silver",
+    fullName: "Silver Tasker (Intermediate)",
     price: 2499,
+    priceLabel: "₹2,499",
     cap: 4000,
     capINR: 40,
-    referralBonus: 200,
+    monthlyCap: 1200,
+    referralBonus: 249.9, // 10% = ₹249.90
+    referralLabel: "10% (₹249.90) / ref",
   },
   {
     id: "gold",
     name: "Gold",
+    fullName: "Gold Tasker (Advanced)",
     price: 4999,
+    priceLabel: "₹4,999",
     cap: 12000,
     capINR: 120,
-    referralBonus: 200,
+    monthlyCap: 3600,
+    referralBonus: 499.9, // 10% = ₹499.90
+    referralLabel: "10% (₹499.90) / ref",
   },
   {
     id: "platinum",
     name: "Platinum",
+    fullName: "Platinum Tasker (Regional Pro)",
     price: 9999,
+    priceLabel: "₹9,999",
     cap: 16667,
     capINR: 166.67,
-    referralBonus: 200,
+    monthlyCap: 5000,
+    referralBonus: 999.9, // 10% = ₹999.90
+    referralLabel: "10% (₹999.90) / ref",
   },
   {
     id: "diamond",
     name: "Diamond",
+    fullName: "Diamond Pass (Special Pass)",
     price: 24999,
+    priceLabel: "₹24,999/yr",
     cap: 33333,
     capINR: 333.33,
-    referralBonus: 200,
+    monthlyCap: 10000,
+    referralBonus: 2499.9, // 10% = ₹2,499.90
+    referralLabel: "10% (₹2,499.90) / ref",
   },
 ];
 
@@ -133,7 +157,13 @@ export default function EarningsCalculator({ onOpenQr }) {
     activeTier.capINR,
     Math.round(activeTier.capINR * activityIntensity * 100) / 100,
   );
-  const monthly = Math.round(dailyINR * 30 + refs * activeTier.referralBonus);
+  const monthlyTasks = Math.min(
+    activeTier.monthlyCap,
+    Math.round(dailyINR * 30),
+  );
+  const monthlyReferrals =
+    Math.round(refs * activeTier.referralBonus * 10) / 10;
+  const monthly = Math.round(monthlyTasks + monthlyReferrals);
 
   useEffect(() => {
     let current = displayed;
@@ -266,7 +296,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                   colorClass="text-amber-400"
                   hint={[
                     "0 (Solo)",
-                    `30 referrals = ₹${(30 * activeTier.referralBonus).toLocaleString("en-IN")} bonus`,
+                    `30 referrals = ₹${(30 * activeTier.referralBonus).toLocaleString("en-IN", { maximumFractionDigits: 1 })} bonus (${activeTier.referralLabel})`,
                   ]}
                 />
               </div>
@@ -280,8 +310,8 @@ export default function EarningsCalculator({ onOpenQr }) {
                 }}
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-400/50 mt-0.5 shrink-0" />
-                Based on real YouPeak economy: 100 coins = ₹1 INR, 20 ads/day @
-                25 coins each, daily cap applies per tier.
+                Based on official YouPeak economy: 100 coins = ₹1 INR, 20
+                ads/day, daily action caps and tier multipliers apply.
               </div>
             </div>
 
@@ -318,35 +348,34 @@ export default function EarningsCalculator({ onOpenQr }) {
                 {/* BREAKDOWN */}
                 <div className="grid grid-cols-2 gap-3">
                   <div
-                    className="text-center p-4 rounded-2xl"
+                    className="text-center p-3.5 rounded-2xl"
                     style={{
                       background: "rgba(16,185,129,0.1)",
                       border: "1px solid rgba(16,185,129,0.2)",
                     }}
                   >
-                    <div className="text-emerald-400 font-black text-xl">
+                    <div className="text-emerald-400 font-black text-lg leading-tight">
                       ₹{dailyINR.toFixed(2)}
                     </div>
-                    <div className="text-white/40 text-[11px] mt-1">
-                      Per Day
+                    <div className="text-white/40 text-[10px] mt-0.5">
+                      Per Day (₹{monthlyTasks.toLocaleString("en-IN")}/mo)
                     </div>
                   </div>
                   <div
-                    className="text-center p-4 rounded-2xl"
+                    className="text-center p-3.5 rounded-2xl"
                     style={{
                       background: "rgba(245,158,11,0.1)",
                       border: "1px solid rgba(245,158,11,0.2)",
                     }}
                   >
-                    <div className="text-amber-400 font-black text-xl">
+                    <div className="text-amber-400 font-black text-lg leading-tight">
                       ₹
-                      {(refs * activeTier.referralBonus).toLocaleString(
-                        "en-IN",
-                        { maximumFractionDigits: 2 },
-                      )}
+                      {monthlyReferrals.toLocaleString("en-IN", {
+                        maximumFractionDigits: 1,
+                      })}
                     </div>
-                    <div className="text-white/40 text-[11px] mt-1">
-                      Referral Bonus
+                    <div className="text-white/40 text-[10px] mt-0.5">
+                      Referral Bonus ({refs} ref)
                     </div>
                   </div>
                 </div>
