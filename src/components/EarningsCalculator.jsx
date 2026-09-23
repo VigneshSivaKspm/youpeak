@@ -105,7 +105,7 @@ function Slider({
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <span className="flex items-center gap-2 text-sm font-bold text-white/80">
+        <span className="flex items-center gap-2 text-sm font-bold text-slate-700">
           <span
             className={`w-6 h-6 rounded-lg flex items-center justify-center ${iconClass}`}
           >
@@ -126,10 +126,10 @@ function Slider({
         onChange={(e) => onChange(Number(e.target.value))}
         className={`w-full h-2 rounded-full cursor-pointer outline-none appearance-none`}
         style={{
-          background: `linear-gradient(to right, ${colorClass === "text-emerald-400" ? "#10b981" : colorClass === "text-violet-400" ? "#8b5cf6" : "#f59e0b"} ${pct}%, rgba(255,255,255,0.1) ${pct}%)`,
+          background: `linear-gradient(to right, ${colorClass === "text-emerald-600" ? "#10b981" : colorClass === "text-violet-600" ? "#8b5cf6" : "#f59e0b"} ${pct}%, rgba(15,23,42,0.1) ${pct}%)`,
         }}
       />
-      <div className="flex justify-between text-[10px] text-white/25">
+      <div className="flex justify-between text-[10px] text-slate-400">
         <span>{hint[0]}</span>
         <span>{hint[1]}</span>
       </div>
@@ -209,15 +209,15 @@ export default function EarningsCalculator({ onOpenQr }) {
             style={{
               background: "rgba(245,158,11,0.12)",
               border: "1px solid rgba(245,158,11,0.25)",
-              color: "#fbbf24",
+              color: "#b45309",
             }}
           >
             <Sparkles className="w-3.5 h-3.5" /> Live Earnings Calculator
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight">
             How Much Will <span className="text-gradient-gold">You Earn?</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             Drag the sliders below and see your projected payout in real time
           </p>
         </div>
@@ -225,14 +225,14 @@ export default function EarningsCalculator({ onOpenQr }) {
         {/* MAIN CARD */}
         <div
           className="glass-card rounded-3xl overflow-hidden"
-          style={{ border: "1px solid rgba(255,255,255,0.07)" }}
+          style={{ border: "1px solid rgba(15,23,42,0.07)" }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* LEFT: CONTROLS */}
             <div className="lg:col-span-7 p-8 sm:p-10 space-y-8">
               {/* TIER SELECTOR */}
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-white/40 mb-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">
                   Step 1: Choose Your Starter Pass
                 </p>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
@@ -243,7 +243,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                       className={`p-3 rounded-2xl text-center transition-all duration-200 ${
                         tier === t.id
                           ? "bg-gradient-to-br from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/30 scale-105"
-                          : "glass text-white/50 hover:text-white hover:bg-white/5"
+                          : "glass text-slate-500 hover:text-slate-900 hover:bg-slate-100"
                       }`}
                     >
                       <div className="text-[11px] font-black">{t.name}</div>
@@ -269,7 +269,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                   max={180}
                   step={15}
                   onChange={setWatch}
-                  colorClass="text-emerald-400"
+                  colorClass="text-emerald-600"
                   hint={["15 min (Quick)", "180 min (Marathon +500 bonus)"]}
                 />
                 <Slider
@@ -281,7 +281,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                   max={60}
                   step={2}
                   onChange={setEngage}
-                  colorClass="text-emerald-400"
+                  colorClass="text-emerald-600"
                   hint={["2 actions (Lazy)", "60 actions (Power user)"]}
                 />
                 <Slider
@@ -293,7 +293,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                   max={30}
                   step={1}
                   onChange={setRefs}
-                  colorClass="text-amber-400"
+                  colorClass="text-amber-600"
                   hint={[
                     "0 (Solo)",
                     `30 referrals = ₹${(30 * activeTier.referralBonus).toLocaleString("en-IN", { maximumFractionDigits: 1 })} bonus (${activeTier.referralLabel})`,
@@ -303,13 +303,13 @@ export default function EarningsCalculator({ onOpenQr }) {
 
               {/* INFO NOTE */}
               <div
-                className="flex items-start gap-2.5 text-xs text-white/30 p-4 rounded-xl"
+                className="flex items-start gap-2.5 text-xs text-slate-400 p-4 rounded-xl"
                 style={{
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(255,255,255,0.04)",
+                  background: "rgba(15,23,42,0.02)",
+                  border: "1px solid rgba(15,23,42,0.04)",
                 }}
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-400/50 mt-0.5 shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" />
                 Based on official YouPeak economy: 100 coins = ₹1 INR, 20
                 ads/day, daily action caps and tier multipliers apply.
               </div>
@@ -321,7 +321,7 @@ export default function EarningsCalculator({ onOpenQr }) {
               style={{
                 background:
                   "linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(16,185,129,0.06) 100%)",
-                borderLeft: "1px solid rgba(255,255,255,0.06)",
+                borderLeft: "1px solid rgba(15,23,42,0.06)",
               }}
             >
               <div className="text-center space-y-6 w-full max-w-xs">
@@ -334,13 +334,13 @@ export default function EarningsCalculator({ onOpenQr }) {
 
                 {/* MAIN NUMBER */}
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">
+                  <div className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
                     Projected Monthly Income
                   </div>
                   <div className="font-display font-black text-6xl sm:text-7xl text-gradient-gold leading-none">
                     ₹{displayed.toLocaleString("en-IN")}
                   </div>
-                  <div className="text-white/30 text-sm mt-2">
+                  <div className="text-slate-400 text-sm mt-2">
                     per month to your UPI
                   </div>
                 </div>
@@ -354,10 +354,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                       border: "1px solid rgba(16,185,129,0.2)",
                     }}
                   >
-                    <div className="text-emerald-400 font-black text-lg leading-tight">
+                    <div className="text-emerald-600 font-black text-lg leading-tight">
                       ₹{dailyINR.toFixed(2)}
                     </div>
-                    <div className="text-white/40 text-[10px] mt-0.5">
+                    <div className="text-slate-500 text-[10px] mt-0.5">
                       Per Day (₹{monthlyTasks.toLocaleString("en-IN")}/mo)
                     </div>
                   </div>
@@ -368,13 +368,13 @@ export default function EarningsCalculator({ onOpenQr }) {
                       border: "1px solid rgba(245,158,11,0.2)",
                     }}
                   >
-                    <div className="text-amber-400 font-black text-lg leading-tight">
+                    <div className="text-amber-600 font-black text-lg leading-tight">
                       ₹
                       {monthlyReferrals.toLocaleString("en-IN", {
                         maximumFractionDigits: 1,
                       })}
                     </div>
-                    <div className="text-white/40 text-[10px] mt-0.5">
+                    <div className="text-slate-500 text-[10px] mt-0.5">
                       Referral Bonus ({refs} ref)
                     </div>
                   </div>
@@ -382,31 +382,31 @@ export default function EarningsCalculator({ onOpenQr }) {
 
                 {/* COMPARISON */}
                 <div
-                  className="flex items-center gap-2 text-xs text-white/50 p-3 rounded-xl justify-center"
-                  style={{ background: "rgba(255,255,255,0.03)" }}
+                  className="flex items-center gap-2 text-xs text-slate-500 p-3 rounded-xl justify-center"
+                  style={{ background: "rgba(15,23,42,0.03)" }}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400/70 shrink-0" />
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                   {comparisonText()}
                 </div>
 
                 {/* PAYOUT THRESHOLD PILL */}
                 <div
-                  className="p-3 rounded-xl text-left border border-white/5 space-y-1"
-                  style={{ background: "rgba(255,255,255,0.03)" }}
+                  className="p-3 rounded-xl text-left border border-slate-200 space-y-1"
+                  style={{ background: "rgba(15,23,42,0.03)" }}
                 >
-                  <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">
+                  <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">
                     <Zap className="w-3 h-3" /> Payout Thresholds
                   </div>
-                  <div className="text-[11px] text-white/70">
+                  <div className="text-[11px] text-slate-700">
                     First Payout:{" "}
-                    <span className="text-white font-bold">Min. ₹100</span>{" "}
+                    <span className="text-slate-900 font-bold">Min. ₹100</span>{" "}
                     (Immediate)
                   </div>
-                  <div className="text-[11px] text-white/50">
+                  <div className="text-[11px] text-slate-500">
                     2nd onwards:{" "}
-                    <span className="text-white/80 font-bold">Min. ₹500</span>{" "}
+                    <span className="text-slate-700 font-bold">Min. ₹500</span>{" "}
                     (Taskers) /{" "}
-                    <span className="text-white/80 font-bold">₹1,000</span>{" "}
+                    <span className="text-slate-700 font-bold">₹1,000</span>{" "}
                     (Creators)
                   </div>
                 </div>
@@ -420,7 +420,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                 </a>
                 <button
                   onClick={onOpenQr}
-                  className="text-xs text-white/30 hover:text-white/60 transition-colors flex items-center justify-center gap-1 mx-auto"
+                  className="text-xs text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center gap-1 mx-auto"
                 >
                   Scan QR to download <ArrowRight className="w-3 h-3" />
                 </button>
@@ -438,17 +438,17 @@ export default function EarningsCalculator({ onOpenQr }) {
               boxShadow: "0 0 50px rgba(16,185,129,0.08)",
             }}
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-white/5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-200">
               <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-flex items-center gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-flex items-center gap-1.5">
                   <CheckCircle2 className="w-3 h-3" /> Updated Policy
                 </span>
-                <h3 className="font-display font-black text-2xl text-white mt-2">
+                <h3 className="font-display font-black text-2xl text-slate-900 mt-2">
                   Updated Payout Rules & Schedules
                 </h3>
               </div>
-              <div className="text-xs text-white/50 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="text-xs text-slate-500 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
                 Instant UPI & Bank Settlement
               </div>
             </div>
@@ -456,8 +456,8 @@ export default function EarningsCalculator({ onOpenQr }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* TASKERS CARD */}
               <div
-                className="p-5 rounded-2xl border border-white/5 flex flex-col justify-between"
-                style={{ background: "rgba(255,255,255,0.02)" }}
+                className="p-5 rounded-2xl border border-slate-200 flex flex-col justify-between"
+                style={{ background: "rgba(15,23,42,0.02)" }}
               >
                 <div>
                   <div className="flex items-center gap-3 mb-4">
@@ -465,10 +465,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                       <Wallet className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-display font-black text-white text-base">
+                      <h4 className="font-display font-black text-slate-900 text-base">
                         For Taskers
                       </h4>
-                      <p className="text-[11px] text-white/40">
+                      <p className="text-[11px] text-slate-500">
                         Watch, like, comment & daily tasks
                       </p>
                     </div>
@@ -476,24 +476,24 @@ export default function EarningsCalculator({ onOpenQr }) {
 
                   <div className="space-y-2.5 text-xs">
                     <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                      <span className="text-white/70 font-medium">
+                      <span className="text-slate-700 font-medium">
                         First Payout
                       </span>
-                      <span className="font-black text-emerald-400 text-sm">
+                      <span className="font-black text-emerald-600 text-sm">
                         Min. ₹100
-                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                        <span className="text-[10px] text-slate-500 block font-normal text-right">
                           Immediate withdrawal
                         </span>
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5">
-                      <span className="text-white/70 font-medium">
+                    <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+                      <span className="text-slate-700 font-medium">
                         Subsequent Payouts
                       </span>
-                      <span className="font-black text-white text-sm">
+                      <span className="font-black text-slate-900 text-sm">
                         Min. ₹500
-                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                        <span className="text-[10px] text-slate-500 block font-normal text-right">
                           2nd onwards (Instant 24/7)
                         </span>
                       </span>
@@ -501,16 +501,16 @@ export default function EarningsCalculator({ onOpenQr }) {
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-[11px] text-white/40">
-                  <Zap className="w-3.5 h-3.5 text-amber-400" />
+                <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2 text-[11px] text-slate-500">
+                  <Zap className="w-3.5 h-3.5 text-amber-600" />
                   Disbursed instantly to PhonePe, Google Pay, Paytm or UPI ID.
                 </div>
               </div>
 
               {/* CREATORS CARD */}
               <div
-                className="p-5 rounded-2xl border border-white/5 flex flex-col justify-between"
-                style={{ background: "rgba(255,255,255,0.02)" }}
+                className="p-5 rounded-2xl border border-slate-200 flex flex-col justify-between"
+                style={{ background: "rgba(15,23,42,0.02)" }}
               >
                 <div>
                   <div className="flex items-center gap-3 mb-4">
@@ -518,10 +518,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                       <Film className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-display font-black text-white text-base">
+                      <h4 className="font-display font-black text-slate-900 text-base">
                         For Creators
                       </h4>
-                      <p className="text-[11px] text-white/40">
+                      <p className="text-[11px] text-slate-500">
                         Ad splits, shorts, fan funding & VIP perks
                       </p>
                     </div>
@@ -529,24 +529,24 @@ export default function EarningsCalculator({ onOpenQr }) {
 
                   <div className="space-y-2.5 text-xs">
                     <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-                      <span className="text-white/70 font-medium">
+                      <span className="text-slate-700 font-medium">
                         First Payout
                       </span>
-                      <span className="font-black text-emerald-400 text-sm">
+                      <span className="font-black text-emerald-600 text-sm">
                         Min. ₹100
-                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                        <span className="text-[10px] text-slate-500 block font-normal text-right">
                           Immediate withdrawal
                         </span>
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between p-3 rounded-xl bg-violet-500/5 border border-violet-500/10">
-                      <span className="text-white/70 font-medium">
+                      <span className="text-slate-700 font-medium">
                         Subsequent Payouts
                       </span>
-                      <span className="font-black text-violet-300 text-sm">
+                      <span className="font-black text-violet-700 text-sm">
                         Min. ₹1,000
-                        <span className="text-[10px] text-white/40 block font-normal text-right">
+                        <span className="text-[10px] text-slate-500 block font-normal text-right">
                           2nd onwards (Monthly cycle)
                         </span>
                       </span>
@@ -554,8 +554,8 @@ export default function EarningsCalculator({ onOpenQr }) {
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-[11px] text-white/40">
-                  <Calendar className="w-3.5 h-3.5 text-violet-400" />
+                <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2 text-[11px] text-slate-500">
+                  <Calendar className="w-3.5 h-3.5 text-violet-600" />
                   Processed on a flexible monthly cycle between the 21st and
                   26th of every month.
                 </div>

@@ -35,13 +35,13 @@ export default function GrievanceCompliance() {
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             100% Legal & Safe in India
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
             We Play by <span className="text-gradient-primary">the Rules</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             YouPeak is fully compliant with IT Rules 2021 and designed with user
             safety at the core.
           </p>
@@ -61,10 +61,10 @@ export default function GrievanceCompliance() {
                 >
                   <Icon className="w-8 h-8" />
                 </div>
-                <h3 className="font-display font-bold text-xl text-white">
+                <h3 className="font-display font-bold text-xl text-slate-900">
                   {p.title}
                 </h3>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-slate-500 text-sm leading-relaxed">
                   {p.desc}
                 </p>
               </div>
@@ -80,14 +80,14 @@ export default function GrievanceCompliance() {
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent" />
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">
                 <ClipboardList className="w-4 h-4" />
                 IT Rules 2021 — Grievance Officer
               </div>
-              <h4 className="font-display font-black text-2xl text-white mb-2">
+              <h4 className="font-display font-black text-2xl text-slate-900 mb-2">
                 Issue with our platform?
               </h4>
-              <p className="text-white/50 text-sm max-w-xl">
+              <p className="text-slate-500 text-sm max-w-xl">
                 Contact our official Grievance Officer. We are legally required
                 to respond and resolve within 36 hours. This is a statutory
                 commitment, not just a promise.
@@ -101,7 +101,7 @@ export default function GrievanceCompliance() {
                 <Mail className="w-4 h-4" />
                 grievance@youpeak.in
               </a>
-              <div className="flex items-center justify-center gap-1.5 text-xs text-white/30">
+              <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                 Response within 36 hours · Legally guaranteed
               </div>

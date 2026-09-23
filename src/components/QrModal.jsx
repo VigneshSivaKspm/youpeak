@@ -3,12 +3,12 @@ import { X, QrCode, Smartphone } from "lucide-react";
 import { APP_INFO } from "../data/content";
 
 export default function QrModal({ onClose }) {
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(APP_INFO.playStoreUrl)}&color=10b981&bgcolor=020608&qzone=2`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(APP_INFO.playStoreUrl)}&color=059669&bgcolor=ffffff&qzone=2`;
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: "rgba(2,6,8,0.9)", backdropFilter: "blur(20px)" }}
+      style={{ background: "rgba(15,23,42,0.45)", backdropFilter: "blur(20px)" }}
       onClick={onClose}
     >
       <div
@@ -21,7 +21,7 @@ export default function QrModal({ onClose }) {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all"
         >
           <X className="w-4 h-4" />
         </button>
@@ -32,10 +32,10 @@ export default function QrModal({ onClose }) {
           </div>
         </div>
 
-        <h3 className="font-display font-black text-xl text-white mb-1">
+        <h3 className="font-display font-black text-xl text-slate-900 mb-1">
           Scan to Download
         </h3>
-        <p className="text-white/40 text-sm mb-6">
+        <p className="text-slate-500 text-sm mb-6">
           Point your camera at the QR code
         </p>
 
@@ -43,8 +43,8 @@ export default function QrModal({ onClose }) {
         <div
           className="p-4 rounded-2xl mx-auto w-fit mb-5"
           style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.06)",
+            background: "rgba(15,23,42,0.04)",
+            border: "1px solid rgba(15,23,42,0.06)",
           }}
         >
           <img
@@ -56,13 +56,13 @@ export default function QrModal({ onClose }) {
               e.target.nextSibling.style.display = "flex";
             }}
           />
-          <div className="w-48 h-48 rounded-xl bg-white/5 items-center justify-center text-white/30 text-sm hidden flex-col gap-2">
-            <Smartphone className="w-8 h-8 text-white/20" />
+          <div className="w-48 h-48 rounded-xl bg-slate-100 items-center justify-center text-slate-400 text-sm hidden flex-col gap-2">
+            <Smartphone className="w-8 h-8 text-slate-300" />
             <span>QR unavailable. Download from App Store.</span>
           </div>
         </div>
 
-        <p className="flex items-center justify-center gap-1.5 text-white/30 text-xs mb-4">
+        <p className="flex items-center justify-center gap-1.5 text-slate-400 text-xs mb-4">
           <Smartphone className="w-3.5 h-3.5" /> Available on Android & iOS
         </p>
 

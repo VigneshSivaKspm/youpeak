@@ -71,19 +71,19 @@ export default function AppScreenshots() {
   return (
     <section
       className="section px-4 sm:px-6 lg:px-8 relative"
-      style={{ background: "rgba(255,255,255,0.01)" }}
+      style={{ background: "#f8fafc" }}
     >
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             Inside the App
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
             See It. <span className="text-gradient-purple">Love It.</span> Use
             It.
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             Tour the app before downloading. Every screen designed for speed &
             delight.
           </p>
@@ -102,9 +102,9 @@ export default function AppScreenshots() {
                   style={
                     i === idx
                       ? {
-                          background:
-                            "linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03))",
-                          border: "1px solid rgba(255,255,255,0.1)",
+                          background: "#ffffff",
+                          boxShadow: "0 10px 30px -12px rgba(15,23,42,0.18)",
+                          border: "1px solid rgba(15,23,42,0.1)",
                         }
                       : { border: "1px solid transparent" }
                   }
@@ -116,16 +116,16 @@ export default function AppScreenshots() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div
-                      className={`font-bold text-sm ${i === idx ? "text-white" : "text-white/50"} transition-colors`}
+                      className={`font-bold text-sm ${i === idx ? "text-slate-900" : "text-slate-500"} transition-colors`}
                     >
                       {s.title}
                     </div>
-                    <div className="text-[11px] text-white/30 mt-0.5 truncate">
+                    <div className="text-[11px] text-slate-400 mt-0.5 truncate">
                       {s.tag}
                     </div>
                   </div>
                   <span
-                    className={`text-[10px] font-bold text-white/25 font-mono shrink-0 ${i === idx ? "text-white/60" : ""}`}
+                    className={`text-[10px] font-bold text-slate-400 font-mono shrink-0 ${i === idx ? "text-slate-600" : ""}`}
                   >
                     0{i + 1}
                   </span>
@@ -144,10 +144,10 @@ export default function AppScreenshots() {
                 <ScreenIcon className="w-3.5 h-3.5" />
                 {screen.tag}
               </div>
-              <h3 className="font-display font-bold text-2xl text-white mt-2">
+              <h3 className="font-display font-bold text-2xl text-slate-900 mt-2">
                 {screen.title}
               </h3>
-              <p className="text-white/40 text-sm max-w-sm mx-auto">
+              <p className="text-slate-500 text-sm max-w-sm mx-auto">
                 {screen.desc}
               </p>
             </div>
@@ -161,11 +161,11 @@ export default function AppScreenshots() {
               <div
                 className="relative w-[260px] h-[520px] rounded-[44px] overflow-hidden shadow-2xl"
                 style={{
-                  background: "linear-gradient(160deg, #0f1a12, #040c06)",
-                  border: "2px solid rgba(255,255,255,0.1)",
+                  background: "linear-gradient(160deg, #ffffff, #f1f5f9)",
+                  border: "6px solid #0f172a",
                 }}
               >
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-20 border border-white/5" />
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-20 border border-black" />
                 <div className="absolute inset-0 flex items-center justify-center p-6 pt-12">
                   <img
                     key={idx}
@@ -195,7 +195,7 @@ export default function AppScreenshots() {
                   <button
                     key={i}
                     onClick={() => setIdx(i)}
-                    className={`rounded-full transition-all ${i === idx ? "w-6 h-2 bg-emerald-500" : "w-2 h-2 bg-white/20"}`}
+                    className={`rounded-full transition-all ${i === idx ? "w-6 h-2 bg-emerald-500" : "w-2 h-2 bg-slate-300"}`}
                   />
                 ))}
               </div>

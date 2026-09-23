@@ -27,7 +27,7 @@ const LINKS = {
 
 export default function Footer() {
   return (
-    <footer className="relative pt-20 pb-8 px-4 sm:px-6 lg:px-8 border-t border-white/[0.04]">
+    <footer className="relative bg-slate-50 pt-20 pb-8 px-4 sm:px-6 lg:px-8 border-t border-slate-200">
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
@@ -52,26 +52,26 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-display font-black text-xl text-white">
+                <span className="font-display font-black text-xl text-slate-900">
                   You<span className="text-gradient-primary">Peak</span>
                 </span>
-                <p className="text-[10px] text-white/30 -mt-0.5">
+                <p className="text-[10px] text-slate-400 -mt-0.5">
                   YouPeak Digital Solutions Pvt Ltd
                 </p>
               </div>
             </div>
 
-            <p className="text-white/40 text-sm leading-relaxed">
+            <p className="text-slate-500 text-sm leading-relaxed">
               India's leading watch-and-earn platform. Real rewards. Instant UPI
               cashouts. Up to 90% creator revenue share.
             </p>
 
-            <div className="space-y-2 text-xs text-white/35">
+            <div className="space-y-2 text-xs text-slate-500">
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 shrink-0" />
                 <a
                   href="mailto:support@youpeak.in"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-slate-900 transition-colors"
                 >
                   support@youpeak.in
                 </a>
@@ -90,8 +90,8 @@ export default function Footer() {
             <div
               className="flex items-center gap-2 px-3 py-2 rounded-xl w-fit"
               style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
+                background: "rgba(15,23,42,0.03)",
+                border: "1px solid rgba(15,23,42,0.06)",
               }}
             >
               <img
@@ -102,7 +102,7 @@ export default function Footer() {
                   e.target.style.display = "none";
                 }}
               />
-              <span className="text-[11px] text-white/30">
+              <span className="text-[11px] text-slate-400">
                 Powered by Razorpay
               </span>
             </div>
@@ -111,7 +111,7 @@ export default function Footer() {
           {/* LINKS */}
           {Object.entries(LINKS).map(([title, links]) => (
             <div key={title} className="col-span-1 md:col-span-2 space-y-4">
-              <h4 className="font-display font-bold text-sm text-white">
+              <h4 className="font-display font-bold text-sm text-slate-900">
                 {title}
               </h4>
               <ul className="space-y-2">
@@ -119,7 +119,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-xs text-white/35 hover:text-white transition-colors"
+                      className="text-xs text-slate-500 hover:text-slate-900 transition-colors"
                     >
                       {link.label}
                     </a>
@@ -131,7 +131,7 @@ export default function Footer() {
 
           {/* Download column */}
           <div className="col-span-2 md:col-span-2 space-y-4">
-            <h4 className="font-display font-bold text-sm text-white">
+            <h4 className="font-display font-bold text-sm text-slate-900">
               Download Now
             </h4>
             <div className="space-y-2">
@@ -139,10 +139,10 @@ export default function Footer() {
                 href="https://play.google.com"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 p-3 rounded-xl text-xs font-semibold text-white transition-all"
+                className="flex items-center gap-2 p-3 rounded-xl text-xs font-semibold text-slate-900 transition-all"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(15,23,42,0.07)",
                 }}
               >
                 <svg
@@ -158,14 +158,14 @@ export default function Footer() {
                 href="https://apps.apple.com"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 p-3 rounded-xl text-xs font-semibold text-white transition-all"
+                className="flex items-center gap-2 p-3 rounded-xl text-xs font-semibold text-slate-900 transition-all"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(15,23,42,0.07)",
                 }}
               >
                 <svg
-                  className="w-5 h-5 text-white shrink-0"
+                  className="w-5 h-5 text-slate-900 shrink-0"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -178,35 +178,35 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.04]">
-          <p className="text-xs text-white/25 text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-200">
+          <p className="text-xs text-slate-400 text-center sm:text-left">
             © 2026 YouPeak Digital Solutions Pvt Ltd. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-xs text-white/20">
+          <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-300">
             <a
               href="/privacy.html"
-              className="hover:text-white/50 transition-colors"
+              className="hover:text-slate-700 transition-colors"
             >
               Privacy
             </a>
             <a
               href="/terms.html"
-              className="hover:text-white/50 transition-colors"
+              className="hover:text-slate-700 transition-colors"
             >
               Terms
             </a>
             <a
               href="#compliance"
-              className="hover:text-white/50 transition-colors"
+              className="hover:text-slate-700 transition-colors"
             >
               Grievance
             </a>
             <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3 text-emerald-500/50" /> IT Rules
+              <ShieldCheck className="w-3 h-3 text-emerald-600" /> IT Rules
               2021 Compliant
             </span>
             <span className="flex items-center gap-1">
-              <Globe className="w-3 h-3 text-white/30" /> Made in India
+              <Globe className="w-3 h-3 text-slate-400" /> Made in India
             </span>
           </div>
         </div>

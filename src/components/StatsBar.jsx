@@ -70,10 +70,10 @@ export default function StatsBar() {
               >
                 {s.val}
               </div>
-              <div className="font-bold text-white text-sm sm:text-base mt-1">
+              <div className="font-bold text-slate-900 text-sm sm:text-base mt-1">
                 {s.label}
               </div>
-              <div className="text-white/40 text-xs mt-1">{s.sub}</div>
+              <div className="text-slate-500 text-xs mt-1">{s.sub}</div>
             </div>
           );
         })}

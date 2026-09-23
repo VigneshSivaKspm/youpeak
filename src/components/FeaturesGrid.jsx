@@ -68,18 +68,18 @@ const FEATURES = [
 
 export default function FeaturesGrid() {
   return (
-    <section id="features" className="section px-4 sm:px-6 lg:px-8">
+    <section id="features" className="section bg-slate-50 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             What makes us different
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
             Everything You Need <br />
             <span className="text-gradient-primary">in One App</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             Built different. Designed to reward you, not exploit you.
           </p>
         </div>
@@ -108,9 +108,9 @@ export default function FeaturesGrid() {
                   <span
                     className="text-[11px] font-bold px-3 py-1 rounded-full"
                     style={{
-                      background: "rgba(255,255,255,0.05)",
-                      color: "rgba(255,255,255,0.5)",
-                      border: "1px solid rgba(255,255,255,0.07)",
+                      background: "rgba(15,23,42,0.05)",
+                      color: "rgba(15,23,42,0.5)",
+                      border: "1px solid rgba(15,23,42,0.07)",
                     }}
                   >
                     {f.tag}
@@ -119,16 +119,16 @@ export default function FeaturesGrid() {
 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="font-display font-bold text-xl text-white mb-3">
+                  <h3 className="font-display font-bold text-xl text-slate-900 mb-3">
                     {f.title}
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
+                  <p className="text-slate-500 text-sm leading-relaxed">
                     {f.desc}
                   </p>
                 </div>
 
                 {/* Bottom arrow */}
-                <div className="relative flex items-center gap-1 mt-6 text-xs font-bold text-white/30 group-hover:text-white/60 transition-colors">
+                <div className="relative flex items-center gap-1 mt-6 text-xs font-bold text-slate-400 group-hover:text-slate-700 transition-colors">
                   <span>Learn more</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>

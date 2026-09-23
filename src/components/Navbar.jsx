@@ -23,7 +23,7 @@ export default function Navbar({ onOpenQr }) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass-dark py-3 shadow-xl shadow-black/30"
+          ? "glass-nav py-3 shadow-xl shadow-slate-900/10"
           : "bg-transparent py-5"
       }`}
     >
@@ -44,7 +44,7 @@ export default function Navbar({ onOpenQr }) {
             </div>
           </div>
           <div>
-            <span className="font-display font-black text-xl text-white tracking-tight">
+            <span className="font-display font-black text-xl text-slate-900 tracking-tight">
               You<span className="text-gradient-primary">Peak</span>
             </span>
           </div>
@@ -58,7 +58,7 @@ export default function Navbar({ onOpenQr }) {
               <a
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white/60 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
+                className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-all duration-200"
               >
                 {Icon && <Icon className="w-3.5 h-3.5" />}
                 {link.label}
@@ -71,7 +71,7 @@ export default function Navbar({ onOpenQr }) {
         <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={onOpenQr}
-            className="px-4 py-2 text-sm font-semibold text-white/60 hover:text-white transition-colors"
+            className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
           >
             Scan QR
           </button>
@@ -94,7 +94,7 @@ export default function Navbar({ onOpenQr }) {
           </a>
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 text-white/70 hover:text-white"
+            className="p-2 text-slate-700 hover:text-slate-900"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -103,7 +103,7 @@ export default function Navbar({ onOpenQr }) {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden glass-dark border-t border-white/5 px-4 py-6 space-y-2">
+        <div className="md:hidden glass-nav border-t border-slate-200 px-4 py-6 space-y-2">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -111,14 +111,14 @@ export default function Navbar({ onOpenQr }) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-all"
               >
                 {Icon && <Icon className="w-4 h-4" />}
                 {link.label}
               </a>
             );
           })}
-          <div className="pt-3 space-y-2 border-t border-white/5">
+          <div className="pt-3 space-y-2 border-t border-slate-200">
             <button
               onClick={() => {
                 setOpen(false);

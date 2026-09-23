@@ -42,20 +42,20 @@ export default function HowItWorks({ onOpenQr }) {
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             So simple, it takes 4 steps
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
-            Download <Zap className="w-8 h-8 text-emerald-400 inline -mt-1" />{" "}
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
+            Download <Zap className="w-8 h-8 text-emerald-600 inline -mt-1" />{" "}
             Watch{" "}
             <Play
-              className="w-7 h-7 text-violet-400 inline -mt-1"
+              className="w-7 h-7 text-violet-600 inline -mt-1"
               fill="currentColor"
             />
             <br />
             <span className="text-gradient-blue">Earn · Withdraw</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             That's literally it. No surveys. No fake tasks. No waiting weeks.
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function HowItWorks({ onOpenQr }) {
               <div key={i} className="relative group">
                 <div
                   className="glass-card rounded-3xl p-8 text-center h-full flex flex-col items-center gap-4"
-                  style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+                  style={{ border: "1px solid rgba(15,23,42,0.06)" }}
                 >
                   <div className="relative">
                     <div
@@ -80,15 +80,15 @@ export default function HowItWorks({ onOpenQr }) {
                     >
                       <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white/10 text-[10px] font-black text-white flex items-center justify-center border border-white/10">
+                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-100 text-[10px] font-black text-slate-900 flex items-center justify-center border border-slate-200">
                       {s.step}
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-lg text-white mb-2">
+                    <h3 className="font-display font-bold text-lg text-slate-900 mb-2">
                       {s.title}
                     </h3>
-                    <p className="text-white/45 text-sm leading-relaxed">
+                    <p className="text-slate-500 text-sm leading-relaxed">
                       {s.desc}
                     </p>
                   </div>
@@ -117,7 +117,7 @@ export default function HowItWorks({ onOpenQr }) {
               <Smartphone className="w-4 h-4" /> Scan QR to Install
             </button>
           </div>
-          <p className="text-white/25 text-xs mt-4">
+          <p className="text-slate-400 text-xs mt-4">
             250,000+ users already earning every day
           </p>
         </div>

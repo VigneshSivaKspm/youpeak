@@ -9,7 +9,6 @@ import AppScreenshots from "./components/AppScreenshots";
 import HowItWorks from "./components/HowItWorks";
 import TiersPricing from "./components/TiersPricing";
 import GrievanceCompliance from "./components/GrievanceCompliance";
-import Testimonials from "./components/Testimonials";
 import FaqAccordion from "./components/FaqAccordion";
 import DownloadCTA from "./components/DownloadCTA";
 import Footer from "./components/Footer";
@@ -19,7 +18,7 @@ export default function App() {
   const [qrOpen, setQrOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#020608] text-white">
+    <div className="min-h-screen bg-white text-slate-900">
       <Navbar onOpenQr={() => setQrOpen(true)} />
       <Hero onOpenQr={() => setQrOpen(true)} />
       <StatsBar />
@@ -29,7 +28,6 @@ export default function App() {
       <AppScreenshots />
       <HowItWorks onOpenQr={() => setQrOpen(true)} />
       <TiersPricing />
-      <Testimonials />
       <GrievanceCompliance />
       <FaqAccordion />
       <DownloadCTA onOpenQr={() => setQrOpen(true)} />

@@ -32,7 +32,7 @@ const TASKER_TIERS = [
       "Standard UPI cashout",
     ],
     color: "from-gray-500 to-gray-600",
-    btnClass: "bg-white/10 hover:bg-white/15 text-white",
+    btnClass: "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
     TierIcon: Tag,
   },
   {
@@ -221,7 +221,7 @@ export default function TiersPricing() {
   const [mode, setMode] = useState("tasker");
 
   return (
-    <section id="tiers" className="section px-4 sm:px-6 lg:px-8 relative">
+    <section id="tiers" className="section bg-slate-50 px-4 sm:px-6 lg:px-8 relative">
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
@@ -233,13 +233,13 @@ export default function TiersPricing() {
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             Transparent pricing. No fine print.
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
             Pick Your <span className="text-gradient-gold">Power Level</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             Start free. Upgrade anytime. 100% Ad Credits matched on every paid
             tier.
           </p>
@@ -247,16 +247,16 @@ export default function TiersPricing() {
 
         {/* SWITCHER */}
         <div className="flex justify-center mb-12">
-          <div className="glass rounded-2xl p-1.5 flex gap-1 border border-white/5">
+          <div className="glass rounded-2xl p-1.5 flex gap-1 border border-slate-200">
             <button
               onClick={() => setMode("tasker")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${mode === "tasker" ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg" : "text-white/50 hover:text-white"}`}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${mode === "tasker" ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-900"}`}
             >
               <Eye className="w-4 h-4" /> Viewer Passes
             </button>
             <button
               onClick={() => setMode("creator")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${mode === "creator" ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg" : "text-white/50 hover:text-white"}`}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${mode === "creator" ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-900"}`}
             >
               <Film className="w-4 h-4" /> Creator VIP
             </button>
@@ -283,7 +283,7 @@ export default function TiersPricing() {
                             border: "2px solid rgba(16,185,129,0.5)",
                             boxShadow: "0 0 40px rgba(16,185,129,0.15)",
                           }
-                        : { border: "1px solid rgba(255,255,255,0.06)" }
+                        : { border: "1px solid rgba(15,23,42,0.06)" }
                   }
                 >
                   {t.badge ? (
@@ -307,39 +307,39 @@ export default function TiersPricing() {
                       >
                         <TierIcon className="w-3.5 h-3.5 text-white" />
                       </div>
-                      <h3 className="font-display font-black text-sm text-white">
+                      <h3 className="font-display font-black text-sm text-slate-900">
                         {t.name}
                       </h3>
                     </div>
                     {t.level && (
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white/10 text-white/70 whitespace-nowrap">
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 whitespace-nowrap">
                         {t.level}
                       </span>
                     )}
                   </div>
 
                   <div className="mt-3 mb-1">
-                    <div className="font-display font-black text-2xl text-white">
+                    <div className="font-display font-black text-2xl text-slate-900">
                       {t.price}
                     </div>
-                    <div className="text-white/40 text-[11px]">{t.period}</div>
+                    <div className="text-slate-500 text-[11px]">{t.period}</div>
                   </div>
 
                   <div
                     className="mt-3 mb-4 p-3 rounded-xl"
-                    style={{ background: "rgba(255,255,255,0.04)" }}
+                    style={{ background: "rgba(15,23,42,0.04)" }}
                   >
-                    <div className="text-xs text-white/40">Max per month</div>
+                    <div className="text-xs text-slate-500">Max per month</div>
                     <div
                       className={`font-black text-xl bg-gradient-to-r ${t.color} bg-clip-text text-transparent`}
                     >
                       {t.monthlyMax}
                     </div>
-                    <div className="text-[10px] text-white/30">
+                    <div className="text-[10px] text-slate-400">
                       (Daily cap: {t.dailyCap})
                     </div>
                     {t.credits && (
-                      <div className="flex items-center gap-1 mt-2 text-[10px] font-bold text-amber-400">
+                      <div className="flex items-center gap-1 mt-2 text-[10px] font-bold text-amber-600">
                         <Gift className="w-3 h-3 shrink-0" /> {t.credits}
                       </div>
                     )}
@@ -349,9 +349,9 @@ export default function TiersPricing() {
                     {t.features.map((f, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-1.5 text-[11px] text-white/60 leading-tight"
+                        className="flex items-start gap-1.5 text-[11px] text-slate-600 leading-tight"
                       >
-                        <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                         {f}
                       </li>
                     ))}
@@ -384,7 +384,7 @@ export default function TiersPricing() {
                           border: "2px solid rgba(16,185,129,0.5)",
                           boxShadow: "0 0 40px rgba(16,185,129,0.15)",
                         }
-                      : { border: "1px solid rgba(255,255,255,0.06)" }
+                      : { border: "1px solid rgba(15,23,42,0.06)" }
                   }
                 >
                   {t.badge && (
@@ -404,34 +404,34 @@ export default function TiersPricing() {
                       >
                         <TierIcon className="w-3.5 h-3.5 text-white" />
                       </div>
-                      <h3 className="font-display font-black text-sm text-white">
+                      <h3 className="font-display font-black text-sm text-slate-900">
                         {t.name}
                       </h3>
                     </div>
                     {t.level && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/10 text-white/70">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
                         {t.level}
                       </span>
                     )}
                   </div>
-                  <div className="text-[11px] text-white/40 mt-1">{t.subs}</div>
+                  <div className="text-[11px] text-slate-500 mt-1">{t.subs}</div>
 
                   {t.subtext && (
-                    <div className="text-[11px] text-emerald-400 font-semibold mt-2 leading-tight">
+                    <div className="text-[11px] text-emerald-600 font-semibold mt-2 leading-tight">
                       {t.subtext}
                     </div>
                   )}
 
                   <div className="mt-4 mb-3">
-                    <div className="font-display font-black text-2xl text-white">
+                    <div className="font-display font-black text-2xl text-slate-900">
                       {t.price}
                     </div>
-                    <div className="text-white/30 text-[11px]">{t.period}</div>
+                    <div className="text-slate-400 text-[11px]">{t.period}</div>
                   </div>
 
                   {t.keyHighlight && (
-                    <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-300 mb-3 leading-snug">
-                      <strong className="text-white block mb-0.5 font-bold">
+                    <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-700 mb-3 leading-snug">
+                      <strong className="text-slate-900 block mb-0.5 font-bold">
                         Key Highlight:
                       </strong>
                       {t.keyHighlight}
@@ -441,9 +441,9 @@ export default function TiersPricing() {
                   <div className="space-y-2 flex-1 mb-6">
                     <div
                       className="p-3 rounded-xl"
-                      style={{ background: "rgba(255,255,255,0.04)" }}
+                      style={{ background: "rgba(15,23,42,0.04)" }}
                     >
-                      <div className="flex items-center gap-1.5 text-[10px] text-white/30 mb-1">
+                      <div className="flex items-center gap-1.5 text-[10px] text-slate-400 mb-1">
                         <TrendingUp className="w-3 h-3" /> Long-Video Ad Share
                       </div>
                       <div
@@ -455,25 +455,25 @@ export default function TiersPricing() {
                     <div className="grid grid-cols-2 gap-2">
                       <div
                         className="text-[10px] p-2 rounded-lg"
-                        style={{ background: "rgba(255,255,255,0.03)" }}
+                        style={{ background: "rgba(15,23,42,0.03)" }}
                       >
-                        <div className="text-white/30">Shorts</div>
-                        <div className="text-white/70 font-bold">
+                        <div className="text-slate-400">Shorts</div>
+                        <div className="text-slate-700 font-bold">
                           {t.shortsShare}
                         </div>
                       </div>
                       <div
                         className="text-[10px] p-2 rounded-lg"
-                        style={{ background: "rgba(255,255,255,0.03)" }}
+                        style={{ background: "rgba(15,23,42,0.03)" }}
                       >
-                        <div className="text-white/30">Fan Funding</div>
-                        <div className="text-white/70 font-bold">
+                        <div className="text-slate-400">Fan Funding</div>
+                        <div className="text-slate-700 font-bold">
                           {t.fanFunding}
                         </div>
                       </div>
                     </div>
-                    <div className="text-[11px] text-white/40">
-                      <span className="text-white/60 font-bold">
+                    <div className="text-[11px] text-slate-500">
+                      <span className="text-slate-600 font-bold">
                         Max per video:
                       </span>{" "}
                       {t.max}
@@ -494,7 +494,7 @@ export default function TiersPricing() {
           </div>
         )}
 
-        <p className="text-center text-white/40 text-xs mt-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-center text-slate-500 text-xs mt-10 max-w-2xl mx-auto leading-relaxed">
           100% matched Ad Credits deposited immediately on tier purchase. Viewer
           passes (Levels 1–4) are one-time passes; Diamond Pass & Creator VIP
           passes renew annually. No hidden fees.

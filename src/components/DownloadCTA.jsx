@@ -37,7 +37,7 @@ export default function DownloadCTA({ onOpenQr }) {
             className="rounded-[22px] p-10 sm:p-16 relative overflow-hidden text-center"
             style={{
               background:
-                "linear-gradient(135deg, rgba(5,15,10,0.97) 0%, rgba(8,4,20,0.97) 100%)",
+                "linear-gradient(135deg, #ffffff 0%, #f0fdf9 50%, #f5f3ff 100%)",
             }}
           >
             {/* Decorative orbs */}
@@ -47,7 +47,7 @@ export default function DownloadCTA({ onOpenQr }) {
             {/* APP ICON */}
             <div className="relative inline-flex mb-8">
               <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-emerald-500 to-violet-600 blur opacity-60 animate-glow-pulse" />
-              <div className="relative w-24 h-24 rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
+              <div className="relative w-24 h-24 rounded-3xl overflow-hidden border-2 border-slate-200 shadow-2xl">
                 <img
                   src="/assets/app_logo.png"
                   alt="YouPeak"
@@ -61,11 +61,11 @@ export default function DownloadCTA({ onOpenQr }) {
             </div>
 
             {/* HEADLINE */}
-            <h2 className="font-display font-black text-4xl sm:text-6xl text-white tracking-tight leading-tight mb-4">
+            <h2 className="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight mb-4">
               Your Money Is <br />
               <span className="text-gradient-rainbow">Waiting For You</span>
             </h2>
-            <p className="text-white/50 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+            <p className="text-slate-500 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
               Download YouPeak free. Start watching. Start earning. First
               withdrawal possible within your first 24 hours.
             </p>
@@ -75,9 +75,9 @@ export default function DownloadCTA({ onOpenQr }) {
               {CHECKS.map((c, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 text-sm text-white/60"
+                  className="flex items-center gap-2 text-sm text-slate-600"
                 >
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                   {c}
                 </div>
               ))}
@@ -89,7 +89,7 @@ export default function DownloadCTA({ onOpenQr }) {
                 href="https://play.google.com"
                 target="_blank"
                 rel="noreferrer"
-                className="store-btn bg-white text-gray-900 shadow-2xl shadow-black/40 hover:shadow-emerald-500/20"
+                className="store-btn bg-white text-gray-900 border border-slate-200 shadow-2xl shadow-slate-900/10 hover:shadow-emerald-500/20"
               >
                 <svg
                   className="w-7 h-7 text-emerald-600 shrink-0"
@@ -111,8 +111,7 @@ export default function DownloadCTA({ onOpenQr }) {
                 href="https://apps.apple.com"
                 target="_blank"
                 rel="noreferrer"
-                className="store-btn glass text-white shadow-2xl shadow-black/40"
-                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                className="store-btn bg-slate-900 text-white shadow-2xl shadow-slate-900/20 hover:bg-slate-800"
               >
                 <svg
                   className="w-7 h-7 text-white shrink-0"
@@ -122,7 +121,7 @@ export default function DownloadCTA({ onOpenQr }) {
                   <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M15.97,4.69C16.55,3.96 16.96,2.94 16.85,1.91C15.96,1.95 14.88,2.51 14.24,3.25C13.67,3.91 13.18,4.96 13.31,5.97C14.31,6.05 15.36,5.43 15.97,4.69Z" />
                 </svg>
                 <div className="leading-none">
-                  <div className="text-[10px] font-medium text-white/40 uppercase tracking-widest">
+                  <div className="text-[10px] font-medium text-white/60 uppercase tracking-widest">
                     DOWNLOAD ON THE
                   </div>
                   <div className="text-base font-black tracking-tight font-display text-white mt-0.5">
@@ -146,7 +145,7 @@ export default function DownloadCTA({ onOpenQr }) {
                   className="w-4 h-4 fill-amber-400 text-amber-400"
                 />
               ))}
-              <span className="text-white/40 text-sm ml-1">
+              <span className="text-slate-500 text-sm ml-1">
                 4.8 · 12,400+ reviews
               </span>
             </div>

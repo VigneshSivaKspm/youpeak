@@ -54,17 +54,17 @@ export default function FaqAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="section px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="section bg-slate-50 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* HEADER */}
         <div className="text-center mb-14 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             Got questions?
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
             Quick <span className="text-gradient-primary">Answers</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             Everything you need to know. No jargon, just straight answers.
           </p>
         </div>
@@ -87,16 +87,16 @@ export default function FaqAccordion() {
                   >
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span className="flex-1 font-display font-bold text-sm sm:text-base text-white">
+                  <span className="flex-1 font-display font-bold text-sm sm:text-base text-slate-900">
                     {faq.q}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-emerald-400" : "text-white/30"}`}
+                    className={`w-5 h-5 shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-emerald-600" : "text-slate-400"}`}
                   />
                 </button>
                 {open === i && (
                   <div
-                    className="px-6 pb-6 text-sm text-white/55 leading-relaxed border-t border-white/5 pt-4 ml-12"
+                    className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-200 pt-4 ml-12"
                     style={{ animation: "slide-up 0.2s ease-out" }}
                   >
                     {faq.a}
@@ -114,10 +114,10 @@ export default function FaqAccordion() {
               <HelpCircle className="w-7 h-7" />
             </div>
           </div>
-          <h4 className="font-display font-bold text-lg text-white mb-2">
+          <h4 className="font-display font-bold text-lg text-slate-900 mb-2">
             Still have questions?
           </h4>
-          <p className="text-white/40 text-sm mb-4">
+          <p className="text-slate-500 text-sm mb-4">
             Our support team replies within a few hours.
           </p>
           <a

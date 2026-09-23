@@ -50,7 +50,7 @@ const CONTENT = {
     imageFallback:
       "https://placehold.co/360x360/10b981/fff?text=Watch+%26+Earn",
     badge: "Per day/ ₹333.33",
-    badgeColor: "text-emerald-400",
+    badgeColor: "text-emerald-600",
     points: [
       {
         icon: Tv,
@@ -84,7 +84,7 @@ const CONTENT = {
     image: "/assets/monetization_image.png",
     imageFallback: "https://placehold.co/360x360/8b5cf6/fff?text=Creator+VIP",
     badge: "Up to 90% Revenue",
-    badgeColor: "text-violet-400",
+    badgeColor: "text-violet-600",
     points: [
       {
         icon: MonitorPlay,
@@ -119,7 +119,7 @@ const CONTENT = {
     imageFallback:
       "https://placehold.co/360x360/f59e0b/fff?text=Refer+%26+Earn",
     badge: "Up to ₹200 Per Active User",
-    badgeColor: "text-amber-400",
+    badgeColor: "text-amber-600",
     points: [
       {
         icon: Mail,
@@ -160,13 +160,13 @@ export default function PersonaTabs() {
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-4">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             Who is YouPeak for?
           </div>
-          <h2 className="font-display font-black text-4xl sm:text-5xl text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
             Built for <span className="text-gradient-primary">Everyone</span>
           </h2>
-          <p className="text-white/50 text-base">
+          <p className="text-slate-500 text-base">
             Pick your role and see exactly how YouPeak works for you
           </p>
         </div>
@@ -175,7 +175,7 @@ export default function PersonaTabs() {
         <div className="flex justify-center mb-10">
           <div
             className="glass rounded-2xl p-1.5 flex gap-1"
-            style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ border: "1px solid rgba(15,23,42,0.06)" }}
           >
             {TABS.map((t) => {
               const Icon = t.icon;
@@ -186,7 +186,7 @@ export default function PersonaTabs() {
                   className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                     active === t.id
                       ? `bg-gradient-to-r ${t.gradient} text-white shadow-lg`
-                      : "text-white/50 hover:text-white hover:bg-white/5"
+                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -205,18 +205,18 @@ export default function PersonaTabs() {
               <div
                 className="inline-flex items-center gap-2 text-xs font-black px-3 py-1.5 rounded-full"
                 style={{
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  background: "rgba(15,23,42,0.06)",
+                  border: "1px solid rgba(15,23,42,0.08)",
                 }}
               >
                 <TabIcon className={`w-3.5 h-3.5 ${data.badgeColor}`} />
                 <span className={data.badgeColor}>{data.badge}</span>
               </div>
 
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-white leading-tight">
+              <h3 className="font-display font-black text-2xl sm:text-3xl text-slate-900 leading-tight">
                 {data.headline}
               </h3>
-              <p className="text-white/55 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                 {data.sub}
               </p>
 
@@ -228,8 +228,8 @@ export default function PersonaTabs() {
                       key={i}
                       className="flex items-start gap-3 p-4 rounded-2xl"
                       style={{
-                        background: "rgba(255,255,255,0.03)",
-                        border: "1px solid rgba(255,255,255,0.05)",
+                        background: "rgba(15,23,42,0.03)",
+                        border: "1px solid rgba(15,23,42,0.05)",
                       }}
                     >
                       <div
@@ -238,10 +238,10 @@ export default function PersonaTabs() {
                         <PointIcon className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-white">
+                        <div className="text-xs font-bold text-slate-900">
                           {p.title}
                         </div>
-                        <div className="text-[11px] text-white/40 mt-0.5">
+                        <div className="text-[11px] text-slate-500 mt-0.5">
                           {p.sub}
                         </div>
                       </div>
@@ -263,7 +263,7 @@ export default function PersonaTabs() {
               className="flex items-center justify-center p-8 relative overflow-hidden"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.02), transparent)",
+                  "linear-gradient(135deg, rgba(15,23,42,0.02), transparent)",
               }}
             >
               <div

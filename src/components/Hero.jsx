@@ -69,10 +69,10 @@ export default function Hero({ onOpenQr }) {
           style={{ animationDelay: "2s" }}
         />
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.35]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+              "linear-gradient(rgba(15,23,42,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.1) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
           }}
         />
@@ -90,26 +90,26 @@ export default function Hero({ onOpenQr }) {
               <span className="flex h-2 w-2 rounded-full bg-emerald-400 relative">
                 <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-emerald-400 opacity-75" />
               </span>
-              <Trophy className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-xs font-bold text-emerald-400 tracking-wide">
+              <Trophy className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="text-xs font-bold text-emerald-600 tracking-wide">
                 INDIA'S #1 WATCH & EARN APP
               </span>
             </div>
 
             {/* HEADLINE */}
             <div className="space-y-3">
-              <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.06] tracking-tight text-white">
+              <h1 className="font-display font-black text-5xl sm:text-6xl lg:text-6xl xl:text-7xl leading-[1.06] tracking-tight text-slate-900">
                 Watch Videos.
                 <br />
                 <span className="text-gradient-primary">Get Paid.</span>
                 <br />
-                <span className="text-white/90">Repeat Daily.</span>
+                <span className="text-slate-800">Repeat Daily.</span>
               </h1>
-              <p className="text-lg sm:text-xl text-white/55 max-w-xl leading-relaxed font-medium">
+              <p className="text-lg sm:text-xl text-slate-600 max-w-xl leading-relaxed font-medium">
                 Stop watching for free. YouPeak pays you{" "}
-                <strong className="text-white font-bold">real money</strong> for
+                <strong className="text-slate-900 font-bold">real money</strong> for
                 every video you watch, like, and share — straight to your{" "}
-                <strong className="text-emerald-400 font-bold">
+                <strong className="text-emerald-600 font-bold">
                   UPI in seconds
                 </strong>
                 .
@@ -123,30 +123,30 @@ export default function Hero({ onOpenQr }) {
                   icon: Wallet,
                   val: "Up to ₹333.33/day",
                   sub: "Pass Maximum Income",
-                  color: "text-emerald-400",
+                  color: "text-emerald-600",
                 },
                 {
                   icon: Zap,
                   val: "Instant Payout",
                   sub: "UPI / PhonePe / GPay",
-                  color: "text-amber-400",
+                  color: "text-amber-600",
                 },
                 {
                   icon: Users,
                   val: "₹200/Referral",
                   sub: "Peak Partner 2-Stage",
-                  color: "text-violet-400",
+                  color: "text-violet-600",
                 },
               ].map((b, i) => (
                 <div
                   key={i}
                   className="glass flex items-center gap-2.5 px-4 py-2.5 rounded-2xl"
-                  style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+                  style={{ border: "1px solid rgba(15,23,42,0.08)" }}
                 >
                   <b.icon className={`w-4 h-4 ${b.color} shrink-0`} />
                   <div>
-                    <div className="text-xs font-black text-white">{b.val}</div>
-                    <div className="text-[10px] text-white/40">{b.sub}</div>
+                    <div className="text-xs font-black text-slate-900">{b.val}</div>
+                    <div className="text-[10px] text-slate-500">{b.sub}</div>
                   </div>
                 </div>
               ))}
@@ -160,7 +160,7 @@ export default function Hero({ onOpenQr }) {
                   href="https://play.google.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="store-btn bg-white text-gray-900 shadow-xl shadow-black/20 hover:shadow-emerald-500/20 hover:shadow-2xl"
+                  className="store-btn bg-white text-gray-900 border border-slate-200 shadow-xl shadow-slate-900/10 hover:shadow-emerald-500/20 hover:shadow-2xl"
                 >
                   <svg
                     className="w-7 h-7 text-emerald-600 shrink-0"
@@ -184,8 +184,7 @@ export default function Hero({ onOpenQr }) {
                   href="https://apps.apple.com"
                   target="_blank"
                   rel="noreferrer"
-                  className="store-btn glass text-white shadow-xl shadow-black/20"
-                  style={{ border: "1px solid rgba(255,255,255,0.12)" }}
+                  className="store-btn bg-slate-900 text-white shadow-xl shadow-slate-900/20 hover:bg-slate-800"
                 >
                   <svg
                     className="w-7 h-7 text-white shrink-0"
@@ -195,7 +194,7 @@ export default function Hero({ onOpenQr }) {
                     <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M15.97,4.69C16.55,3.96 16.96,2.94 16.85,1.91C15.96,1.95 14.88,2.51 14.24,3.25C13.67,3.91 13.18,4.96 13.31,5.97C14.31,6.05 15.36,5.43 15.97,4.69Z" />
                   </svg>
                   <div className="leading-none">
-                    <div className="text-[10px] font-medium text-white/40 uppercase tracking-widest">
+                    <div className="text-[10px] font-medium text-white/60 uppercase tracking-widest">
                       Download on the
                     </div>
                     <div className="text-base font-black tracking-tight font-display text-white mt-0.5">
@@ -214,7 +213,7 @@ export default function Hero({ onOpenQr }) {
               </div>
 
               {/* Trust line */}
-              <div className="flex items-center gap-4 text-xs text-white/35">
+              <div className="flex items-center gap-4 text-xs text-slate-500">
                 <div className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                   <span>Verified Safe APK v1.0</span>
@@ -240,7 +239,7 @@ export default function Hero({ onOpenQr }) {
 
             <div className="relative animate-float">
               <div
-                className="absolute -inset-4 rounded-[52px] opacity-60 blur-2xl"
+                className="absolute -inset-4 rounded-[52px] opacity-30 blur-3xl"
                 style={{
                   background:
                     "linear-gradient(135deg, #10b981 0%, #8b5cf6 50%, #f59e0b 100%)",
@@ -248,15 +247,15 @@ export default function Hero({ onOpenQr }) {
               />
 
               <div
-                className="relative w-[290px] sm:w-[310px] h-[580px] sm:h-[620px] rounded-[46px] overflow-hidden"
+                className="relative w-[290px] sm:w-[310px] h-[580px] sm:h-[620px] rounded-[46px] overflow-hidden shadow-2xl shadow-slate-900/25"
                 style={{
                   background:
-                    "linear-gradient(160deg, #111a14 0%, #050b07 100%)",
-                  border: "3px solid rgba(255,255,255,0.1)",
+                    "linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%)",
+                  border: "7px solid #0f172a",
                 }}
               >
                 {/* Dynamic Island */}
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-30 flex items-center justify-center gap-1.5 border border-white/5">
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-full z-30 flex items-center justify-center gap-1.5 border border-black">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#0d1f11] border border-emerald-600/30" />
                   <div className="w-8 h-1 bg-gray-900 rounded-full" />
                 </div>
@@ -275,7 +274,7 @@ export default function Hero({ onOpenQr }) {
                             "https://placehold.co/50/10b981/fff?text=YP";
                         }}
                       />
-                      <span className="font-display font-black text-sm text-white">
+                      <span className="font-display font-black text-sm text-slate-900">
                         YouPeak
                       </span>
                     </div>
@@ -284,7 +283,7 @@ export default function Hero({ onOpenQr }) {
                       style={{
                         background: "rgba(245,158,11,0.15)",
                         border: "1px solid rgba(245,158,11,0.3)",
-                        color: "#fbbf24",
+                        color: "#b45309",
                       }}
                     >
                       <Coins className="w-3 h-3" />
@@ -298,7 +297,7 @@ export default function Hero({ onOpenQr }) {
                     style={{
                       background:
                         "linear-gradient(135deg, rgba(16,185,129,0.15) 0%, rgba(139,92,246,0.1) 100%)",
-                      border: "1px solid rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(15,23,42,0.05)",
                     }}
                   >
                     <img
@@ -349,12 +348,12 @@ export default function Hero({ onOpenQr }) {
                         border: "1px solid rgba(16,185,129,0.2)",
                       }}
                     >
-                      <Target className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <Target className="w-4 h-4 text-emerald-600 shrink-0" />
                       <div>
-                        <div className="text-[11px] font-black text-white">
+                        <div className="text-[11px] font-black text-slate-900">
                           Daily Check-in
                         </div>
-                        <div className="text-[9px] text-white/40">
+                        <div className="text-[9px] text-slate-500">
                           Day 5 — Streak!
                         </div>
                       </div>
@@ -371,14 +370,14 @@ export default function Hero({ onOpenQr }) {
                 </div>
               </div>
 
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-28 h-1 bg-white/10 rounded-full" />
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-28 h-1 bg-slate-100 rounded-full" />
             </div>
 
             {/* FLOATING BADGE 1: Payout notification */}
             <div
               className="absolute -left-2 sm:-left-8 top-24 notif-badge animate-float2"
               style={{
-                background: "rgba(2,6,8,0.9)",
+                background: "rgba(255,255,255,0.95)",
                 animationDelay: "0.5s",
                 maxWidth: "200px",
               }}
@@ -387,10 +386,10 @@ export default function Hero({ onOpenQr }) {
                 <CheckCircle2 className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-xs font-black text-white">
+                <div className="text-xs font-black text-slate-900">
                   ₹500 Withdrawn!
                 </div>
-                <div className="text-[10px] text-white/40">
+                <div className="text-[10px] text-slate-500">
                   PhonePe · just now
                 </div>
               </div>
@@ -400,7 +399,7 @@ export default function Hero({ onOpenQr }) {
             <div
               className="absolute -right-2 sm:-right-8 bottom-32 notif-badge animate-float2"
               style={{
-                background: "rgba(2,6,8,0.9)",
+                background: "rgba(255,255,255,0.95)",
                 animationDelay: "1.5s",
                 maxWidth: "190px",
               }}
@@ -409,10 +408,10 @@ export default function Hero({ onOpenQr }) {
                 <Coins className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-xs font-black text-amber-400">
+                <div className="text-xs font-black text-amber-600">
                   +25 Coins!
                 </div>
-                <div className="text-[10px] text-white/40">Ad watched ✓</div>
+                <div className="text-[10px] text-slate-500">Ad watched ✓</div>
               </div>
             </div>
 
@@ -420,7 +419,7 @@ export default function Hero({ onOpenQr }) {
             <div
               className="absolute -right-2 sm:-right-4 top-16 notif-badge animate-float"
               style={{
-                background: "rgba(2,6,8,0.9)",
+                background: "rgba(255,255,255,0.95)",
                 animationDelay: "2.5s",
                 maxWidth: "190px",
               }}
@@ -429,10 +428,10 @@ export default function Hero({ onOpenQr }) {
                 <Users className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-xs font-black text-violet-400">
+                <div className="text-xs font-black text-violet-600">
                   +₹100 Referral!
                 </div>
-                <div className="text-[10px] text-white/40">
+                <div className="text-[10px] text-slate-500">
                   Friend signed up
                 </div>
               </div>
@@ -455,7 +454,7 @@ export default function Hero({ onOpenQr }) {
             return (
               <span
                 key={i}
-                className="flex items-center gap-2 text-xs font-bold text-emerald-400/70 px-8 whitespace-nowrap border-r border-emerald-500/20"
+                className="flex items-center gap-2 text-xs font-bold text-emerald-700 px-8 whitespace-nowrap border-r border-emerald-500/20"
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
                 {item.text}
