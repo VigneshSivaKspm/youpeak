@@ -7,7 +7,8 @@ import React from "react";
 const INLINE =
   /\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)\s]+)\)|([\w.+-]+@[\w-]+(?:\.[\w-]+)+)|(https?:\/\/[^\s)]+)/g;
 
-function safeHref(url) {
+function safeHref(raw) {
+  const url = raw.replace(/^['"<]+|['">]+$/g, "");
   if (url.startsWith("#") || url.startsWith("mailto:")) return url;
   if (/^https?:\/\//i.test(url)) return url;
   if (/^[\w.+-]+@[\w-]+(?:\.[\w-]+)+$/.test(url)) return `mailto:${url}`;

@@ -195,9 +195,10 @@ export default function ChatWidget() {
       const reply = await streamReply(history, {
         signal: controller.signal,
         onToken: (t) => updateMessage(botId, { content: t }),
+        onStatus: (status) => updateMessage(botId, { status }),
       });
       if (!reply.trim()) throw new Error("empty");
-      updateMessage(botId, { content: reply, pending: false });
+      updateMessage(botId, { content: reply, pending: false, status: null });
       if (!openRef.current) setUnread(true);
     } catch (err) {
       if (err.name === "AbortError") {
@@ -209,6 +210,7 @@ export default function ChatWidget() {
       } else {
         updateMessage(botId, {
           pending: false,
+          status: null,
           content: "",
           error: err.message && err.message !== "empty" ? err.message : "I couldn't generate a reply. Please try again.",
           retryable: err.retryable !== false,
@@ -366,7 +368,16 @@ export default function ChatWidget() {
                     ) : (
                       <>
                         <div className="rounded-2xl rounded-tl-md bg-white ring-1 ring-slate-200/80 shadow-sm px-4 py-3 text-[14px] leading-relaxed text-slate-700 break-words">
-                          {m.content ? <Markdown text={m.content} onNavigate={onNavigate} /> : <TypingDots />}
+                          {m.content ? (
+                            <Markdown text={m.content} onNavigate={onNavigate} />
+                          ) : m.status ? (
+                            <div className="flex items-center gap-2 text-[13px] text-slate-500">
+                              <TypingDots />
+                              {m.status}
+                            </div>
+                          ) : (
+                            <TypingDots />
+                          )}
                         </div>
                         {!m.pending && m.content && m.id !== "welcome" && (
                           <div className="mt-1.5 pl-1">
