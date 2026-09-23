@@ -1,5 +1,5 @@
 import React from "react";
-import { X, QrCode, Smartphone } from "lucide-react";
+import { X, Smartphone } from "lucide-react";
 import { APP_INFO } from "../data/content";
 
 export default function QrModal({ onClose }) {
@@ -27,9 +27,11 @@ export default function QrModal({ onClose }) {
         </button>
 
         <div className="flex justify-center mb-4">
-          <div className="w-14 h-14 rounded-2xl icon-green flex items-center justify-center">
-            <QrCode className="w-7 h-7" />
-          </div>
+          <img
+            src="/assets/logo_mark.webp"
+            alt="YouPeak"
+            className="w-16 h-16 object-contain drop-shadow-lg"
+          />
         </div>
 
         <h3 className="font-display font-black text-xl text-slate-900 mb-1">
@@ -56,8 +58,12 @@ export default function QrModal({ onClose }) {
               e.target.nextSibling.style.display = "flex";
             }}
           />
-          <div className="w-48 h-48 rounded-xl bg-slate-100 items-center justify-center text-slate-400 text-sm hidden flex-col gap-2">
-            <Smartphone className="w-8 h-8 text-slate-300" />
+          <div className="w-48 h-48 rounded-xl bg-slate-100 items-center justify-center text-slate-400 text-sm hidden flex-col gap-2 p-3">
+            <img
+              src="/assets/empty_state.webp"
+              alt=""
+              className="w-24 h-24 object-contain"
+            />
             <span>QR unavailable. Download from App Store.</span>
           </div>
         </div>

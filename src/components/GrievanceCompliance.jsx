@@ -1,31 +1,21 @@
 import React from "react";
-import {
-  Timer,
-  Lock,
-  Brain,
-  Mail,
-  ShieldCheck,
-  ClipboardList,
-} from "lucide-react";
+import { Mail, ShieldCheck } from "lucide-react";
 
 const PILLARS = [
   {
-    icon: Timer,
+    icon: "icon_36h",
     title: "36-Hour Response",
     desc: "Every complaint is assigned a ticket and resolved within 36 hours — by law.",
-    iconClass: "icon-green",
   },
   {
-    icon: Lock,
+    icon: "icon_bank_security",
     title: "Bank-Grade Security",
     desc: "Payments are 256-bit encrypted via Razorpay. Your UPI details are never stored in plain text.",
-    iconClass: "icon-blue",
   },
   {
-    icon: Brain,
+    icon: "icon_content_guard",
     title: "Auto Content Guard",
     desc: "Real-time keyword screening and audio fingerprinting keeps the platform safe for everyone.",
-    iconClass: "icon-purple",
   },
 ];
 
@@ -50,17 +40,17 @@ export default function GrievanceCompliance() {
         {/* 3 PILLARS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {PILLARS.map((p, i) => {
-            const Icon = p.icon;
             return (
               <div
                 key={i}
                 className="glass-card rounded-3xl p-8 text-center space-y-4"
               >
-                <div
-                  className={`w-16 h-16 rounded-2xl ${p.iconClass} flex items-center justify-center mx-auto`}
-                >
-                  <Icon className="w-8 h-8" />
-                </div>
+                <img
+                  src={`/assets/icons/${p.icon}.webp`}
+                  alt=""
+                  loading="lazy"
+                  className="w-24 h-24 object-contain mx-auto drop-shadow-xl"
+                />
                 <h3 className="font-display font-bold text-xl text-slate-900">
                   {p.title}
                 </h3>
@@ -79,9 +69,19 @@ export default function GrievanceCompliance() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent" />
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
+            <img
+              src="/assets/support_art.webp"
+              alt="Friendly support agent ready to help"
+              loading="lazy"
+              className="w-40 h-40 sm:w-44 sm:h-44 object-contain drop-shadow-xl shrink-0 md:-my-6"
+            />
+            <div className="flex-1">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">
-                <ClipboardList className="w-4 h-4" />
+                <img
+                  src="/assets/icons/icon_grievance.webp"
+                  alt=""
+                  className="w-6 h-6 object-contain"
+                />
                 IT Rules 2021 — Grievance Officer
               </div>
               <h4 className="font-display font-black text-2xl text-slate-900 mb-2">

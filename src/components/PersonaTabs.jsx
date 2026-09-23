@@ -46,7 +46,7 @@ const CONTENT = {
   tasker: {
     headline: "Get Paid for Watching Videos",
     sub: "Watch trending videos, check in daily, hit like — and earn real withdrawable cash. No surveys, no tricks, just genuine rewards.",
-    image: "/assets/wallet_image.png",
+    image: "/assets/persona_watch.webp",
     imageFallback:
       "https://placehold.co/360x360/10b981/fff?text=Watch+%26+Earn",
     badge: "Per day/ ₹333.33",
@@ -81,7 +81,7 @@ const CONTENT = {
   creator: {
     headline: "Keep Up to 90% of Everything You Earn",
     sub: "Publish videos and shorts with Cloudflare Stream quality. Earn across 6 revenue streams — all with industry-leading splits, instant Direct UPI payouts, and 0% merch & BrandConnect fees on VIP passes.",
-    image: "/assets/monetization_image.png",
+    image: "/assets/persona_creator.webp",
     imageFallback: "https://placehold.co/360x360/8b5cf6/fff?text=Creator+VIP",
     badge: "Up to 90% Revenue",
     badgeColor: "text-violet-600",
@@ -115,7 +115,7 @@ const CONTENT = {
   partner: {
     headline: "Earn ₹200 Per Active Referral",
     sub: "Join the Peak Partner Program. Earn ₹100 on registration + ₹100 after 100 watch-minutes per user. District Digital Partners earn tiered commissions: 15% VIP Creator onboarding, 10% Tasker onboarding, 30% on Local Business Ads, 20% Digital Partner commission, and 10% on Video Unlocks (max ₹1,000).",
-    image: "/assets/referral_image.png",
+    image: "/assets/persona_referral.webp",
     imageFallback:
       "https://placehold.co/360x360/f59e0b/fff?text=Refer+%26+Earn",
     badge: "Up to ₹200 Per Active User",
@@ -272,7 +272,9 @@ export default function PersonaTabs() {
               <img
                 src={data.image}
                 alt={data.headline}
-                className="w-64 sm:w-72 h-auto object-contain drop-shadow-2xl relative z-10 animate-float"
+                width="720"
+                height="720"
+                className="w-72 sm:w-96 h-auto object-contain drop-shadow-2xl relative z-10 animate-float"
                 onError={(e) => {
                   e.target.src = data.imageFallback;
                 }}

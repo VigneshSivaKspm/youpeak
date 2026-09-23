@@ -15,23 +15,23 @@ const SCREENS = [
     title: "Discovery Feed",
     tag: "Watch & Explore",
     icon: Film,
-    img: "/assets/boarding_1.png",
+    img: "/assets/screen_feed.webp",
     color: "from-emerald-500 to-cyan-500",
     desc: "Infinite scroll of trending videos, shorts & live streams in ultra HD",
   },
   {
-    title: "Mobile First",
-    tag: "Smooth UX",
+    title: "Vertical Shorts",
+    tag: "Swipe & Watch",
     icon: Smartphone,
-    img: "/assets/boarding_2.png",
+    img: "/assets/screen_shorts.webp",
     color: "from-violet-500 to-purple-600",
-    desc: "Designed for single-hand use, gesture navigation, and low-data mode",
+    desc: "Full-screen shorts built for single-hand swiping, gesture navigation, and low-data mode",
   },
   {
     title: "Creator Studio",
     tag: "Publish & Earn",
     icon: Video,
-    img: "/assets/boarding_3.png",
+    img: "/assets/screen_studio.webp",
     color: "from-blue-500 to-indigo-600",
     desc: "Upload videos, set visibility, add hashtags, go live — all from your phone",
   },
@@ -39,7 +39,7 @@ const SCREENS = [
     title: "Coin Wallet",
     tag: "Cash Out",
     icon: Wallet,
-    img: "/assets/wallet_image.png",
+    img: "/assets/screen_wallet.webp",
     color: "from-amber-400 to-orange-500",
     desc: "Track coins, convert to INR, and withdraw to any UPI or bank account",
   },
@@ -47,7 +47,7 @@ const SCREENS = [
     title: "Referral Network",
     tag: "Invite & Earn",
     icon: Users,
-    img: "/assets/referral_image.png",
+    img: "/assets/screen_referral.webp",
     color: "from-rose-500 to-pink-500",
     desc: "Share your link, watch your network grow, earn ₹200 per successful referral",
   },
@@ -55,7 +55,7 @@ const SCREENS = [
     title: "Creator Analytics",
     tag: "Revenue Dashboard",
     icon: BarChart2,
-    img: "/assets/monetization_image.png",
+    img: "/assets/screen_analytics.webp",
     color: "from-emerald-400 to-teal-500",
     desc: "Real-time stats on views, subscribers, ad revenue splits and PPV earnings",
   },
@@ -80,8 +80,13 @@ export default function AppScreenshots() {
             Inside the App
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
-            See It. <span className="text-gradient-purple">Love It.</span> Use
-            It.
+            See It. <span className="text-gradient-purple">Love It.</span>{" "}
+            <img
+              src="/assets/emoji/emoji_heart_eyes.webp"
+              alt=""
+              className="inline w-12 h-12 -mt-2 object-contain"
+            />{" "}
+            Use It.
           </h2>
           <p className="text-slate-500 text-base">
             Tour the app before downloading. Every screen designed for speed &
@@ -166,12 +171,12 @@ export default function AppScreenshots() {
                 }}
               >
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-20 border border-black" />
-                <div className="absolute inset-0 flex items-center justify-center p-6 pt-12">
+                <div className="absolute inset-0 pt-8">
                   <img
                     key={idx}
                     src={screen.img}
                     alt={screen.title}
-                    className="w-full h-full object-contain drop-shadow-xl"
+                    className="w-full h-full object-cover"
                     style={{ animation: "slide-up 0.4s ease-out" }}
                     onError={(e) => {
                       e.target.src = `https://placehold.co/260x460/10b981/fff?text=${screen.title}`;

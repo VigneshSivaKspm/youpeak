@@ -5,10 +5,6 @@ import {
   Film,
   Star,
   Gift,
-  Tag,
-  Award,
-  Gem,
-  Crown,
   TrendingUp,
   Sparkles,
 } from "lucide-react";
@@ -16,6 +12,7 @@ import {
 const TASKER_TIERS = [
   {
     id: "free",
+    img: "tier_free",
     name: "Free Tasker",
     level: "Level 1",
     price: "₹0",
@@ -33,10 +30,10 @@ const TASKER_TIERS = [
     ],
     color: "from-gray-500 to-gray-600",
     btnClass: "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
-    TierIcon: Tag,
   },
   {
     id: "bronze",
+    img: "tier_bronze",
     name: "Bronze Starter",
     level: "Starter",
     price: "₹999",
@@ -54,10 +51,10 @@ const TASKER_TIERS = [
     ],
     color: "from-amber-700 to-yellow-600",
     btnClass: "bg-amber-700/80 hover:bg-amber-700 text-white",
-    TierIcon: Award,
   },
   {
     id: "silver",
+    img: "tier_silver",
     name: "Silver Intermediate",
     level: "Level 2",
     price: "₹2,499",
@@ -75,10 +72,10 @@ const TASKER_TIERS = [
     ],
     color: "from-emerald-500 to-cyan-500",
     btnClass: "bg-gradient-to-r from-emerald-500 to-cyan-500 text-white",
-    TierIcon: Award,
   },
   {
     id: "gold",
+    img: "tier_gold",
     name: "Gold Advanced",
     level: "Level 3",
     price: "₹4,999",
@@ -96,10 +93,10 @@ const TASKER_TIERS = [
     ],
     color: "from-amber-400 to-yellow-500",
     btnClass: "bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900",
-    TierIcon: Crown,
   },
   {
     id: "platinum",
+    img: "tier_platinum",
     name: "Platinum Regional Pro",
     level: "Level 4",
     price: "₹9,999",
@@ -117,10 +114,10 @@ const TASKER_TIERS = [
     ],
     color: "from-violet-500 to-purple-600",
     btnClass: "bg-gradient-to-r from-violet-500 to-purple-600 text-white",
-    TierIcon: Gem,
   },
   {
     id: "diamond",
+    img: "tier_diamond",
     name: "Diamond Pass",
     level: "Special Pass",
     badge: "Special Pass",
@@ -140,13 +137,13 @@ const TASKER_TIERS = [
     color: "from-cyan-400 via-blue-500 to-indigo-500",
     btnClass:
       "bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-white shadow-lg shadow-cyan-500/25",
-    TierIcon: Sparkles,
   },
 ];
 
 const CREATOR_TIERS = [
   {
     name: "Classic",
+    img: "vip_classic",
     level: "Level 1",
     price: "Free",
     period: "Always Free",
@@ -156,10 +153,10 @@ const CREATOR_TIERS = [
     fanFunding: "70%",
     max: "₹1,000/video",
     color: "from-gray-500 to-gray-600",
-    TierIcon: Tag,
   },
   {
     name: "Starter VIP Pass",
+    img: "vip_starter",
     level: "Level 2",
     badge: "Launch Special",
     price: "₹4,999/year",
@@ -174,10 +171,10 @@ const CREATOR_TIERS = [
     fanFunding: "80%",
     max: "₹2,000/video",
     color: "from-emerald-500 to-teal-500",
-    TierIcon: Award,
   },
   {
     name: "Silver VIP",
+    img: "vip_silver",
     level: "Level 3",
     price: "₹2,999/yr",
     period: "Annual",
@@ -187,10 +184,10 @@ const CREATOR_TIERS = [
     fanFunding: "85%",
     max: "₹5,000/video",
     color: "from-blue-500 to-cyan-500",
-    TierIcon: Award,
   },
   {
     name: "Gold VIP",
+    img: "vip_gold",
     level: "Level 4",
     price: "₹1,499/yr",
     period: "Annual",
@@ -200,10 +197,10 @@ const CREATOR_TIERS = [
     fanFunding: "90%",
     max: "₹15,000/video",
     color: "from-amber-400 to-orange-500",
-    TierIcon: Crown,
   },
   {
     name: "Platinum VIP",
+    img: "vip_platinum",
     level: "Level 5",
     price: "Free",
     period: "Auto-Unlocked",
@@ -213,7 +210,6 @@ const CREATOR_TIERS = [
     fanFunding: "90%",
     max: "Unlimited",
     color: "from-violet-500 to-purple-600",
-    TierIcon: Gem,
   },
 ];
 
@@ -221,7 +217,11 @@ export default function TiersPricing() {
   const [mode, setMode] = useState("tasker");
 
   return (
-    <section id="tiers" className="section bg-slate-50 px-4 sm:px-6 lg:px-8 relative">
+    <section
+      id="tiers"
+      className="section bg-slate-50 bg-no-repeat bg-top bg-cover px-4 sm:px-6 lg:px-8 relative"
+      style={{ backgroundImage: "url(/assets/bg/pricing_bg.webp)" }}
+    >
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
@@ -267,7 +267,6 @@ export default function TiersPricing() {
         {mode === "tasker" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {TASKER_TIERS.map((t) => {
-              const TierIcon = t.TierIcon;
               return (
                 <div
                   key={t.id}
@@ -302,11 +301,12 @@ export default function TiersPricing() {
 
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
-                      <div
-                        className={`w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br ${t.color} shadow shrink-0`}
-                      >
-                        <TierIcon className="w-3.5 h-3.5 text-white" />
-                      </div>
+                      <img
+                        src={`/assets/icons/${t.img}.webp`}
+                        alt=""
+                        loading="lazy"
+                        className="w-10 h-10 -my-1 -ml-1 object-contain drop-shadow-md shrink-0"
+                      />
                       <h3 className="font-display font-black text-sm text-slate-900">
                         {t.name}
                       </h3>
@@ -373,7 +373,6 @@ export default function TiersPricing() {
         {mode === "creator" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {CREATOR_TIERS.map((t, i) => {
-              const TierIcon = t.TierIcon;
               return (
                 <div
                   key={i}
@@ -399,11 +398,12 @@ export default function TiersPricing() {
 
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
-                      <div
-                        className={`w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br ${t.color} shadow`}
-                      >
-                        <TierIcon className="w-3.5 h-3.5 text-white" />
-                      </div>
+                      <img
+                        src={`/assets/icons/${t.img}.webp`}
+                        alt=""
+                        loading="lazy"
+                        className="w-10 h-10 -my-1 -ml-1 object-contain drop-shadow-md shrink-0"
+                      />
                       <h3 className="font-display font-black text-sm text-slate-900">
                         {t.name}
                       </h3>

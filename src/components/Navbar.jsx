@@ -34,7 +34,7 @@ export default function Navbar({ onOpenQr }) {
             <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-500 to-violet-600 animate-glow-pulse blur-sm" />
             <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-violet-600 p-0.5 shadow-lg flex items-center justify-center overflow-hidden">
               <img
-                src="/assets/app_logo.png"
+                src="/assets/app_logo.webp"
                 alt="YouPeak"
                 className="w-full h-full object-contain rounded-[10px]"
                 onError={(e) => {

@@ -43,7 +43,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden border border-emerald-500/20">
                 <img
-                  src="/assets/app_logo.png"
+                  src="/assets/app_logo.webp"
                   alt="YouPeak"
                   className="w-full h-full object-contain"
                   onError={(e) => {
@@ -95,7 +95,7 @@ export default function Footer() {
               }}
             >
               <img
-                src="/assets/razorPay.png"
+                src="/assets/razorPay.webp"
                 alt="Razorpay"
                 className="h-5 object-contain"
                 onError={(e) => {
@@ -206,7 +206,12 @@ export default function Footer() {
               2021 Compliant
             </span>
             <span className="flex items-center gap-1">
-              <Globe className="w-3 h-3 text-slate-400" /> Made in India
+              <img
+                src="/assets/emoji/emoji_india_flag_heart.webp"
+                alt=""
+                className="w-4 h-4 object-contain"
+              />{" "}
+              Made in India
             </span>
           </div>
         </div>

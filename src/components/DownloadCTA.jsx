@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, Star, Smartphone, Download } from "lucide-react";
+import { Star, Smartphone } from "lucide-react";
 
 const CHECKS = [
   "Sign up in 30 seconds",
@@ -34,22 +34,39 @@ export default function DownloadCTA({ onOpenQr }) {
           }}
         >
           <div
-            className="rounded-[22px] p-10 sm:p-16 relative overflow-hidden text-center"
+            className="rounded-[22px] p-10 sm:p-16 relative overflow-hidden text-center bg-cover bg-center"
             style={{
-              background:
-                "linear-gradient(135deg, #ffffff 0%, #f0fdf9 50%, #f5f3ff 100%)",
+              backgroundColor: "#f0fdf9",
+              backgroundImage: "url(/assets/bg/cta_bg.webp)",
             }}
           >
+            <img
+              src="/assets/bg/shapes.webp"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover opacity-35 pointer-events-none"
+            />
             {/* Decorative orbs */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/10 rounded-full blur-2xl pointer-events-none" />
 
+            {/* HERO ART */}
+            <img
+              src="/assets/cta_art.webp"
+              alt="Phone launching upward in a burst of gold coins"
+              loading="lazy"
+              width="1200"
+              height="800"
+              className="relative w-full max-w-md mx-auto h-auto -mt-6 sm:-mt-10 drop-shadow-2xl"
+            />
+
             {/* APP ICON */}
-            <div className="relative inline-flex mb-8">
+            <div className="relative inline-flex -mt-10 mb-8">
               <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-emerald-500 to-violet-600 blur opacity-60 animate-glow-pulse" />
-              <div className="relative w-24 h-24 rounded-3xl overflow-hidden border-2 border-slate-200 shadow-2xl">
+              <div className="relative w-20 h-20 rounded-3xl overflow-hidden border-2 border-slate-200 shadow-2xl">
                 <img
-                  src="/assets/app_logo.png"
+                  src="/assets/app_logo.webp"
                   alt="YouPeak"
                   className="w-full h-full object-contain"
                   onError={(e) => {
@@ -61,30 +78,34 @@ export default function DownloadCTA({ onOpenQr }) {
             </div>
 
             {/* HEADLINE */}
-            <h2 className="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight mb-4">
+            <h2 className="relative font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-tight mb-4">
               Your Money Is <br />
               <span className="text-gradient-rainbow">Waiting For You</span>
             </h2>
-            <p className="text-slate-500 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+            <p className="relative text-slate-500 text-base sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
               Download YouPeak free. Start watching. Start earning. First
               withdrawal possible within your first 24 hours.
             </p>
 
             {/* CHECKLIST */}
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
+            <div className="relative flex flex-wrap justify-center gap-4 mb-10">
               {CHECKS.map((c, i) => (
                 <div
                   key={i}
                   className="flex items-center gap-2 text-sm text-slate-600"
                 >
-                  <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <img
+                    src="/assets/emoji/emoji_check.webp"
+                    alt=""
+                    className="w-5 h-5 object-contain shrink-0"
+                  />
                   {c}
                 </div>
               ))}
             </div>
 
             {/* STORE BUTTONS */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="relative flex flex-wrap justify-center gap-4 mb-6">
               <a
                 href="https://play.google.com"
                 target="_blank"
@@ -138,7 +159,7 @@ export default function DownloadCTA({ onOpenQr }) {
             </div>
 
             {/* RATING */}
-            <div className="flex items-center justify-center gap-2">
+            <div className="relative flex items-center justify-center gap-2">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}

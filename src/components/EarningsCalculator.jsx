@@ -2,16 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   Sparkles,
   ArrowRight,
-  Tv,
-  ThumbsUp,
-  Users,
   Wallet,
   Coins,
   Film,
   Calendar,
   CheckCircle2,
   Zap,
-  Clock,
 } from "lucide-react";
 
 const TIERS = [
@@ -91,8 +87,7 @@ const TIERS = [
 
 function Slider({
   label,
-  icon: Icon,
-  iconClass,
+  icon,
   val,
   min,
   max,
@@ -106,11 +101,12 @@ function Slider({
     <div className="space-y-3">
       <div className="flex justify-between items-center">
         <span className="flex items-center gap-2 text-sm font-bold text-slate-700">
-          <span
-            className={`w-6 h-6 rounded-lg flex items-center justify-center ${iconClass}`}
-          >
-            <Icon className="w-3.5 h-3.5" />
-          </span>
+          <img
+            src={`/assets/icons/${icon}.webp`}
+            alt=""
+            loading="lazy"
+            className="w-8 h-8 object-contain"
+          />
           {label}
         </span>
         <span className={`text-sm font-black font-mono ${colorClass}`}>
@@ -184,12 +180,16 @@ export default function EarningsCalculator({ onOpenQr }) {
     return () => clearInterval(t);
   }, [monthly]);
 
-  const comparisonText = () => {
-    if (monthly < 500) return "Covers your monthly coffee and data!";
-    if (monthly < 2000) return "Pays your internet bill every month!";
-    if (monthly < 5000) return "Monthly pocket money — automatically!";
-    return "Serious side income — build your savings!";
+  const comparison = () => {
+    if (monthly < 500)
+      return { emoji: "emoji_thumbs_up", text: "Covers your monthly coffee and data!" };
+    if (monthly < 2000)
+      return { emoji: "emoji_party", text: "Pays your internet bill every month!" };
+    if (monthly < 5000)
+      return { emoji: "emoji_money_face", text: "Monthly pocket money — automatically!" };
+    return { emoji: "emoji_crown", text: "Serious side income — build your savings!" };
   };
+  const { emoji: comparisonEmoji, text: comparisonText } = comparison();
 
   return (
     <section
@@ -212,7 +212,12 @@ export default function EarningsCalculator({ onOpenQr }) {
               color: "#b45309",
             }}
           >
-            <Sparkles className="w-3.5 h-3.5" /> Live Earnings Calculator
+            <img
+              src="/assets/emoji/emoji_sparkles.webp"
+              alt=""
+              className="w-5 h-5 object-contain"
+            />{" "}
+            Live Earnings Calculator
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight">
             How Much Will <span className="text-gradient-gold">You Earn?</span>
@@ -246,6 +251,12 @@ export default function EarningsCalculator({ onOpenQr }) {
                           : "glass text-slate-500 hover:text-slate-900 hover:bg-slate-100"
                       }`}
                     >
+                      <img
+                        src={`/assets/icons/tier_${t.id}.webp`}
+                        alt=""
+                        loading="lazy"
+                        className="w-8 h-8 mx-auto mb-1 object-contain"
+                      />
                       <div className="text-[11px] font-black">{t.name}</div>
                       <div className="text-[10px] mt-0.5 font-bold opacity-70">
                         {t.price === 0 ? "Free" : `₹${t.price / 1000}K`}
@@ -262,8 +273,7 @@ export default function EarningsCalculator({ onOpenQr }) {
               <div className="space-y-6">
                 <Slider
                   label="Daily Watch Time"
-                  icon={Tv}
-                  iconClass="icon-cyan"
+                  icon="icon_watch_time"
                   val={watch}
                   min={15}
                   max={180}
@@ -274,8 +284,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                 />
                 <Slider
                   label="Daily Likes & Comments"
-                  icon={ThumbsUp}
-                  iconClass="icon-green"
+                  icon="icon_engagement"
                   val={engage}
                   min={2}
                   max={60}
@@ -286,8 +295,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                 />
                 <Slider
                   label="Friends Invited This Month"
-                  icon={Users}
-                  iconClass="icon-purple"
+                  icon="icon_friends"
                   val={refs}
                   min={0}
                   max={30}
@@ -327,9 +335,12 @@ export default function EarningsCalculator({ onOpenQr }) {
               <div className="text-center space-y-6 w-full max-w-xs">
                 {/* ICON */}
                 <div className="flex justify-center">
-                  <div className="w-20 h-20 rounded-3xl icon-gold flex items-center justify-center animate-float">
-                    <Wallet className="w-10 h-10" />
-                  </div>
+                  <img
+                    src="/assets/icons/icon_wallet_big.webp"
+                    alt=""
+                    loading="lazy"
+                    className="w-28 h-28 object-contain drop-shadow-xl animate-float"
+                  />
                 </div>
 
                 {/* MAIN NUMBER */}
@@ -385,8 +396,12 @@ export default function EarningsCalculator({ onOpenQr }) {
                   className="flex items-center gap-2 text-xs text-slate-500 p-3 rounded-xl justify-center"
                   style={{ background: "rgba(15,23,42,0.03)" }}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                  {comparisonText()}
+                  <img
+                    src={`/assets/emoji/${comparisonEmoji}.webp`}
+                    alt=""
+                    className="w-6 h-6 object-contain shrink-0"
+                  />
+                  {comparisonText}
                 </div>
 
                 {/* PAYOUT THRESHOLD PILL */}
@@ -447,9 +462,21 @@ export default function EarningsCalculator({ onOpenQr }) {
                   Updated Payout Rules & Schedules
                 </h3>
               </div>
-              <div className="text-xs text-slate-500 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
-                Instant UPI & Bank Settlement
+              <div className="flex items-center gap-3">
+                <div className="text-xs text-slate-500 flex items-center gap-2">
+                  <img
+                    src="/assets/emoji/emoji_clock.webp"
+                    alt=""
+                    className="w-5 h-5 object-contain shrink-0"
+                  />
+                  Instant UPI & Bank Settlement
+                </div>
+                <img
+                  src="/assets/payout_art.webp"
+                  alt="Coins flowing into a UPI payout"
+                  loading="lazy"
+                  className="hidden sm:block w-28 h-28 -my-6 object-contain drop-shadow-xl"
+                />
               </div>
             </div>
 

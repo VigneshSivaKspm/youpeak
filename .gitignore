@@ -29,3 +29,6 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Full-resolution source art (optimized copies live in public/assets)
+assets_original/

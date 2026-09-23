@@ -1,9 +1,8 @@
 import React from "react";
-import { Users, TrendingUp, Trophy, Zap } from "lucide-react";
 
 const STATS = [
   {
-    icon: Trophy,
+    icon: "icon_trophy",
     val: "250K+",
     label: "Active Users",
     sub: "Across India",
@@ -11,7 +10,7 @@ const STATS = [
     glow: "rgba(16,185,129,0.8)",
   },
   {
-    icon: TrendingUp,
+    icon: "icon_growth",
     val: "₹2.4 Cr+",
     label: "Total Paid Out",
     sub: "Real money, real accounts",
@@ -19,7 +18,7 @@ const STATS = [
     glow: "rgba(139,92,246,0.8)",
   },
   {
-    icon: Users,
+    icon: "icon_revenue",
     val: "Up to 90%",
     label: "Creator Revenue",
     sub: "Industry-highest split",
@@ -27,7 +26,7 @@ const STATS = [
     glow: "rgba(245,158,11,0.8)",
   },
   {
-    icon: Zap,
+    icon: "icon_instant",
     val: "Instant",
     label: "UPI Withdrawals",
     sub: "GPay, PhonePe, Paytm",
@@ -41,7 +40,6 @@ export default function StatsBar() {
     <section className="relative py-16 px-4 sm:px-6 lg:px-8 -mt-4">
       <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {STATS.map((s, i) => {
-          const Icon = s.icon;
           return (
             <div
               key={i}
@@ -58,11 +56,12 @@ export default function StatsBar() {
               />
 
               <div className="flex justify-center mb-3">
-                <div
-                  className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center shadow-lg`}
-                >
-                  <Icon className="w-5 h-5 text-white" />
-                </div>
+                <img
+                  src={`/assets/icons/${s.icon}.webp`}
+                  alt=""
+                  loading="lazy"
+                  className="w-16 h-16 object-contain drop-shadow-lg group-hover:scale-110 transition-transform"
+                />
               </div>
 
               <div

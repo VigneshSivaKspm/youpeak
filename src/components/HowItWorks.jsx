@@ -1,10 +1,10 @@
 import React from "react";
-import { Download, Play, Coins, Wallet, Smartphone, Zap } from "lucide-react";
+import { Download, Play, Smartphone } from "lucide-react";
 
 const STEPS = [
   {
     step: "01",
-    icon: Download,
+    icon: "icon_step_download",
     title: "Download the App",
     desc: "Install YouPeak on Android or iOS. Create your account in 30 seconds with OTP login.",
     color: "from-emerald-500 to-cyan-500",
@@ -12,7 +12,7 @@ const STEPS = [
   },
   {
     step: "02",
-    icon: Play,
+    icon: "icon_step_watch",
     title: "Watch & Engage",
     desc: "Browse trending videos and shorts. Like what you enjoy. Comment. Watch daily ads. It all counts!",
     color: "from-violet-500 to-purple-600",
@@ -20,7 +20,7 @@ const STEPS = [
   },
   {
     step: "03",
-    icon: Coins,
+    icon: "icon_step_collect",
     title: "Collect Coins",
     desc: "Coins hit your wallet automatically. Every action rewarded. Check in daily for bonus coins.",
     color: "from-amber-400 to-orange-500",
@@ -28,7 +28,7 @@ const STEPS = [
   },
   {
     step: "04",
-    icon: Wallet,
+    icon: "icon_step_withdraw",
     title: "Cash Out to UPI",
     desc: "100 coins = ₹1. Tap withdraw, choose UPI or bank, done. Arrives in seconds.",
     color: "from-blue-500 to-cyan-500",
@@ -38,15 +38,35 @@ const STEPS = [
 
 export default function HowItWorks({ onOpenQr }) {
   return (
-    <section id="how-it-works" className="section px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="how-it-works"
+      className="section px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none opacity-60"
+        style={{
+          backgroundImage: "url(/assets/bg/dots.webp)",
+          backgroundSize: "512px 512px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+        }}
+      />
+      <div className="max-w-7xl mx-auto relative">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             So simple, it takes 4 steps
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
-            Download <Zap className="w-8 h-8 text-emerald-600 inline -mt-1" />{" "}
+            Download{" "}
+            <img
+              src="/assets/emoji/emoji_phone.webp"
+              alt=""
+              className="inline w-10 h-10 -mt-2 object-contain"
+            />{" "}
             Watch{" "}
             <Play
               className="w-7 h-7 text-violet-600 inline -mt-1"
@@ -66,7 +86,6 @@ export default function HowItWorks({ onOpenQr }) {
           <div className="absolute top-14 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-emerald-500/30 via-violet-500/30 to-blue-500/30 hidden lg:block" />
 
           {STEPS.map((s, i) => {
-            const Icon = s.icon;
             return (
               <div key={i} className="relative group">
                 <div
@@ -74,12 +93,12 @@ export default function HowItWorks({ onOpenQr }) {
                   style={{ border: "1px solid rgba(15,23,42,0.06)" }}
                 >
                   <div className="relative">
-                    <div
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform`}
-                      style={{ boxShadow: `0 8px 30px ${s.glow}` }}
-                    >
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
+                    <img
+                      src={`/assets/icons/${s.icon}.webp`}
+                      alt=""
+                      loading="lazy"
+                      className="w-24 h-24 object-contain drop-shadow-xl group-hover:scale-110 transition-transform"
+                    />
                     <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-slate-100 text-[10px] font-black text-slate-900 flex items-center justify-center border border-slate-200">
                       {s.step}
                     </div>

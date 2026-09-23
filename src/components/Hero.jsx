@@ -3,17 +3,23 @@ import {
   ShieldCheck,
   Star,
   Zap,
-  Wallet,
   Users,
-  CheckCircle2,
   TrendingUp,
   Smartphone,
   Trophy,
   Coins,
-  Clock,
-  Target,
-  Play,
 } from "lucide-react";
+
+// 3D objects floating around the hero phone. Positions are relative to the
+// phone column. Hidden below lg, where they would cover the phone screen.
+const FLOATERS = [
+  { src: "float_coin", className: "top-2 left-16 w-20", anim: "animate-float2", delay: "0s" },
+  { src: "float_heart", className: "top-1/3 left-0 w-16", anim: "animate-float", delay: "1s" },
+  { src: "float_play", className: "bottom-40 left-4 w-16", anim: "animate-float2", delay: "2s" },
+  { src: "float_coins_stack", className: "bottom-4 left-20 w-24", anim: "animate-float", delay: "0.5s" },
+  { src: "float_wallet", className: "top-[46%] -right-16 w-20", anim: "animate-float", delay: "1.5s" },
+  { src: "float_upi_arrow", className: "-bottom-8 right-[340px] w-16", anim: "animate-float2", delay: "2.5s" },
+];
 
 const TICKER_ITEMS = [
   { icon: Trophy, text: "250K+ Active Users" },
@@ -55,6 +61,12 @@ export default function Hero({ onOpenQr }) {
     <section className="relative min-h-screen flex flex-col justify-center bg-hero-gradient overflow-hidden">
       {/* ANIMATED BACKGROUND ORBS */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <img
+          src="/assets/bg/hero_bg.webp"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] animate-glow-pulse" />
         <div
           className="absolute top-1/3 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-[100px] animate-glow-pulse"
@@ -67,14 +79,6 @@ export default function Hero({ onOpenQr }) {
         <div
           className="absolute top-1/2 right-10 w-64 h-64 bg-amber-500/8 rounded-full blur-[80px] animate-glow-pulse"
           style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(15,23,42,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.1) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
         />
       </div>
 
@@ -90,7 +94,11 @@ export default function Hero({ onOpenQr }) {
               <span className="flex h-2 w-2 rounded-full bg-emerald-400 relative">
                 <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-emerald-400 opacity-75" />
               </span>
-              <Trophy className="w-3.5 h-3.5 text-emerald-600" />
+              <img
+                src="/assets/emoji/emoji_trophy.webp"
+                alt=""
+                className="w-5 h-5 object-contain"
+              />
               <span className="text-xs font-bold text-emerald-600 tracking-wide">
                 INDIA'S #1 WATCH & EARN APP
               </span>
@@ -120,22 +128,19 @@ export default function Hero({ onOpenQr }) {
             <div className="flex flex-wrap gap-3">
               {[
                 {
-                  icon: Wallet,
+                  emoji: "emoji_money_bag",
                   val: "Up to ₹333.33/day",
                   sub: "Pass Maximum Income",
-                  color: "text-emerald-600",
                 },
                 {
-                  icon: Zap,
+                  emoji: "emoji_rocket",
                   val: "Instant Payout",
                   sub: "UPI / PhonePe / GPay",
-                  color: "text-amber-600",
                 },
                 {
-                  icon: Users,
+                  emoji: "emoji_gift",
                   val: "₹200/Referral",
                   sub: "Peak Partner 2-Stage",
-                  color: "text-violet-600",
                 },
               ].map((b, i) => (
                 <div
@@ -143,7 +148,11 @@ export default function Hero({ onOpenQr }) {
                   className="glass flex items-center gap-2.5 px-4 py-2.5 rounded-2xl"
                   style={{ border: "1px solid rgba(15,23,42,0.08)" }}
                 >
-                  <b.icon className={`w-4 h-4 ${b.color} shrink-0`} />
+                  <img
+                    src={`/assets/emoji/${b.emoji}.webp`}
+                    alt=""
+                    className="w-7 h-7 object-contain shrink-0"
+                  />
                   <div>
                     <div className="text-xs font-black text-slate-900">{b.val}</div>
                     <div className="text-[10px] text-slate-500">{b.sub}</div>
@@ -237,6 +246,17 @@ export default function Hero({ onOpenQr }) {
             <div className="absolute w-[480px] h-[480px] rounded-full border border-emerald-500/10 animate-spin-slow" />
             <div className="absolute w-[380px] h-[380px] rounded-full border border-violet-500/10 animate-counter-spin" />
 
+            {FLOATERS.map((f) => (
+              <img
+                key={f.src}
+                src={`/assets/${f.src}.webp`}
+                alt=""
+                aria-hidden="true"
+                className={`hidden lg:block absolute z-20 pointer-events-none object-contain drop-shadow-xl ${f.anim} ${f.className}`}
+                style={{ animationDelay: f.delay }}
+              />
+            ))}
+
             <div className="relative animate-float">
               <div
                 className="absolute -inset-4 rounded-[52px] opacity-30 blur-3xl"
@@ -247,7 +267,7 @@ export default function Hero({ onOpenQr }) {
               />
 
               <div
-                className="relative w-[290px] sm:w-[310px] h-[580px] sm:h-[620px] rounded-[46px] overflow-hidden shadow-2xl shadow-slate-900/25"
+                className="relative w-[290px] w-[310px] h-[580px] sm:h-[620px] rounded-[46px] overflow-hidden shadow-2xl shadow-slate-900/25"
                 style={{
                   background:
                     "linear-gradient(160deg, #ffffff 0%, #f1f5f9 100%)",
@@ -266,7 +286,7 @@ export default function Hero({ onOpenQr }) {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <img
-                        src="/assets/app_logo.png"
+                        src="/assets/app_logo.webp"
                         alt="YP"
                         className="w-7 h-7 rounded-xl object-contain"
                         onError={(e) => {
@@ -301,30 +321,17 @@ export default function Hero({ onOpenQr }) {
                     }}
                   >
                     <img
-                      src="/assets/boarding_1.png"
-                      alt="YouPeak App"
-                      className="w-full h-full object-contain p-4 drop-shadow-2xl"
+                      src="/assets/hero_screen.webp"
+                      alt="A young woman earning coins while watching videos on YouPeak"
+                      width="720"
+                      height="1080"
+                      fetchPriority="high"
+                      className="w-full h-full object-contain p-2 pt-8"
                       onError={(e) => {
                         e.target.src =
                           "https://placehold.co/280x400/10b981/fff?text=Watch+%26+Earn";
                       }}
                     />
-
-                    {/* Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div
-                        className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl animate-pulse-ring"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, #10b981, #059669)",
-                        }}
-                      >
-                        <Play
-                          className="w-6 h-6 text-white ml-1"
-                          fill="white"
-                        />
-                      </div>
-                    </div>
 
                     {/* Live Badge */}
                     <div
@@ -348,7 +355,11 @@ export default function Hero({ onOpenQr }) {
                         border: "1px solid rgba(16,185,129,0.2)",
                       }}
                     >
-                      <Target className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <img
+                        src="/assets/emoji/emoji_fire.webp"
+                        alt=""
+                        className="w-6 h-6 object-contain shrink-0"
+                      />
                       <div>
                         <div className="text-[11px] font-black text-slate-900">
                           Daily Check-in
@@ -382,9 +393,11 @@ export default function Hero({ onOpenQr }) {
                 maxWidth: "200px",
               }}
             >
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 icon-green">
-                <CheckCircle2 className="w-4 h-4" />
-              </div>
+              <img
+                src="/assets/icons/icon_notif_withdrawn.webp"
+                alt=""
+                className="w-10 h-10 object-contain shrink-0"
+              />
               <div>
                 <div className="text-xs font-black text-slate-900">
                   ₹500 Withdrawn!
@@ -404,9 +417,11 @@ export default function Hero({ onOpenQr }) {
                 maxWidth: "190px",
               }}
             >
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 icon-gold">
-                <Coins className="w-4 h-4" />
-              </div>
+              <img
+                src="/assets/icons/icon_notif_coins.webp"
+                alt=""
+                className="w-10 h-10 object-contain shrink-0"
+              />
               <div>
                 <div className="text-xs font-black text-amber-600">
                   +25 Coins!
@@ -424,9 +439,11 @@ export default function Hero({ onOpenQr }) {
                 maxWidth: "190px",
               }}
             >
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 icon-purple">
-                <Users className="w-4 h-4" />
-              </div>
+              <img
+                src="/assets/icons/icon_notif_referral.webp"
+                alt=""
+                className="w-10 h-10 object-contain shrink-0"
+              />
               <div>
                 <div className="text-xs font-black text-violet-600">
                   +₹100 Referral!

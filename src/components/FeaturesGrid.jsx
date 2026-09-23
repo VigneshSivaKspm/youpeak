@@ -1,66 +1,52 @@
 import React from "react";
-import {
-  MonitorPlay,
-  Coins,
-  Users,
-  Zap,
-  Lock,
-  Shield,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const FEATURES = [
   {
-    icon: MonitorPlay,
+    icon: "icon_hd_video",
     title: "HD Video & Shorts",
     desc: "Ultra-smooth 1080p playback powered by Cloudflare. No buffering — ever.",
     tag: "Streaming",
-    iconClass: "icon-cyan",
     gradient: "from-cyan-500/10 to-blue-500/10",
     border: "rgba(6,182,212,0.2)",
   },
   {
-    icon: Coins,
+    icon: "icon_coins",
     title: "Real Coin Rewards",
     desc: "Earn coins for every video, ad, like and comment. 100 coins = ₹1 INR, always.",
     tag: "Earn",
-    iconClass: "icon-gold",
     gradient: "from-amber-500/10 to-orange-500/10",
     border: "rgba(245,158,11,0.2)",
   },
   {
-    icon: Users,
+    icon: "icon_referral",
     title: "₹200 Referral Engine",
     desc: "Invite a friend, earn ₹100 instantly. They watch 100 mins, you get another ₹100.",
     tag: "Referrals",
-    iconClass: "icon-purple",
     gradient: "from-violet-500/10 to-purple-500/10",
     border: "rgba(139,92,246,0.2)",
   },
   {
-    icon: Zap,
+    icon: "icon_upi_cashout",
     title: "Instant UPI Cashout",
     desc: "Tap withdraw → money hits PhonePe, GPay or your bank in seconds.",
     tag: "Payments",
-    iconClass: "icon-green",
     gradient: "from-emerald-500/10 to-green-500/10",
     border: "rgba(16,185,129,0.2)",
   },
   {
-    icon: Lock,
+    icon: "icon_ppv_lock",
     title: "Pay-Per-View Content",
     desc: "Creators lock exclusive videos. Viewers pay coins. Creator gets 80% instantly.",
     tag: "Creator",
-    iconClass: "icon-pink",
     gradient: "from-rose-500/10 to-pink-500/10",
     border: "rgba(236,72,153,0.2)",
   },
   {
-    icon: Shield,
+    icon: "icon_legal_shield",
     title: "Safe & 100% Legal",
     desc: "IT Rules 2021 compliant. Grievance Officer with 36-hour response guarantee.",
     tag: "Safety",
-    iconClass: "icon-blue",
     gradient: "from-blue-500/10 to-indigo-500/10",
     border: "rgba(59,130,246,0.2)",
   },
@@ -68,7 +54,11 @@ const FEATURES = [
 
 export default function FeaturesGrid() {
   return (
-    <section id="features" className="section bg-slate-50 px-4 sm:px-6 lg:px-8">
+    <section
+      id="features"
+      className="section bg-slate-50 bg-cover bg-center px-4 sm:px-6 lg:px-8"
+      style={{ backgroundImage: "url(/assets/bg/section_glow.webp)" }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
@@ -87,7 +77,6 @@ export default function FeaturesGrid() {
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map((f, i) => {
-            const Icon = f.icon;
             return (
               <div
                 key={i}
@@ -100,11 +89,12 @@ export default function FeaturesGrid() {
 
                 {/* Top row */}
                 <div className="relative flex items-center justify-between mb-6">
-                  <div
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center ${f.iconClass} group-hover:scale-110 transition-transform`}
-                  >
-                    <Icon className="w-7 h-7" />
-                  </div>
+                  <img
+                    src={`/assets/icons/${f.icon}.webp`}
+                    alt=""
+                    loading="lazy"
+                    className="w-20 h-20 -my-3 -ml-2 object-contain drop-shadow-lg group-hover:scale-110 transition-transform"
+                  />
                   <span
                     className="text-[11px] font-bold px-3 py-1 rounded-full"
                     style={{
