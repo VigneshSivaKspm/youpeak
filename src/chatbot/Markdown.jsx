@@ -35,8 +35,10 @@ function inline(text, onNavigate, keyPrefix) {
   const out = [];
   let last = 0;
   let m;
-  INLINE.lastIndex = 0;
-  while ((m = INLINE.exec(text))) {
+  // Fresh regex per call: bold text recurses, and a shared /g regex would
+  // have its position reset by the inner call.
+  const re = new RegExp(INLINE.source, "g");
+  while ((m = re.exec(text))) {
     if (m.index > last) out.push(text.slice(last, m.index));
     const key = `${keyPrefix}-${m.index}`;
     const [, bold, label, url, email, bare] = m;
@@ -65,7 +67,7 @@ function inline(text, onNavigate, keyPrefix) {
         </Link>,
       );
     }
-    last = INLINE.lastIndex;
+    last = m.index + m[0].length;
   }
   if (last < text.length) out.push(text.slice(last));
   return out;
