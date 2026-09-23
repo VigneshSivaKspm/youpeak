@@ -13,6 +13,7 @@ import FaqAccordion from "./components/FaqAccordion";
 import DownloadCTA from "./components/DownloadCTA";
 import Footer from "./components/Footer";
 import QrModal from "./components/QrModal";
+import ChatWidget from "./components/ChatWidget";
 
 export default function App() {
   const [qrOpen, setQrOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function App() {
       <FaqAccordion />
       <DownloadCTA onOpenQr={() => setQrOpen(true)} />
       <Footer />
+      <ChatWidget />
       {qrOpen && <QrModal onClose={() => setQrOpen(false)} />}
     </div>
   );
