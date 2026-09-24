@@ -20,68 +20,85 @@ const TIERS = [
     cap: 500,
     capINR: 5,
     monthlyCap: 150,
-    referralBonus: 2.5, // 250 Coins = ₹2.50
-    referralLabel: "250 Coins (₹2.50) / ref",
+    multiplier: "1x",
+    multiplierVal: 1.0,
+    referralCap: 5000,
+    referralLabel: "1x Multiplier (Cap: ₹5,000/mo)",
   },
   {
     id: "bronze",
     name: "Bronze",
     fullName: "Bronze Tasker (Starter)",
-    price: 999,
-    priceLabel: "₹999",
+    price: 990,
+    priceLabel: "₹990",
     cap: 2000,
     capINR: 20,
     monthlyCap: 600,
-    referralBonus: 99.9, // 10% = ₹99.90
-    referralLabel: "10% (₹99.90) / ref",
+    commission10: 99,
+    multiplier: "~2.3x",
+    multiplierVal: 2.301,
+    referralCap: 10000,
+    referralLabel: "~2.3x Multiplier (Cap: ₹10,000/mo)",
   },
   {
     id: "silver",
     name: "Silver",
     fullName: "Silver Tasker (Intermediate)",
-    price: 2499,
-    priceLabel: "₹2,499",
+    price: 2490,
+    priceLabel: "₹2,490",
     cap: 4000,
     capINR: 40,
     monthlyCap: 1200,
-    referralBonus: 249.9, // 10% = ₹249.90
-    referralLabel: "10% (₹249.90) / ref",
+    commission10: 249,
+    multiplier: "~5.7x",
+    multiplierVal: 5.753,
+    referralCap: 25000,
+    referralLabel: "~5.7x Multiplier (Cap: ₹25,000/mo)",
   },
   {
     id: "gold",
     name: "Gold",
     fullName: "Gold Tasker (Advanced)",
-    price: 4999,
-    priceLabel: "₹4,999",
+    price: 4990,
+    priceLabel: "₹4,990",
     cap: 12000,
     capINR: 120,
     monthlyCap: 3600,
-    referralBonus: 499.9, // 10% = ₹499.90
-    referralLabel: "10% (₹499.90) / ref",
+    commission10: 499,
+    multiplier: "~11.5x",
+    multiplierVal: 11.507,
+    referralCap: 50000,
+    referralLabel: "~11.5x Multiplier (Cap: ₹50,000/mo)",
   },
   {
     id: "platinum",
     name: "Platinum",
     fullName: "Platinum Tasker (Regional Pro)",
-    price: 9999,
-    priceLabel: "₹9,999",
+    price: 9990,
+    priceLabel: "₹9,990",
     cap: 16667,
     capINR: 166.67,
     monthlyCap: 5000,
-    referralBonus: 999.9, // 10% = ₹999.90
-    referralLabel: "10% (₹999.90) / ref",
+    commission10: 999,
+    multiplier: "~19.3x",
+    multiplierVal: 19.332,
+    referralCap: 84000,
+    referralLabel: "~19.3x Multiplier (Cap: ₹84,000/mo)",
   },
   {
     id: "diamond",
     name: "Diamond",
     fullName: "Diamond Pass (Special Pass)",
-    price: 24999,
-    priceLabel: "₹24,999/yr",
+    price: 24990,
+    priceLabel: "₹24,990",
     cap: 33333,
     capINR: 333.33,
     monthlyCap: 10000,
-    referralBonus: 2499.9, // 10% = ₹2,499.90
-    referralLabel: "10% (₹2,499.90) / ref",
+    commission10: 2499,
+    multiplier: "~23x",
+    multiplierVal: 23.014,
+    referralCap: 100000,
+    referralLabel: "~23x Multiplier (Cap: ₹1,00,000/mo)",
   },
 ];
 
@@ -157,8 +174,14 @@ export default function EarningsCalculator({ onOpenQr }) {
     activeTier.monthlyCap,
     Math.round(dailyINR * 30),
   );
-  const monthlyReferrals =
-    Math.round(refs * activeTier.referralBonus * 10) / 10;
+  // Base Commission Logic: 10% per pass tier (₹99+₹249+₹499+₹999+₹2,499 = ₹4,345 total base).
+  // Scaled across slider (0-30 referrals) with pass-wise multiplier and capped at monthly earning cap.
+  const basePerRef = 4345 / 30;
+  const rawReferrals = refs * basePerRef * activeTier.multiplierVal;
+  const monthlyReferrals = Math.min(
+    activeTier.referralCap,
+    Math.round(rawReferrals),
+  );
   const monthly = Math.round(monthlyTasks + monthlyReferrals);
 
   useEffect(() => {
@@ -182,12 +205,24 @@ export default function EarningsCalculator({ onOpenQr }) {
 
   const comparison = () => {
     if (monthly < 500)
-      return { emoji: "emoji_thumbs_up", text: "Covers your monthly coffee and data!" };
+      return {
+        emoji: "emoji_thumbs_up",
+        text: "Covers your monthly coffee and data!",
+      };
     if (monthly < 2000)
-      return { emoji: "emoji_party", text: "Pays your internet bill every month!" };
+      return {
+        emoji: "emoji_party",
+        text: "Pays your internet bill every month!",
+      };
     if (monthly < 5000)
-      return { emoji: "emoji_money_face", text: "Monthly pocket money — automatically!" };
-    return { emoji: "emoji_crown", text: "Serious side income — build your savings!" };
+      return {
+        emoji: "emoji_money_face",
+        text: "Monthly pocket money — automatically!",
+      };
+    return {
+      emoji: "emoji_crown",
+      text: "Serious side income — build your savings!",
+    };
   };
   const { emoji: comparisonEmoji, text: comparisonText } = comparison();
 
@@ -259,7 +294,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                       />
                       <div className="text-[11px] font-black">{t.name}</div>
                       <div className="text-[10px] mt-0.5 font-bold opacity-70">
-                        {t.price === 0 ? "Free" : `₹${t.price / 1000}K`}
+                        {t.priceLabel}
                       </div>
                       <div className="text-[9px] mt-1 opacity-50">
                         ≤₹{t.capINR}/d
@@ -304,7 +339,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                   colorClass="text-amber-600"
                   hint={[
                     "0 (Solo)",
-                    `30 referrals = ₹${(30 * activeTier.referralBonus).toLocaleString("en-IN", { maximumFractionDigits: 1 })} bonus (${activeTier.referralLabel})`,
+                    `${refs} referrals = ₹${monthlyReferrals.toLocaleString("en-IN")} bonus (${activeTier.multiplier} · Cap: ₹${activeTier.referralCap.toLocaleString("en-IN")}/mo)`,
                   ]}
                 />
               </div>
@@ -380,13 +415,13 @@ export default function EarningsCalculator({ onOpenQr }) {
                     }}
                   >
                     <div className="text-amber-600 font-black text-lg leading-tight">
-                      ₹
-                      {monthlyReferrals.toLocaleString("en-IN", {
-                        maximumFractionDigits: 1,
-                      })}
+                      ₹{monthlyReferrals.toLocaleString("en-IN")}
                     </div>
                     <div className="text-slate-500 text-[10px] mt-0.5">
-                      Referral Bonus ({refs} ref)
+                      Referrals ({refs} ref · {activeTier.multiplier})
+                    </div>
+                    <div className="text-[9px] text-amber-700/70 font-semibold mt-0.5">
+                      Cap: ₹{activeTier.referralCap.toLocaleString("en-IN")}/mo
                     </div>
                   </div>
                 </div>
@@ -585,6 +620,211 @@ export default function EarningsCalculator({ onOpenQr }) {
                   <Calendar className="w-3.5 h-3.5 text-violet-600" />
                   Processed on a flexible monthly cycle between the 21st and
                   26th of every month.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* REFERRAL EARNING CAPS & MULTIPLIER LOGIC */}
+        <div className="mt-8 max-w-4xl mx-auto">
+          <div
+            className="glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden"
+            style={{
+              border: "1px solid rgba(245,158,11,0.25)",
+              boxShadow: "0 0 50px rgba(245,158,11,0.06)",
+            }}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-200">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-amber-700 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 inline-flex items-center gap-1.5">
+                  <Coins className="w-3 h-3" /> Official Specification
+                </span>
+                <h3 className="font-display font-black text-2xl text-slate-900 mt-2">
+                  Referral Earning Caps & Multiplier Logic
+                </h3>
+                <p className="text-slate-500 text-xs mt-1">
+                  10% base commission per pass tier with progressive monthly
+                  earning multipliers and caps
+                </p>
+              </div>
+              <div className="px-4 py-2 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-center">
+                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                  Total Base Amount
+                </div>
+                <div className="text-xl font-black text-amber-600">₹4,345</div>
+                <div className="text-[10px] text-slate-400">
+                  1 ref per pass tier
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* SECTION 1: BASE COMMISSION LOGIC */}
+              <div
+                className="p-5 rounded-2xl border border-slate-200 flex flex-col justify-between"
+                style={{ background: "rgba(15,23,42,0.02)" }}
+              >
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-6 h-6 rounded-lg bg-amber-500 text-white font-black text-xs flex items-center justify-center">
+                      1
+                    </span>
+                    <h4 className="font-display font-black text-slate-900 text-sm">
+                      Base Commission (10% Per Pass Tier)
+                    </h4>
+                  </div>
+                  <p className="text-[11px] text-slate-500 mb-4">
+                    Direct 10% commission when a referred friend activates any
+                    Starter or VIP Pass:
+                  </p>
+
+                  <div className="space-y-2 text-xs">
+                    {[
+                      {
+                        tier: "Bronze Pass",
+                        price: "₹990",
+                        comm: "₹99",
+                        color:
+                          "text-amber-700 bg-amber-500/5 border-amber-500/15",
+                      },
+                      {
+                        tier: "Silver Pass",
+                        price: "₹2,490",
+                        comm: "₹249",
+                        color: "text-slate-700 bg-slate-50 border-slate-200",
+                      },
+                      {
+                        tier: "Gold Pass",
+                        price: "₹4,990",
+                        comm: "₹499",
+                        color:
+                          "text-yellow-700 bg-yellow-500/5 border-yellow-500/15",
+                      },
+                      {
+                        tier: "Platinum Pass",
+                        price: "₹9,990",
+                        comm: "₹999",
+                        color:
+                          "text-purple-700 bg-purple-500/5 border-purple-500/15",
+                      },
+                      {
+                        tier: "Diamond Pass",
+                        price: "₹24,990",
+                        comm: "₹2,499",
+                        color: "text-cyan-700 bg-cyan-500/5 border-cyan-500/15",
+                      },
+                    ].map((row, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-center justify-between p-2.5 rounded-xl border ${row.color}`}
+                      >
+                        <span className="font-bold text-slate-800">
+                          {row.tier}{" "}
+                          <span className="text-[11px] text-slate-400 font-normal">
+                            ({row.price})
+                          </span>
+                        </span>
+                        <span className="font-black text-sm text-slate-900">
+                          {row.comm}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-bold text-slate-700">
+                  <span>1 Referral Across All 5 Tiers</span>
+                  <span className="font-black text-emerald-600 text-sm">
+                    Total: ₹4,345
+                  </span>
+                </div>
+              </div>
+
+              {/* SECTION 2: PASS-WISE MULTIPLIERS & CAPS */}
+              <div
+                className="p-5 rounded-2xl border border-slate-200 flex flex-col justify-between"
+                style={{ background: "rgba(15,23,42,0.02)" }}
+              >
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-6 h-6 rounded-lg bg-emerald-500 text-white font-black text-xs flex items-center justify-center">
+                      2
+                    </span>
+                    <h4 className="font-display font-black text-slate-900 text-sm">
+                      Pass-wise Multipliers & Monthly Caps
+                    </h4>
+                  </div>
+                  <p className="text-[11px] text-slate-500 mb-4">
+                    Higher passes multiply your referral earning power and
+                    unlock higher monthly caps:
+                  </p>
+
+                  <div className="space-y-2 text-xs">
+                    {[
+                      {
+                        tier: "Free Pass",
+                        mult: "1x",
+                        cap: "₹5,000",
+                        badge: "bg-slate-100 text-slate-600",
+                      },
+                      {
+                        tier: "Bronze Pass",
+                        mult: "~2.3x",
+                        cap: "₹10,000",
+                        badge: "bg-amber-100 text-amber-800",
+                      },
+                      {
+                        tier: "Silver Pass",
+                        mult: "~5.7x",
+                        cap: "₹25,000",
+                        badge: "bg-slate-200 text-slate-800",
+                      },
+                      {
+                        tier: "Gold Pass",
+                        mult: "~11.5x",
+                        cap: "₹50,000",
+                        badge: "bg-yellow-100 text-yellow-800",
+                      },
+                      {
+                        tier: "Platinum Pass",
+                        mult: "~19.3x",
+                        cap: "₹84,000",
+                        badge: "bg-purple-100 text-purple-800",
+                      },
+                      {
+                        tier: "Diamond Pass",
+                        mult: "~23x",
+                        cap: "₹1,00,000",
+                        badge: "bg-cyan-100 text-cyan-800 font-extrabold",
+                      },
+                    ].map((row, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-200"
+                      >
+                        <span className="font-bold text-slate-800">
+                          {row.tier}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`text-[10px] font-black px-2 py-0.5 rounded-md ${row.badge}`}
+                          >
+                            {row.mult}
+                          </span>
+                          <span className="font-black text-slate-900 text-sm">
+                            Cap: {row.cap}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2 text-[11px] text-slate-500">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  Diamond Pass unlocks up to ₹1,00,000/mo maximum referral
+                  earnings.
                 </div>
               </div>
             </div>

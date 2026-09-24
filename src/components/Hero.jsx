@@ -13,12 +13,42 @@ import {
 // 3D objects floating around the hero phone. Positions are relative to the
 // phone column. Hidden below lg, where they would cover the phone screen.
 const FLOATERS = [
-  { src: "float_coin", className: "top-2 left-16 w-20", anim: "animate-float2", delay: "0s" },
-  { src: "float_heart", className: "top-1/3 left-0 w-16", anim: "animate-float", delay: "1s" },
-  { src: "float_play", className: "bottom-40 left-4 w-16", anim: "animate-float2", delay: "2s" },
-  { src: "float_coins_stack", className: "bottom-4 left-20 w-24", anim: "animate-float", delay: "0.5s" },
-  { src: "float_wallet", className: "top-[46%] -right-16 w-20", anim: "animate-float", delay: "1.5s" },
-  { src: "float_upi_arrow", className: "-bottom-8 right-[340px] w-16", anim: "animate-float2", delay: "2.5s" },
+  {
+    src: "float_coin",
+    className: "top-2 left-16 w-20",
+    anim: "animate-float2",
+    delay: "0s",
+  },
+  {
+    src: "float_heart",
+    className: "top-1/3 left-0 w-16",
+    anim: "animate-float",
+    delay: "1s",
+  },
+  {
+    src: "float_play",
+    className: "bottom-40 left-4 w-16",
+    anim: "animate-float2",
+    delay: "2s",
+  },
+  {
+    src: "float_coins_stack",
+    className: "bottom-4 left-20 w-24",
+    anim: "animate-float",
+    delay: "0.5s",
+  },
+  {
+    src: "float_wallet",
+    className: "top-[46%] -right-16 w-20",
+    anim: "animate-float",
+    delay: "1.5s",
+  },
+  {
+    src: "float_upi_arrow",
+    className: "-bottom-8 right-[340px] w-16",
+    anim: "animate-float2",
+    delay: "2.5s",
+  },
 ];
 
 const TICKER_ITEMS = [
@@ -115,8 +145,8 @@ export default function Hero({ onOpenQr }) {
               </h1>
               <p className="text-lg sm:text-xl text-slate-600 max-w-xl leading-relaxed font-medium">
                 Stop watching for free. YouPeak pays you{" "}
-                <strong className="text-slate-900 font-bold">real money</strong> for
-                every video you watch, like, and share — straight to your{" "}
+                <strong className="text-slate-900 font-bold">real money</strong>{" "}
+                for every video you watch, like, and share — straight to your{" "}
                 <strong className="text-emerald-600 font-bold">
                   UPI in seconds
                 </strong>
@@ -142,6 +172,11 @@ export default function Hero({ onOpenQr }) {
                   val: "₹200/Referral",
                   sub: "Peak Partner 2-Stage",
                 },
+                {
+                  emoji: "emoji_sparkles",
+                  val: "Free Joining",
+                  sub: "Per day/ Rs.10/-",
+                },
               ].map((b, i) => (
                 <div
                   key={i}
@@ -154,7 +189,9 @@ export default function Hero({ onOpenQr }) {
                     className="w-7 h-7 object-contain shrink-0"
                   />
                   <div>
-                    <div className="text-xs font-black text-slate-900">{b.val}</div>
+                    <div className="text-xs font-black text-slate-900">
+                      {b.val}
+                    </div>
                     <div className="text-[10px] text-slate-500">{b.sub}</div>
                   </div>
                 </div>

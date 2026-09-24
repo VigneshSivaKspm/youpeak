@@ -15,7 +15,7 @@ const FAQS = [
   {
     icon: "icon_faq_referral",
     q: "How exactly does the referral system work?",
-    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when your friend registers via OTP, and another ₹100 (held 48h) when they complete 100 watch-minutes within 7 days. Referred users must be first-time installers with genuine watch time. (2) Tasker Self-Referral: Free Taskers earn 250 Coins (₹2.50) per registration. Paid-tier taskers earn 10% of whatever Starter Pass their referred friend purchases. District Digital Partners earn tiered commissions: 10% Video Unlocks (max ₹1,000), 10% Tasker Onboarding, 15% VIP Creator Pass sales, 20% Digital Partner, and 30% margin on Local Business Ads — all paid weekly every Monday.",
+    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when your friend registers via OTP, and another ₹100 (held 48h) when they complete 100 watch-minutes within 7 days. (2) Tasker Referral (10% per pass tier): Earn direct 10% commission on passes purchased by your referrals — Bronze Pass (₹990): ₹99, Silver Pass (₹2,490): ₹249, Gold Pass (₹4,990): ₹499, Platinum Pass (₹9,990): ₹999, Diamond Pass (₹24,990): ₹2,499 (Total Base Amount: ₹4,345 for 1 referral of each tier). Your pass level unlocks progressive multipliers and monthly earning caps: Free Pass (1x, cap ₹5,000/mo), Bronze Pass (~2.3x, cap ₹10,000/mo), Silver Pass (~5.7x, cap ₹25,000/mo), Gold Pass (~11.5x, cap ₹50,000/mo), Platinum Pass (~19.3x, cap ₹84,000/mo), and Diamond Pass (~23x, cap ₹1,00,000/mo). District Digital Partners additionally earn tiered commissions.",
   },
   {
     icon: "icon_faq_vip",

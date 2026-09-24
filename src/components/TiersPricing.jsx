@@ -26,17 +26,19 @@ const TASKER_TIERS = [
       "20 ads per day",
       "5 likes per day",
       "2 comments per day",
+      "1x Referral Multiplier (Cap: ₹5,000/mo)",
       "Standard UPI cashout",
     ],
     color: "from-gray-500 to-gray-600",
-    btnClass: "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
+    btnClass:
+      "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200",
   },
   {
     id: "bronze",
     img: "tier_bronze",
     name: "Bronze Starter",
     level: "Starter",
-    price: "₹999",
+    price: "₹990",
     period: "One-time",
     monthlyMax: "₹600.00",
     dailyCap: "₹20",
@@ -47,6 +49,8 @@ const TASKER_TIERS = [
       "20 ads per day",
       "10 likes per day",
       "5 comments per day",
+      "10% Referral (₹99/ref) · ~2.3x Multiplier",
+      "Referral Cap: ₹10,000/mo",
       "₹1,000 credits bonus",
     ],
     color: "from-amber-700 to-yellow-600",
@@ -57,7 +61,7 @@ const TASKER_TIERS = [
     img: "tier_silver",
     name: "Silver Intermediate",
     level: "Level 2",
-    price: "₹2,499",
+    price: "₹2,490",
     period: "One-time",
     monthlyMax: "₹1,200.00",
     dailyCap: "₹40",
@@ -68,6 +72,8 @@ const TASKER_TIERS = [
       "20 ads per day",
       "20 likes per day",
       "10 comments per day",
+      "10% Referral (₹249/ref) · ~5.7x Multiplier",
+      "Referral Cap: ₹25,000/mo",
       "₹2,500 credits bonus",
     ],
     color: "from-emerald-500 to-cyan-500",
@@ -78,7 +84,7 @@ const TASKER_TIERS = [
     img: "tier_gold",
     name: "Gold Advanced",
     level: "Level 3",
-    price: "₹4,999",
+    price: "₹4,990",
     period: "One-time",
     monthlyMax: "₹3,600.00",
     dailyCap: "₹120",
@@ -89,6 +95,8 @@ const TASKER_TIERS = [
       "20 ads per day",
       "40 likes per day",
       "20 comments per day",
+      "10% Referral (₹499/ref) · ~11.5x Multiplier",
+      "Referral Cap: ₹50,000/mo",
       "₹5,000 credits bonus",
     ],
     color: "from-amber-400 to-yellow-500",
@@ -99,7 +107,7 @@ const TASKER_TIERS = [
     img: "tier_platinum",
     name: "Platinum Regional Pro",
     level: "Level 4",
-    price: "₹9,999",
+    price: "₹9,990",
     period: "One-time",
     monthlyMax: "₹5,000.00",
     dailyCap: "₹166.67",
@@ -110,6 +118,8 @@ const TASKER_TIERS = [
       "20 ads per day",
       "60 likes per day",
       "30 comments per day",
+      "10% Referral (₹999/ref) · ~19.3x Multiplier",
+      "Referral Cap: ₹84,000/mo",
       "₹10,000 credits bonus",
     ],
     color: "from-violet-500 to-purple-600",
@@ -121,7 +131,7 @@ const TASKER_TIERS = [
     name: "Diamond Pass",
     level: "Special Pass",
     badge: "Special Pass",
-    price: "₹24,999",
+    price: "₹24,990",
     period: "/ year",
     monthlyMax: "₹10,000.00",
     dailyCap: "₹333.33",
@@ -130,7 +140,8 @@ const TASKER_TIERS = [
     features: [
       "Unlock up to ₹10,000 monthly income",
       "20 ads per day",
-      "10% Referral Bonus",
+      "10% Referral (₹2,499/ref) · ~23x Multiplier",
+      "Referral Cap: ₹1,00,000/mo",
       "25,000 Ad Credits FREE",
       "(Daily Caps): 20 Ads / 120 Likes / 60 Comments",
     ],
@@ -414,7 +425,9 @@ export default function TiersPricing() {
                       </span>
                     )}
                   </div>
-                  <div className="text-[11px] text-slate-500 mt-1">{t.subs}</div>
+                  <div className="text-[11px] text-slate-500 mt-1">
+                    {t.subs}
+                  </div>
 
                   {t.subtext && (
                     <div className="text-[11px] text-emerald-600 font-semibold mt-2 leading-tight">
