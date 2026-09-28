@@ -8,18 +8,23 @@ import {
   Calendar,
   CheckCircle2,
   Zap,
+  TrendingUp,
+  Video,
+  Users,
+  Eye,
+  Gift,
 } from "lucide-react";
 
 const TIERS = [
   {
     id: "free",
     name: "Free",
-    fullName: "Level 1 Tasker (Free)",
+    fullName: "Level 1 User (Free)",
     price: 0,
     priceLabel: "Free",
-    cap: 500,
-    capINR: 5,
-    monthlyCap: 150,
+    cap: 1000,
+    capINR: 10,
+    monthlyCap: 300,
     multiplier: "1x",
     multiplierVal: 1.0,
     referralCap: 5000,
@@ -28,7 +33,7 @@ const TIERS = [
   {
     id: "bronze",
     name: "Bronze",
-    fullName: "Bronze Tasker (Starter)",
+    fullName: "Bronze User (Starter)",
     price: 990,
     priceLabel: "₹990",
     cap: 2000,
@@ -43,7 +48,7 @@ const TIERS = [
   {
     id: "silver",
     name: "Silver",
-    fullName: "Silver Tasker (Intermediate)",
+    fullName: "Silver User (Intermediate)",
     price: 2490,
     priceLabel: "₹2,490",
     cap: 4000,
@@ -58,7 +63,7 @@ const TIERS = [
   {
     id: "gold",
     name: "Gold",
-    fullName: "Gold Tasker (Advanced)",
+    fullName: "Gold User (Advanced)",
     price: 4990,
     priceLabel: "₹4,990",
     cap: 12000,
@@ -73,7 +78,7 @@ const TIERS = [
   {
     id: "platinum",
     name: "Platinum",
-    fullName: "Platinum Tasker (Regional Pro)",
+    fullName: "Platinum User (Regional Pro)",
     price: 9990,
     priceLabel: "₹9,990",
     cap: 16667,
@@ -102,6 +107,74 @@ const TIERS = [
   },
 ];
 
+const CREATOR_TIERS = [
+  {
+    id: "classic",
+    name: "Classic",
+    fullName: "Classic Pass",
+    level: "Level 1",
+    priceLabel: "Free",
+    subs: "0+ Subs",
+    longSplit: 0.5,
+    shortsSplit: 0.5,
+    fanFundingSplit: 0.7,
+    badge: "Always Free",
+    color: "from-gray-500 to-gray-600",
+  },
+  {
+    id: "starter",
+    name: "Starter VIP",
+    fullName: "Starter VIP Pass",
+    level: "Level 2",
+    priceLabel: "₹4,999/yr",
+    subs: "< 5,000 Subs",
+    longSplit: 0.6,
+    shortsSplit: 0.55,
+    fanFundingSplit: 0.8,
+    badge: "Launch Special",
+    color: "from-emerald-500 to-teal-500",
+  },
+  {
+    id: "silver",
+    name: "Silver VIP",
+    fullName: "Silver VIP Pass",
+    level: "Level 3",
+    priceLabel: "₹2,999/yr",
+    subs: "5K–25K Subs",
+    longSplit: 0.65,
+    shortsSplit: 0.6,
+    fanFundingSplit: 0.85,
+    badge: "5K–25K Subs",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    id: "gold",
+    name: "Gold VIP",
+    fullName: "Gold VIP Pass",
+    level: "Level 4",
+    priceLabel: "₹1,499/yr",
+    subs: "25K–100K Subs",
+    longSplit: 0.75,
+    shortsSplit: 0.65,
+    fanFundingSplit: 0.9,
+    badge: "25K–100K Subs",
+    color: "from-amber-400 to-orange-500",
+  },
+  {
+    id: "platinum",
+    name: "Platinum VIP",
+    fullName: "Platinum VIP Pass",
+    level: "Level 5",
+    priceLabel: "Free (100K+)",
+    subs: "100,000+ Subs",
+    longSplit: 0.8,
+    shortsSplit: 0.7,
+    fanFundingSplit: 0.9,
+    badge: "Auto-Unlocked",
+    color: "from-violet-500 to-purple-600",
+  },
+];
+
 function Slider({
   label,
   icon,
@@ -112,6 +185,7 @@ function Slider({
   onChange,
   colorClass,
   hint,
+  formatVal,
 }) {
   const pct = ((val - min) / (max - min)) * 100;
   return (
@@ -127,7 +201,11 @@ function Slider({
           {label}
         </span>
         <span className={`text-sm font-black font-mono ${colorClass}`}>
-          {typeof val === "number" ? val.toLocaleString() : val}
+          {formatVal
+            ? formatVal(val)
+            : typeof val === "number"
+              ? val.toLocaleString()
+              : val}
         </span>
       </div>
       <input
@@ -139,7 +217,7 @@ function Slider({
         onChange={(e) => onChange(Number(e.target.value))}
         className={`w-full h-2 rounded-full cursor-pointer outline-none appearance-none`}
         style={{
-          background: `linear-gradient(to right, ${colorClass === "text-emerald-600" ? "#10b981" : colorClass === "text-violet-600" ? "#8b5cf6" : "#f59e0b"} ${pct}%, rgba(15,23,42,0.1) ${pct}%)`,
+          background: `linear-gradient(to right, ${colorClass.includes("emerald") ? "#10b981" : colorClass.includes("violet") || colorClass.includes("purple") ? "#8b5cf6" : "#f59e0b"} ${pct}%, rgba(15,23,42,0.1) ${pct}%)`,
         }}
       />
       <div className="flex justify-between text-[10px] text-slate-400">
@@ -151,20 +229,24 @@ function Slider({
 }
 
 export default function EarningsCalculator({ onOpenQr }) {
-  const [tier, setTier] = useState("silver");
-  const [watch, setWatch] = useState(60);
-  const [engage, setEngage] = useState(15);
-  const [refs, setRefs] = useState(5);
-  const [displayed, setDisplayed] = useState(0);
+  // Mode switcher: "user" (Watch & Earn) or "creator" (Produce & Monetize)
+  const [calcMode, setCalcMode] = useState("user");
 
-  const activeTier = TIERS.find((t) => t.id === tier);
+  // User state
+  const [tier, setTier] = useState("free");
+  const [watch, setWatch] = useState(120); // 120 mins (2 hrs req done)
+  const [engage, setEngage] = useState(20); // 20 actions (10 likes + 5 comments + ads)
+  const [refs, setRefs] = useState(0); // 0 refs so Free starts clean at ₹10.00 / day (₹300/mo)
+  const [displayed, setDisplayed] = useState(300);
+
+  const activeTier = TIERS.find((t) => t.id === tier) || TIERS[0];
 
   // Activity score scales smoothly with user engagement
-  const watchFactor = watch / 180;
-  const engageFactor = engage / 60;
+  const watchFactor = Math.min(1.0, watch / 120);
+  const engageFactor = Math.min(1.0, engage / 20);
   const activityIntensity = Math.min(
     1.0,
-    0.2 + watchFactor * 0.5 + engageFactor * 0.3,
+    0.3 + watchFactor * 0.45 + engageFactor * 0.25,
   );
   const dailyINR = Math.min(
     activeTier.capINR,
@@ -174,8 +256,6 @@ export default function EarningsCalculator({ onOpenQr }) {
     activeTier.monthlyCap,
     Math.round(dailyINR * 30),
   );
-  // Base Commission Logic: 10% per pass tier (₹99+₹249+₹499+₹999+₹2,499 = ₹4,345 total base).
-  // Scaled across slider (0-30 referrals) with pass-wise multiplier and capped at monthly earning cap.
   const basePerRef = 4345 / 30;
   const rawReferrals = refs * basePerRef * activeTier.multiplierVal;
   const monthlyReferrals = Math.min(
@@ -203,7 +283,56 @@ export default function EarningsCalculator({ onOpenQr }) {
     return () => clearInterval(t);
   }, [monthly]);
 
-  const comparison = () => {
+  // Creator state
+  const [creatorTier, setCreatorTier] = useState("starter");
+  const [longViews, setLongViews] = useState(50000);
+  const [shortsViews, setShortsViews] = useState(250000);
+  const [fanFunding, setFanFunding] = useState(5000);
+  const [displayedCreator, setDisplayedCreator] = useState(0);
+
+  const activeCreatorTier =
+    CREATOR_TIERS.find((t) => t.id === creatorTier) || CREATOR_TIERS[1];
+
+  // Creator monetization math:
+  // Long-video gross ad pool ~₹80/1K views
+  const grossLong = (longViews / 1000) * 80;
+  const creatorLongRev = Math.round(grossLong * activeCreatorTier.longSplit);
+
+  // Shorts gross pool ~₹16/1K views
+  const grossShorts = (shortsViews / 1000) * 16;
+  const creatorShortsRev = Math.round(
+    grossShorts * activeCreatorTier.shortsSplit,
+  );
+
+  // Direct UPI fan funding / channel tips
+  const creatorFanRev = Math.round(
+    fanFunding * activeCreatorTier.fanFundingSplit,
+  );
+
+  const creatorTotalMonthly = Math.round(
+    creatorLongRev + creatorShortsRev + creatorFanRev,
+  );
+
+  useEffect(() => {
+    let current = displayedCreator;
+    const target = creatorTotalMonthly;
+    const diff = target - current;
+    if (diff === 0) return;
+    const steps = 20;
+    const inc = diff / steps;
+    let step = 0;
+    const t = setInterval(() => {
+      step++;
+      current += inc;
+      if (step >= steps) {
+        setDisplayedCreator(target);
+        clearInterval(t);
+      } else setDisplayedCreator(Math.round(current));
+    }, 16);
+    return () => clearInterval(t);
+  }, [creatorTotalMonthly]);
+
+  const userComparison = () => {
     if (monthly < 500)
       return {
         emoji: "emoji_thumbs_up",
@@ -224,7 +353,31 @@ export default function EarningsCalculator({ onOpenQr }) {
       text: "Serious side income — build your savings!",
     };
   };
-  const { emoji: comparisonEmoji, text: comparisonText } = comparison();
+
+  const creatorComparison = () => {
+    if (creatorTotalMonthly < 5000)
+      return {
+        emoji: "emoji_sparkles",
+        text: "Monetize from day 1 with instant UPI payouts!",
+      };
+    if (creatorTotalMonthly < 20000)
+      return {
+        emoji: "emoji_party",
+        text: "Strong side income covering all production expenses!",
+      };
+    if (creatorTotalMonthly < 50000)
+      return {
+        emoji: "emoji_money_face",
+        text: "Full-time creator income with industry-high revenue splits!",
+      };
+    return {
+      emoji: "emoji_crown",
+      text: "Elite Creator tier — up to 90% direct payout!",
+    };
+  };
+
+  const { emoji: comparisonEmoji, text: comparisonText } =
+    calcMode === "user" ? userComparison() : creatorComparison();
 
   return (
     <section
@@ -238,7 +391,7 @@ export default function EarningsCalculator({ onOpenQr }) {
 
       <div className="max-w-7xl mx-auto relative">
         {/* HEADER */}
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-4">
+        <div className="text-center max-w-2xl mx-auto mb-8 space-y-4">
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold"
             style={{
@@ -258,226 +411,497 @@ export default function EarningsCalculator({ onOpenQr }) {
             How Much Will <span className="text-gradient-gold">You Earn?</span>
           </h2>
           <p className="text-slate-500 text-base">
-            Drag the sliders below and see your projected payout in real time
+            Select your role below to simulate real-time projected payouts
           </p>
         </div>
 
-        {/* MAIN CARD */}
-        <div
-          className="glass-card rounded-3xl overflow-hidden"
-          style={{ border: "1px solid rgba(15,23,42,0.07)" }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            {/* LEFT: CONTROLS */}
-            <div className="lg:col-span-7 p-8 sm:p-10 space-y-8">
-              {/* TIER SELECTOR */}
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">
-                  Step 1: Choose Your Starter Pass
-                </p>
-                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                  {TIERS.map((t) => (
-                    <button
-                      key={t.id}
-                      onClick={() => setTier(t.id)}
-                      className={`p-3 rounded-2xl text-center transition-all duration-200 ${
-                        tier === t.id
-                          ? "bg-gradient-to-br from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/30 scale-105"
-                          : "glass text-slate-500 hover:text-slate-900 hover:bg-slate-100"
-                      }`}
-                    >
-                      <img
-                        src={`/assets/icons/tier_${t.id}.webp`}
-                        alt=""
-                        loading="lazy"
-                        className="w-8 h-8 mx-auto mb-1 object-contain"
-                      />
-                      <div className="text-[11px] font-black">{t.name}</div>
-                      <div className="text-[10px] mt-0.5 font-bold opacity-70">
-                        {t.priceLabel}
-                      </div>
-                      <div className="text-[9px] mt-1 opacity-50">
-                        ≤₹{t.capINR}/d
-                      </div>
-                    </button>
-                  ))}
+        {/* CALCULATOR SWITCHER: USER vs CREATOR */}
+        <div className="flex flex-col items-center justify-center mb-10 gap-3">
+          <div className="glass rounded-2xl p-1.5 flex gap-2 border border-slate-200 shadow-sm">
+            <button
+              onClick={() => setCalcMode("user")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${
+                calcMode === "user"
+                  ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/25"
+                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+              }`}
+            >
+              <Eye className="w-4 h-4" />
+              <span>For Users (Watch & Earn)</span>
+            </button>
+            <button
+              onClick={() => setCalcMode("creator")}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${
+                calcMode === "creator"
+                  ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-purple-500/25"
+                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+              }`}
+            >
+              <Film className="w-4 h-4" />
+              <span>For Creators (Videos & Shorts)</span>
+            </button>
+          </div>
+
+          <div className="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            {calcMode === "user"
+              ? "Showing User Calculator: Watching videos, daily likes, comments & referral bonuses"
+              : "Showing Creator Calculator: Long-video ads, shorts pool & fan funding via Direct UPI"}
+          </div>
+        </div>
+
+        {/* MAIN CALCULATOR CARD */}
+        {calcMode === "user" ? (
+          /* ================= USER CALCULATOR ================= */
+          <div
+            className="glass-card rounded-3xl overflow-hidden"
+            style={{ border: "1px solid rgba(15,23,42,0.07)" }}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              {/* LEFT: USER CONTROLS */}
+              <div className="lg:col-span-7 p-8 sm:p-10 space-y-8">
+                {/* USER PASS SELECTOR */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Step 1: Choose Your User Pass
+                    </p>
+                    <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">
+                      For Users
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                    {TIERS.map((t) => (
+                      <button
+                        key={t.id}
+                        onClick={() => setTier(t.id)}
+                        className={`p-3 rounded-2xl text-center transition-all duration-200 ${
+                          tier === t.id
+                            ? "bg-gradient-to-br from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/30 scale-105"
+                            : "glass text-slate-500 hover:text-slate-900 hover:bg-slate-100"
+                        }`}
+                      >
+                        <img
+                          src={`/assets/icons/tier_${t.id}.webp`}
+                          alt=""
+                          loading="lazy"
+                          className="w-8 h-8 mx-auto mb-1 object-contain"
+                        />
+                        <div className="text-[11px] font-black">{t.name}</div>
+                        <div className="text-[10px] mt-0.5 font-bold opacity-70">
+                          {t.priceLabel}
+                        </div>
+                        <div className="text-[9px] mt-1 opacity-50">
+                          ≤₹{t.capINR}/d
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* USER SLIDERS */}
+                <div className="space-y-6">
+                  <Slider
+                    label="Daily Watch Time"
+                    icon="icon_watch_time"
+                    val={watch}
+                    min={15}
+                    max={180}
+                    step={15}
+                    onChange={setWatch}
+                    colorClass="text-emerald-600"
+                    hint={["15 min (Quick)", "120 min (2-Hour Goal Done)"]}
+                    formatVal={(v) => `${v} min`}
+                  />
+                  <Slider
+                    label="Daily Likes & Comments"
+                    icon="icon_engagement"
+                    val={engage}
+                    min={2}
+                    max={60}
+                    step={2}
+                    onChange={setEngage}
+                    colorClass="text-emerald-600"
+                    hint={["2 actions (Casual)", "60 actions (Power user)"]}
+                    formatVal={(v) => `${v} actions`}
+                  />
+                  <Slider
+                    label="Friends Invited This Month"
+                    icon="icon_friends"
+                    val={refs}
+                    min={0}
+                    max={30}
+                    step={1}
+                    onChange={setRefs}
+                    colorClass="text-amber-600"
+                    hint={[
+                      "0 (Solo)",
+                      `${refs} referrals = ₹${monthlyReferrals.toLocaleString("en-IN")} bonus (${activeTier.multiplier} · Cap: ₹${activeTier.referralCap.toLocaleString("en-IN")}/mo)`,
+                    ]}
+                    formatVal={(v) => `${v} friends`}
+                  />
+                </div>
+
+                {/* INFO NOTE */}
+                <div
+                  className="flex items-start gap-2.5 text-xs text-slate-400 p-4 rounded-xl"
+                  style={{
+                    background: "rgba(15,23,42,0.02)",
+                    border: "1px solid rgba(15,23,42,0.04)",
+                  }}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" />
+                  Based on official YouPeak user economy: 100 coins = ₹1 INR, 20
+                  ads/day (30s each), daily action caps and user pass
+                  multipliers apply.
                 </div>
               </div>
 
-              {/* SLIDERS */}
-              <div className="space-y-6">
-                <Slider
-                  label="Daily Watch Time"
-                  icon="icon_watch_time"
-                  val={watch}
-                  min={15}
-                  max={180}
-                  step={15}
-                  onChange={setWatch}
-                  colorClass="text-emerald-600"
-                  hint={["15 min (Quick)", "180 min (Marathon +500 bonus)"]}
-                />
-                <Slider
-                  label="Daily Likes & Comments"
-                  icon="icon_engagement"
-                  val={engage}
-                  min={2}
-                  max={60}
-                  step={2}
-                  onChange={setEngage}
-                  colorClass="text-emerald-600"
-                  hint={["2 actions (Lazy)", "60 actions (Power user)"]}
-                />
-                <Slider
-                  label="Friends Invited This Month"
-                  icon="icon_friends"
-                  val={refs}
-                  min={0}
-                  max={30}
-                  step={1}
-                  onChange={setRefs}
-                  colorClass="text-amber-600"
-                  hint={[
-                    "0 (Solo)",
-                    `${refs} referrals = ₹${monthlyReferrals.toLocaleString("en-IN")} bonus (${activeTier.multiplier} · Cap: ₹${activeTier.referralCap.toLocaleString("en-IN")}/mo)`,
-                  ]}
-                />
-              </div>
-
-              {/* INFO NOTE */}
+              {/* RIGHT: USER RESULT PANEL */}
               <div
-                className="flex items-start gap-2.5 text-xs text-slate-400 p-4 rounded-xl"
+                className="lg:col-span-5 flex items-center justify-center p-8 sm:p-10 relative"
                 style={{
-                  background: "rgba(15,23,42,0.02)",
-                  border: "1px solid rgba(15,23,42,0.04)",
+                  background:
+                    "linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(16,185,129,0.06) 100%)",
+                  borderLeft: "1px solid rgba(15,23,42,0.06)",
                 }}
               >
-                <Sparkles className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" />
-                Based on official YouPeak economy: 100 coins = ₹1 INR, 20
-                ads/day, daily action caps and tier multipliers apply.
-              </div>
-            </div>
-
-            {/* RIGHT: RESULT PANEL */}
-            <div
-              className="lg:col-span-5 flex items-center justify-center p-8 sm:p-10 relative"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(16,185,129,0.06) 100%)",
-                borderLeft: "1px solid rgba(15,23,42,0.06)",
-              }}
-            >
-              <div className="text-center space-y-6 w-full max-w-xs">
-                {/* ICON */}
-                <div className="flex justify-center">
-                  <img
-                    src="/assets/icons/icon_wallet_big.webp"
-                    alt=""
-                    loading="lazy"
-                    className="w-28 h-28 object-contain drop-shadow-xl animate-float"
-                  />
-                </div>
-
-                {/* MAIN NUMBER */}
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
-                    Projected Monthly Income
+                <div className="text-center space-y-6 w-full max-w-xs">
+                  <div className="flex justify-center">
+                    <img
+                      src="/assets/icons/icon_wallet_big.webp"
+                      alt=""
+                      loading="lazy"
+                      className="w-28 h-28 object-contain drop-shadow-xl animate-float"
+                    />
                   </div>
-                  <div className="font-display font-black text-6xl sm:text-7xl text-gradient-gold leading-none">
-                    ₹{displayed.toLocaleString("en-IN")}
-                  </div>
-                  <div className="text-slate-400 text-sm mt-2">
-                    per month to your UPI
-                  </div>
-                </div>
 
-                {/* BREAKDOWN */}
-                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
+                      Projected User Monthly Income
+                    </div>
+                    <div className="font-display font-black text-6xl sm:text-7xl text-gradient-gold leading-none">
+                      ₹{displayed.toLocaleString("en-IN")}
+                    </div>
+                    <div className="text-slate-400 text-sm mt-2">
+                      per month to your UPI
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div
+                      className="text-center p-3.5 rounded-2xl"
+                      style={{
+                        background: "rgba(16,185,129,0.1)",
+                        border: "1px solid rgba(16,185,129,0.2)",
+                      }}
+                    >
+                      <div className="text-emerald-600 font-black text-lg leading-tight">
+                        ₹{dailyINR.toFixed(2)}
+                      </div>
+                      <div className="text-slate-500 text-[10px] mt-0.5">
+                        Per Day (₹{monthlyTasks.toLocaleString("en-IN")}/mo)
+                      </div>
+                    </div>
+                    <div
+                      className="text-center p-3.5 rounded-2xl"
+                      style={{
+                        background: "rgba(245,158,11,0.1)",
+                        border: "1px solid rgba(245,158,11,0.2)",
+                      }}
+                    >
+                      <div className="text-amber-600 font-black text-lg leading-tight">
+                        ₹{monthlyReferrals.toLocaleString("en-IN")}
+                      </div>
+                      <div className="text-slate-500 text-[10px] mt-0.5">
+                        Referrals ({refs} ref · {activeTier.multiplier})
+                      </div>
+                      <div className="text-[9px] text-amber-700/70 font-semibold mt-0.5">
+                        Cap: ₹{activeTier.referralCap.toLocaleString("en-IN")}
+                        /mo
+                      </div>
+                    </div>
+                  </div>
+
                   <div
-                    className="text-center p-3.5 rounded-2xl"
-                    style={{
-                      background: "rgba(16,185,129,0.1)",
-                      border: "1px solid rgba(16,185,129,0.2)",
-                    }}
+                    className="flex items-center gap-2 text-xs text-slate-500 p-3 rounded-xl justify-center"
+                    style={{ background: "rgba(15,23,42,0.03)" }}
                   >
-                    <div className="text-emerald-600 font-black text-lg leading-tight">
-                      ₹{dailyINR.toFixed(2)}
-                    </div>
-                    <div className="text-slate-500 text-[10px] mt-0.5">
-                      Per Day (₹{monthlyTasks.toLocaleString("en-IN")}/mo)
-                    </div>
+                    <img
+                      src={`/assets/emoji/${comparisonEmoji}.webp`}
+                      alt=""
+                      className="w-6 h-6 object-contain shrink-0"
+                    />
+                    {comparisonText}
                   </div>
+
+                  {/* USER PAYOUT THRESHOLDS */}
                   <div
-                    className="text-center p-3.5 rounded-2xl"
-                    style={{
-                      background: "rgba(245,158,11,0.1)",
-                      border: "1px solid rgba(245,158,11,0.2)",
-                    }}
+                    className="p-3 rounded-xl text-left border border-slate-200 space-y-1"
+                    style={{ background: "rgba(15,23,42,0.03)" }}
                   >
-                    <div className="text-amber-600 font-black text-lg leading-tight">
-                      ₹{monthlyReferrals.toLocaleString("en-IN")}
+                    <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">
+                      <Zap className="w-3 h-3" /> User Payout Thresholds
                     </div>
-                    <div className="text-slate-500 text-[10px] mt-0.5">
-                      Referrals ({refs} ref · {activeTier.multiplier})
+                    <div className="text-[11px] text-slate-700">
+                      First Payout:{" "}
+                      <span className="text-slate-900 font-bold">
+                        Min. ₹100
+                      </span>{" "}
+                      (Immediate)
                     </div>
-                    <div className="text-[9px] text-amber-700/70 font-semibold mt-0.5">
-                      Cap: ₹{activeTier.referralCap.toLocaleString("en-IN")}/mo
+                    <div className="text-[11px] text-slate-500">
+                      2nd onwards:{" "}
+                      <span className="text-slate-700 font-bold">
+                        Min. ₹500
+                      </span>{" "}
+                      (Instant 24/7)
                     </div>
                   </div>
-                </div>
 
-                {/* COMPARISON */}
-                <div
-                  className="flex items-center gap-2 text-xs text-slate-500 p-3 rounded-xl justify-center"
-                  style={{ background: "rgba(15,23,42,0.03)" }}
-                >
-                  <img
-                    src={`/assets/emoji/${comparisonEmoji}.webp`}
-                    alt=""
-                    className="w-6 h-6 object-contain shrink-0"
-                  />
-                  {comparisonText}
+                  <a
+                    href="#download"
+                    className="w-full btn-primary text-center block text-sm"
+                  >
+                    Start Earning Now — Free
+                  </a>
+                  <button
+                    onClick={onOpenQr}
+                    className="text-xs text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center gap-1 mx-auto"
+                  >
+                    Scan QR to download <ArrowRight className="w-3 h-3" />
+                  </button>
                 </div>
-
-                {/* PAYOUT THRESHOLD PILL */}
-                <div
-                  className="p-3 rounded-xl text-left border border-slate-200 space-y-1"
-                  style={{ background: "rgba(15,23,42,0.03)" }}
-                >
-                  <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">
-                    <Zap className="w-3 h-3" /> Payout Thresholds
-                  </div>
-                  <div className="text-[11px] text-slate-700">
-                    First Payout:{" "}
-                    <span className="text-slate-900 font-bold">Min. ₹100</span>{" "}
-                    (Immediate)
-                  </div>
-                  <div className="text-[11px] text-slate-500">
-                    2nd onwards:{" "}
-                    <span className="text-slate-700 font-bold">Min. ₹500</span>{" "}
-                    (Taskers) /{" "}
-                    <span className="text-slate-700 font-bold">₹1,000</span>{" "}
-                    (Creators)
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <a
-                  href="#download"
-                  className="w-full btn-primary text-center block text-sm"
-                >
-                  Start Earning Now — Free
-                </a>
-                <button
-                  onClick={onOpenQr}
-                  className="text-xs text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center gap-1 mx-auto"
-                >
-                  Scan QR to download <ArrowRight className="w-3 h-3" />
-                </button>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          /* ================= CREATOR CALCULATOR ================= */
+          <div
+            className="glass-card rounded-3xl overflow-hidden"
+            style={{ border: "1px solid rgba(139,92,246,0.15)" }}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12">
+              {/* LEFT: CREATOR CONTROLS */}
+              <div className="lg:col-span-7 p-8 sm:p-10 space-y-8">
+                {/* CREATOR PASS SELECTOR */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Step 1: Choose Your Creator Pass
+                    </p>
+                    <span className="text-[11px] font-bold text-violet-700 bg-violet-50 px-2.5 py-0.5 rounded-full border border-violet-100">
+                      For Creators
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                    {CREATOR_TIERS.map((t) => (
+                      <button
+                        key={t.id}
+                        onClick={() => setCreatorTier(t.id)}
+                        className={`p-3 rounded-2xl text-center transition-all duration-200 ${
+                          creatorTier === t.id
+                            ? "bg-gradient-to-br from-violet-600 to-purple-600 text-white shadow-lg shadow-purple-500/30 scale-105"
+                            : "glass text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                        }`}
+                      >
+                        <div className="text-[12px] font-black">{t.name}</div>
+                        <div className="text-[10px] mt-0.5 font-bold opacity-80">
+                          {t.priceLabel}
+                        </div>
+                        <div className="text-[9px] mt-1 font-semibold opacity-60">
+                          {t.subs}
+                        </div>
+                        <div className="mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-black/10">
+                          {Math.round(t.longSplit * 100)}% Ads
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CREATOR SLIDERS */}
+                <div className="space-y-6">
+                  <Slider
+                    label="Monthly Long-Video Views"
+                    icon="icon_hd_video"
+                    val={longViews}
+                    min={5000}
+                    max={1000000}
+                    step={5000}
+                    onChange={setLongViews}
+                    colorClass="text-violet-600"
+                    hint={["5,000 views", "1,000,000 views (Pro channel)"]}
+                    formatVal={(v) => `${(v / 1000).toFixed(0)}K views`}
+                  />
+                  <Slider
+                    label="Monthly Shorts Views"
+                    icon="icon_step_watch"
+                    val={shortsViews}
+                    min={10000}
+                    max={2000000}
+                    step={10000}
+                    onChange={setShortsViews}
+                    colorClass="text-violet-600"
+                    hint={["10,000 views", "2,000,000 views (Viral Shorts)"]}
+                    formatVal={(v) => `${(v / 1000).toFixed(0)}K views`}
+                  />
+                  <Slider
+                    label="Monthly Fan Funding / Direct UPI Tips"
+                    icon="icon_coins"
+                    val={fanFunding}
+                    min={0}
+                    max={50000}
+                    step={1000}
+                    onChange={setFanFunding}
+                    colorClass="text-amber-600"
+                    hint={["₹0", "₹50,000/mo (Direct UPI memberships)"]}
+                    formatVal={(v) => `₹${v.toLocaleString("en-IN")}`}
+                  />
+                </div>
+
+                {/* CREATOR INFO NOTE */}
+                <div
+                  className="flex items-start gap-2.5 text-xs text-slate-400 p-4 rounded-xl"
+                  style={{
+                    background: "rgba(139,92,246,0.03)",
+                    border: "1px solid rgba(139,92,246,0.08)",
+                  }}
+                >
+                  <TrendingUp className="w-3.5 h-3.5 text-violet-600 mt-0.5 shrink-0" />
+                  Based on Cloudflare Stream playback quality,{" "}
+                  {Math.round(activeCreatorTier.longSplit * 100)}% long-video ad
+                  split, {Math.round(activeCreatorTier.shortsSplit * 100)}%
+                  shorts share, and{" "}
+                  {Math.round(activeCreatorTier.fanFundingSplit * 100)}% Direct
+                  UPI fan funding (bypassing 30% app store cuts).
+                </div>
+              </div>
+
+              {/* RIGHT: CREATOR RESULT PANEL */}
+              <div
+                className="lg:col-span-5 flex items-center justify-center p-8 sm:p-10 relative"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(59,130,246,0.06) 100%)",
+                  borderLeft: "1px solid rgba(15,23,42,0.06)",
+                }}
+              >
+                <div className="text-center space-y-6 w-full max-w-xs">
+                  <div className="flex justify-center">
+                    <img
+                      src="/assets/icons/icon_wallet_big.webp"
+                      alt=""
+                      loading="lazy"
+                      className="w-28 h-28 object-contain drop-shadow-xl animate-float"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
+                      Projected Creator Monthly Revenue
+                    </div>
+                    <div className="font-display font-black text-6xl sm:text-7xl text-gradient-purple leading-none">
+                      ₹{displayedCreator.toLocaleString("en-IN")}
+                    </div>
+                    <div className="text-slate-400 text-sm mt-2">
+                      monthly directly to your UPI
+                    </div>
+                  </div>
+
+                  {/* REVENUE BREAKDOWN */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-violet-500/10 border border-violet-500/20 text-xs">
+                      <span className="text-slate-700 font-bold">
+                        Long-Video Ads
+                      </span>
+                      <span className="font-black text-violet-700">
+                        ₹{creatorLongRev.toLocaleString("en-IN")}{" "}
+                        <span className="text-[10px] font-normal text-slate-500">
+                          ({Math.round(activeCreatorTier.longSplit * 100)}%)
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs">
+                      <span className="text-slate-700 font-bold">
+                        Shorts Pool
+                      </span>
+                      <span className="font-black text-cyan-700">
+                        ₹{creatorShortsRev.toLocaleString("en-IN")}{" "}
+                        <span className="text-[10px] font-normal text-slate-500">
+                          ({Math.round(activeCreatorTier.shortsSplit * 100)}%)
+                        </span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs">
+                      <span className="text-slate-700 font-bold">
+                        Fan Funding (UPI)
+                      </span>
+                      <span className="font-black text-amber-700">
+                        ₹{creatorFanRev.toLocaleString("en-IN")}{" "}
+                        <span className="text-[10px] font-normal text-slate-500">
+                          ({Math.round(activeCreatorTier.fanFundingSplit * 100)}
+                          %)
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    className="flex items-center gap-2 text-xs text-slate-500 p-3 rounded-xl justify-center"
+                    style={{ background: "rgba(15,23,42,0.03)" }}
+                  >
+                    <img
+                      src={`/assets/emoji/${comparisonEmoji}.webp`}
+                      alt=""
+                      className="w-6 h-6 object-contain shrink-0"
+                    />
+                    {comparisonText}
+                  </div>
+
+                  {/* CREATOR PAYOUT THRESHOLDS */}
+                  <div
+                    className="p-3 rounded-xl text-left border border-slate-200 space-y-1"
+                    style={{ background: "rgba(15,23,42,0.03)" }}
+                  >
+                    <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-violet-600">
+                      <Calendar className="w-3 h-3" /> Creator Payout Schedule
+                    </div>
+                    <div className="text-[11px] text-slate-700">
+                      First Payout:{" "}
+                      <span className="text-slate-900 font-bold">
+                        Min. ₹100
+                      </span>{" "}
+                      (Immediate)
+                    </div>
+                    <div className="text-[11px] text-slate-500">
+                      2nd onwards:{" "}
+                      <span className="text-slate-700 font-bold">
+                        Min. ₹1,000
+                      </span>{" "}
+                      (Monthly: 21st–26th)
+                    </div>
+                  </div>
+
+                  <a
+                    href="#tiers"
+                    className="w-full py-3 rounded-2xl text-center block text-sm font-bold text-white shadow-lg bg-gradient-to-r from-violet-600 to-purple-600 hover:opacity-95 transition-opacity"
+                  >
+                    Unlock Creator VIP Pass
+                  </a>
+                  <button
+                    onClick={onOpenQr}
+                    className="text-xs text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center gap-1 mx-auto"
+                  >
+                    Scan QR to download <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* UPDATED PAYOUT RULES & SCHEDULES */}
         <div className="mt-10 max-w-4xl mx-auto">
@@ -516,7 +940,7 @@ export default function EarningsCalculator({ onOpenQr }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* TASKERS CARD */}
+              {/* USERS CARD */}
               <div
                 className="p-5 rounded-2xl border border-slate-200 flex flex-col justify-between"
                 style={{ background: "rgba(15,23,42,0.02)" }}
@@ -528,7 +952,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                     </div>
                     <div>
                       <h4 className="font-display font-black text-slate-900 text-base">
-                        For Taskers
+                        For Users
                       </h4>
                       <p className="text-[11px] text-slate-500">
                         Watch, like, comment & daily tasks
@@ -676,7 +1100,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                   </div>
                   <p className="text-[11px] text-slate-500 mb-4">
                     Direct 10% commission when a referred friend activates any
-                    Starter or VIP Pass:
+                    User Starter or VIP Pass:
                   </p>
 
                   <div className="space-y-2 text-xs">

@@ -13,19 +13,20 @@ const TASKER_TIERS = [
   {
     id: "free",
     img: "tier_free",
-    name: "Free Tasker",
+    name: "Free User",
     level: "Level 1",
     price: "₹0",
     period: "Always free",
-    monthlyMax: "₹150.00",
-    dailyCap: "₹5",
+    monthlyMax: "₹300.00",
+    dailyCap: "₹10",
     popular: false,
     credits: null,
     features: [
-      "Up to ₹5/day",
+      "Up to ₹10/day (1,000 coins)",
       "20 ads per day",
-      "5 likes per day",
-      "2 comments per day",
+      "10 likes per day",
+      "5 comments per day",
+      "Unlock Level 2 FREE (100 Watch Hrs)",
       "1x Referral Multiplier (Cap: ₹5,000/mo)",
       "Standard UPI cashout",
     ],
@@ -263,7 +264,7 @@ export default function TiersPricing() {
               onClick={() => setMode("tasker")}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all ${mode === "tasker" ? "bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg" : "text-slate-500 hover:text-slate-900"}`}
             >
-              <Eye className="w-4 h-4" /> Viewer Passes
+              <Eye className="w-4 h-4" /> User Passes
             </button>
             <button
               onClick={() => setMode("creator")}
@@ -508,7 +509,7 @@ export default function TiersPricing() {
         )}
 
         <p className="text-center text-slate-500 text-xs mt-10 max-w-2xl mx-auto leading-relaxed">
-          100% matched Ad Credits deposited immediately on tier purchase. Viewer
+          100% matched Ad Credits deposited immediately on tier purchase. User
           passes (Levels 1–4) are one-time passes; Diamond Pass & Creator VIP
           passes renew annually. No hidden fees.
         </p>

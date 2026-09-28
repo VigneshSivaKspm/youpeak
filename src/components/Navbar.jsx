@@ -9,7 +9,7 @@ const navLinks = [
   { href: "#faq", label: "FAQ" },
 ];
 
-export default function Navbar({ onOpenQr }) {
+export default function Navbar({ onOpenQr, onOpenAuth, currentUser }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -69,9 +69,26 @@ export default function Navbar({ onOpenQr }) {
 
         {/* DESKTOP CTA */}
         <div className="hidden lg:flex items-center gap-3">
+          {currentUser ? (
+            <button
+              onClick={() => onOpenAuth?.()}
+              className="px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-800 text-xs font-bold flex items-center gap-2 hover:bg-emerald-500/20 transition-all"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>{currentUser.name} ({currentUser.pass || "Active"})</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => onOpenAuth?.()}
+              className="px-4 py-2 text-sm font-bold text-slate-700 hover:text-emerald-600 transition-colors"
+            >
+              Log In / Register
+            </button>
+          )}
+
           <button
             onClick={onOpenQr}
-            className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+            className="px-3 py-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
           >
             Scan QR
           </button>
@@ -86,9 +103,15 @@ export default function Navbar({ onOpenQr }) {
 
         {/* MOBILE MENU BUTTON */}
         <div className="md:hidden flex items-center gap-2">
+          <button
+            onClick={() => onOpenAuth?.()}
+            className="text-xs font-bold px-3 py-2 rounded-xl bg-slate-100 text-slate-800 border border-slate-200"
+          >
+            {currentUser ? currentUser.name.split(" ")[0] : "Sign Up"}
+          </button>
           <a
             href="#download"
-            className="btn-primary text-xs !py-2 !px-4 flex items-center gap-1.5"
+            className="btn-primary text-xs !py-2 !px-3 flex items-center gap-1.5"
           >
             <Zap className="w-3.5 h-3.5" /> Get App
           </a>

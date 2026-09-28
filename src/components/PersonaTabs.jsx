@@ -22,21 +22,21 @@ const TABS = [
   {
     id: "tasker",
     icon: Eye,
-    label: "Watch & Earn",
+    label: "For Users",
     color: "emerald",
     gradient: "from-emerald-500 to-cyan-500",
   },
   {
     id: "creator",
     icon: Film,
-    label: "Create & Profit",
+    label: "For Creators",
     color: "violet",
     gradient: "from-violet-500 to-purple-600",
   },
   {
     id: "partner",
     icon: Users,
-    label: "Refer & Grow",
+    label: "For Partners",
     color: "amber",
     gradient: "from-amber-400 to-orange-500",
   },
@@ -45,7 +45,7 @@ const TABS = [
 const CONTENT = {
   tasker: {
     headline: "Get Paid for Watching Videos",
-    sub: "Watch trending videos, check in daily, hit like — and earn real withdrawable cash. No surveys, no tricks, just genuine rewards.",
+    sub: "Watch trending videos, check in daily, hit like — and earn real withdrawable cash up to ₹10/day free. Reach 100 Lifetime Watch Hours to unlock Level 2 for FREE!",
     image: "/assets/persona_watch.webp",
     imageFallback:
       "https://placehold.co/360x360/10b981/fff?text=Watch+%26+Earn",
@@ -54,8 +54,8 @@ const CONTENT = {
     points: [
       {
         icon: Tv,
-        title: "Watch 20 sponsored clips/day",
-        sub: "25 coins per ad watched",
+        title: "Watch 20 sponsored clips/day (30 sec each)",
+        sub: "30-second clips · 25 coins per ad watched",
         iconClass: "icon-cyan",
       },
       {
@@ -135,7 +135,7 @@ const CONTENT = {
       },
       {
         icon: Briefcase,
-        title: "15% VIP Creator · 10% Tasker Onboarding",
+        title: "15% VIP Creator · 10% User Onboarding",
         sub: "Commission on every onboarding in your district",
         iconClass: "icon-purple",
       },
