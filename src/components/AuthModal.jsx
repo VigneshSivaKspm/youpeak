@@ -14,15 +14,59 @@ import {
 } from "lucide-react";
 
 const PASS_OPTIONS = [
-  { id: "free", name: "Free User", price: 0, priceLabel: "₹0 Free", color: "from-gray-500 to-gray-600" },
-  { id: "bronze", name: "Bronze Starter", price: 999, priceLabel: "₹999", color: "from-amber-600 to-yellow-600" },
-  { id: "silver", name: "Silver Intermediate", price: 2499, priceLabel: "₹2,499", color: "from-emerald-500 to-cyan-500", popular: true },
-  { id: "gold", name: "Gold Advanced", price: 4999, priceLabel: "₹4,999", color: "from-yellow-500 to-amber-600" },
-  { id: "platinum", name: "Platinum Regional Pro", price: 9999, priceLabel: "₹9,999", color: "from-violet-500 to-purple-600" },
-  { id: "diamond", name: "Diamond Pass", price: 24999, priceLabel: "₹24,999/yr", color: "from-cyan-400 to-blue-600" },
+  {
+    id: "free",
+    name: "Free User",
+    price: 0,
+    priceLabel: "₹0 Free",
+    color: "from-gray-500 to-gray-600",
+  },
+  {
+    id: "bronze",
+    name: "Bronze Starter",
+    price: 999,
+    priceLabel: "₹999",
+    color: "from-amber-600 to-yellow-600",
+  },
+  {
+    id: "silver",
+    name: "Silver Intermediate",
+    price: 2499,
+    priceLabel: "₹2,499",
+    color: "from-emerald-500 to-cyan-500",
+    popular: true,
+  },
+  {
+    id: "gold",
+    name: "Gold Advanced",
+    price: 4999,
+    priceLabel: "₹4,999",
+    color: "from-yellow-500 to-amber-600",
+  },
+  {
+    id: "platinum",
+    name: "Platinum Regional Pro",
+    price: 9999,
+    priceLabel: "₹9,999",
+    color: "from-violet-500 to-purple-600",
+  },
+  {
+    id: "diamond",
+    name: "Diamond Pass",
+    price: 24999,
+    priceLabel: "₹24,999/yr",
+    color: "from-cyan-400 to-blue-600",
+  },
 ];
 
-export default function AuthModal({ isOpen, onClose, initialTier = "free", currentUser, onAuthSuccess, onLogout }) {
+export default function AuthModal({
+  isOpen,
+  onClose,
+  initialTier = "free",
+  currentUser,
+  onAuthSuccess,
+  onLogout,
+}) {
   const [tab, setTab] = useState("signup"); // "signup" or "login"
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -39,7 +83,8 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
 
   if (!isOpen) return null;
 
-  const currentPassObj = PASS_OPTIONS.find((p) => p.id === selectedPass) || PASS_OPTIONS[0];
+  const currentPassObj =
+    PASS_OPTIONS.find((p) => p.id === selectedPass) || PASS_OPTIONS[0];
 
   const handleSendOtp = (e) => {
     e.preventDefault();
@@ -127,13 +172,17 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
         {currentUser ? (
           <div className="p-8 text-center space-y-6">
             <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-xl font-black border-2 border-emerald-500 shadow-md">
-              {currentUser.name ? currentUser.name.slice(0, 2).toUpperCase() : "YP"}
+              {currentUser.name
+                ? currentUser.name.slice(0, 2).toUpperCase()
+                : "YP"}
             </div>
             <div>
               <h3 className="font-display font-black text-2xl text-slate-900">
                 {currentUser.name}
               </h3>
-              <p className="text-sm text-slate-500 mt-1">+91 {currentUser.phone}</p>
+              <p className="text-sm text-slate-500 mt-1">
+                +91 {currentUser.phone}
+              </p>
               <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                 <Sparkles className="w-3.5 h-3.5" />
                 Active Pass: {currentUser.pass || "Free User"}
@@ -143,15 +192,21 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs space-y-2 text-slate-600">
               <div className="flex justify-between">
                 <span>Registration Status:</span>
-                <span className="font-bold text-emerald-600">Verified & Active</span>
+                <span className="font-bold text-emerald-600">
+                  Verified & Active
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>Account Sync:</span>
-                <span className="font-bold text-slate-900">Direct Web Portal</span>
+                <span className="font-bold text-slate-900">
+                  Direct Web Portal
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>In-App Linked Device:</span>
-                <span className="font-bold text-slate-900">+91 {currentUser.phone}</span>
+                <span className="font-bold text-slate-900">
+                  +91 {currentUser.phone}
+                </span>
               </div>
             </div>
 
@@ -166,7 +221,10 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               >
                 <LogOut className="w-4 h-4" /> Log Out
               </button>
-              <button onClick={onClose} className="flex-1 btn-primary text-sm !py-3">
+              <button
+                onClick={onClose}
+                className="flex-1 btn-primary text-sm !py-3"
+              >
                 Done
               </button>
             </div>
@@ -179,10 +237,13 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
             </div>
             <div>
               <h3 className="font-display font-black text-2xl text-slate-900">
-                {paymentStep ? "Payment & Registration Successful!" : "Account Registered!"}
+                {paymentStep
+                  ? "Payment & Registration Successful!"
+                  : "Account Registered!"}
               </h3>
               <p className="text-sm text-slate-500 mt-2">
-                Your <strong>{currentPassObj.name}</strong> is now linked to <strong>+91 {phone}</strong>.
+                Your <strong>{currentPassObj.name}</strong> is now linked to{" "}
+                <strong>+91 {phone}</strong>.
               </p>
             </div>
 
@@ -190,9 +251,16 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               <div className="font-bold flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4" /> Next Steps:
               </div>
-              <div>1. Install the YouPeak app on your Android or iOS device.</div>
-              <div>2. Log in using mobile number +91 {phone} to sync your active pass.</div>
-              <div>3. Watch daily videos & ads to collect reward coins directly!</div>
+              <div>
+                1. Install the YouPeak app on your Android or iOS device.
+              </div>
+              <div>
+                2. Log in using mobile number +91 {phone} to sync your active
+                pass.
+              </div>
+              <div>
+                3. Watch daily videos & ads to collect reward coins directly!
+              </div>
             </div>
 
             <button
@@ -217,7 +285,8 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
                 Pay to Register & Activate Pass
               </h3>
               <p className="text-xs text-slate-500 mt-1">
-                Complete direct website payment to activate your {currentPassObj.name}
+                Complete direct website payment to activate your{" "}
+                {currentPassObj.name}
               </p>
             </div>
 
@@ -225,25 +294,35 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
               <div className="flex justify-between text-slate-600">
                 <span>Selected Pass:</span>
-                <span className="font-bold text-slate-900">{currentPassObj.name}</span>
+                <span className="font-bold text-slate-900">
+                  {currentPassObj.name}
+                </span>
               </div>
               <div className="flex justify-between text-slate-600">
                 <span>Registration User:</span>
-                <span className="font-bold text-slate-900">{name || "New User"} (+91 {phone})</span>
+                <span className="font-bold text-slate-900">
+                  {name || "New User"} (+91 {phone})
+                </span>
               </div>
               <div className="flex justify-between text-slate-600">
                 <span>Ad Credits Matched:</span>
-                <span className="font-bold text-emerald-600">100% Instant Deposit</span>
+                <span className="font-bold text-emerald-600">
+                  100% Instant Deposit
+                </span>
               </div>
               <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-black text-slate-900">
                 <span>Total Amount:</span>
-                <span className="text-emerald-600 text-lg">₹{currentPassObj.price.toLocaleString("en-IN")}</span>
+                <span className="text-emerald-600 text-lg">
+                  ₹{currentPassObj.price.toLocaleString("en-IN")}
+                </span>
               </div>
             </div>
 
             {/* PAYMENT METHOD SELECTOR */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-700 block">Select Payment Mode</label>
+              <label className="text-xs font-bold text-slate-700 block">
+                Select Payment Mode
+              </label>
               <div className="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700">
                 <div className="p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
@@ -269,12 +348,15 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
                 disabled={isProcessing}
                 className="flex-1 btn-primary text-sm !py-3 flex items-center justify-center gap-2"
               >
-                {isProcessing ? "Processing Payment..." : `Pay ₹${currentPassObj.price.toLocaleString("en-IN")} & Complete`}
+                {isProcessing
+                  ? "Processing Payment..."
+                  : `Pay ₹${currentPassObj.price.toLocaleString("en-IN")} & Complete`}
               </button>
             </div>
 
             <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
-              <Lock className="w-3.5 h-3.5 text-emerald-600" /> 256-Bit Bank Grade Encryption via Razorpay
+              <Lock className="w-3.5 h-3.5 text-emerald-600" /> 256-Bit Bank
+              Grade Encryption via Razorpay
             </div>
           </div>
         ) : (
@@ -285,7 +367,9 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               <button
                 onClick={() => setTab("signup")}
                 className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
-                  tab === "signup" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-900"
+                  tab === "signup"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 Register & Pay
@@ -293,7 +377,9 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               <button
                 onClick={() => setTab("login")}
                 className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
-                  tab === "login" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-900"
+                  tab === "login"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500 hover:text-slate-900"
                 }`}
               >
                 Log In
@@ -302,7 +388,9 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
 
             <div>
               <h3 className="font-display font-black text-2xl text-slate-900">
-                {tab === "signup" ? "Create Account & Activate Pass" : "Log In to Your Portal"}
+                {tab === "signup"
+                  ? "Create Account & Activate Pass"
+                  : "Log In to Your Portal"}
               </h3>
               <p className="text-xs text-slate-500 mt-1">
                 {tab === "signup"
@@ -311,10 +399,15 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               </p>
             </div>
 
-            <form onSubmit={tab === "signup" ? handleRegisterOrPay : handleLogin} className="space-y-4">
+            <form
+              onSubmit={tab === "signup" ? handleRegisterOrPay : handleLogin}
+              className="space-y-4"
+            >
               {tab === "signup" && (
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">Full Name</label>
+                  <label className="text-xs font-bold text-slate-700 block mb-1">
+                    Full Name
+                  </label>
                   <div className="relative">
                     <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
@@ -330,7 +423,9 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               )}
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1">Mobile Number (for OTP & UPI)</label>
+                <label className="text-xs font-bold text-slate-700 block mb-1">
+                  Mobile Number (for OTP & UPI)
+                </label>
                 <div className="relative">
                   <span className="text-xs font-bold text-slate-500 absolute left-3 top-1/2 -translate-y-1/2">
                     +91
@@ -340,7 +435,9 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
                     required
                     maxLength={10}
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+                    onChange={(e) =>
+                      setPhone(e.target.value.replace(/\D/g, ""))
+                    }
                     placeholder="9876543210"
                     className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
                   />
@@ -351,8 +448,12 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
               {otpSent && (
                 <div className="space-y-1.5 animate-fade-in">
                   <div className="flex justify-between items-center text-xs">
-                    <label className="font-bold text-slate-700">Enter OTP</label>
-                    <span className="text-emerald-600 font-bold">Auto-sent: 5421</span>
+                    <label className="font-bold text-slate-700">
+                      Enter OTP
+                    </label>
+                    <span className="text-emerald-600 font-bold">
+                      Auto-sent: 5421
+                    </span>
                   </div>
                   <input
                     type="text"
@@ -383,8 +484,12 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
                             : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
-                        <div className="text-[11px] font-bold text-slate-800 truncate">{p.name}</div>
-                        <div className="text-[12px] font-black text-slate-900 mt-0.5">{p.priceLabel}</div>
+                        <div className="text-[11px] font-bold text-slate-800 truncate">
+                          {p.name}
+                        </div>
+                        <div className="text-[12px] font-black text-slate-900 mt-0.5">
+                          {p.priceLabel}
+                        </div>
                       </button>
                     ))}
                   </div>
@@ -399,12 +504,12 @@ export default function AuthModal({ isOpen, onClose, initialTier = "free", curre
                 {isProcessing
                   ? "Verifying..."
                   : !otpSent
-                  ? "Get OTP to Continue"
-                  : tab === "signup" && currentPassObj.price > 0
-                  ? `Proceed to Pay ${currentPassObj.priceLabel}`
-                  : tab === "signup"
-                  ? "Complete Free Registration"
-                  : "Log In to Account"}
+                    ? "Get OTP to Continue"
+                    : tab === "signup" && currentPassObj.price > 0
+                      ? `Proceed to Pay ${currentPassObj.priceLabel}`
+                      : tab === "signup"
+                        ? "Complete Free Registration"
+                        : "Log In to Account"}
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
