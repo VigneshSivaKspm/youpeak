@@ -4,18 +4,18 @@ import { Mail, ShieldCheck } from "lucide-react";
 const PILLARS = [
   {
     icon: "icon_36h",
-    title: "36-Hour Response",
-    desc: "Every complaint is assigned a ticket and resolved within 36 hours — by law.",
+    title: "Published Contact",
+    desc: "Use the published grievance email for platform complaints and content reports.",
   },
   {
     icon: "icon_bank_security",
-    title: "Bank-Grade Security",
-    desc: "Payments are 256-bit encrypted via Razorpay. Your UPI details are never stored in plain text.",
+    title: "Protect Sensitive Data",
+    desc: "Never send an OTP, UPI PIN, password, card number or complete bank credentials by email or chat.",
   },
   {
     icon: "icon_content_guard",
-    title: "Auto Content Guard",
-    desc: "Real-time keyword screening and audio fingerprinting keeps the platform safe for everyone.",
+    title: "Policy Review Needed",
+    desc: "Detailed moderation, appeals, privacy and security documentation is awaiting business and legal approval.",
   },
 ];
 
@@ -26,14 +26,14 @@ export default function GrievanceCompliance() {
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
-            100% Legal & Safe in India
+            Trust and grievance information
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
-            We Play by <span className="text-gradient-primary">the Rules</span>
+            Know How to <span className="text-gradient-primary">Raise an Issue</span>
           </h2>
           <p className="text-slate-500 text-base">
-            YouPeak is fully compliant with IT Rules 2021 and designed with user
-            safety at the core.
+            Use the published channel below, avoid sharing sensitive credentials,
+            and keep a copy of your message and supporting references.
           </p>
         </div>
 
@@ -48,6 +48,8 @@ export default function GrievanceCompliance() {
                 <img
                   src={`/assets/icons/${p.icon}.webp`}
                   alt=""
+                  width="256"
+                  height="256"
                   loading="lazy"
                   className="w-24 h-24 object-contain mx-auto drop-shadow-xl"
                 />
@@ -71,7 +73,11 @@ export default function GrievanceCompliance() {
           <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
             <img
               src="/assets/support_art.webp"
+              srcSet="/assets/support_art-360.webp 360w, /assets/support_art.webp 720w"
+              sizes="176px"
               alt="Friendly support agent ready to help"
+              width="720"
+              height="720"
               loading="lazy"
               className="w-40 h-40 sm:w-44 sm:h-44 object-contain drop-shadow-xl shrink-0 md:-my-6"
             />
@@ -79,18 +85,21 @@ export default function GrievanceCompliance() {
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">
                 <img
                   src="/assets/icons/icon_grievance.webp"
+                  loading="lazy"
                   alt=""
+                  width="256"
+                  height="256"
                   className="w-6 h-6 object-contain"
                 />
-                IT Rules 2021 — Grievance Officer
+                Published grievance channel
               </div>
-              <h4 className="font-display font-black text-2xl text-slate-900 mb-2">
+              <h3 className="font-display font-black text-2xl text-slate-900 mb-2">
                 Issue with our platform?
-              </h4>
+              </h3>
               <p className="text-slate-500 text-sm max-w-xl">
-                Contact our official Grievance Officer. We are legally required
-                to respond and resolve within 36 hours. This is a statutory
-                commitment, not just a promise.
+                Email a concise description, the relevant URL or account reference,
+                and the outcome you are requesting. The officer's verified identity,
+                postal address and approved response timeline still require publication.
               </p>
             </div>
             <div className="flex flex-col gap-3 shrink-0">
@@ -103,7 +112,7 @@ export default function GrievanceCompliance() {
               </a>
               <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                Response within 36 hours · Legally guaranteed
+                Response time is not guaranteed on this draft site
               </div>
             </div>
           </div>

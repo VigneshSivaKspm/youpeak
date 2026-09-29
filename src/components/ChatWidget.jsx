@@ -40,7 +40,10 @@ function Avatar({ size = "w-8 h-8" }) {
     >
       <img
         src="/assets/app_logo.webp"
+        loading="lazy"
         alt=""
+        width="512"
+        height="512"
         className="w-full h-full object-contain"
       />
     </div>
@@ -80,8 +83,8 @@ function CopyButton({ text }) {
   );
 }
 
-export default function ChatWidget() {
-  const [open, setOpen] = useState(false);
+export default function ChatWidget({ initialOpen = false }) {
+  const [open, setOpen] = useState(initialOpen);
   const [messages, setMessages] = useState(loadMessages);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
@@ -262,7 +265,7 @@ export default function ChatWidget() {
           <button onClick={openChat} className="text-left">
             <div className="text-sm font-bold text-slate-900">Questions about earning? 👋</div>
             <div className="text-xs text-slate-500 mt-0.5">
-              Ask our AI assistant — instant answers, any language.
+              Ask our AI assistant for general plan and policy guidance.
             </div>
           </button>
         </div>
@@ -310,7 +313,7 @@ export default function ChatWidget() {
                 <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               </div>
               <div className="text-[11px] text-white/80 mt-0.5">
-                {streaming ? "Typing…" : "Online · Replies instantly"}
+                {streaming ? "Typing…" : "AI guidance · Verify important details"}
               </div>
             </div>
             <button

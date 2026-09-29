@@ -15,7 +15,7 @@ import {
   Mail,
   Timer,
   Briefcase,
-  Infinity,
+  Infinity as InfinityIcon,
 } from "lucide-react";
 
 const TABS = [
@@ -44,12 +44,10 @@ const TABS = [
 
 const CONTENT = {
   tasker: {
-    headline: "Get Paid for Watching Videos",
-    sub: "Watch trending videos, check in daily, hit like — and earn real withdrawable cash up to ₹10/day free. Reach 100 Lifetime Watch Hours to unlock Level 2 for FREE!",
+    headline: "Understand Video Reward Limits",
+    sub: "The free plan currently lists a maximum ₹10 daily cap. Results depend on valid activity, available tasks, eligibility and current withdrawal rules.",
     image: "/assets/persona_watch.webp",
-    imageFallback:
-      "https://placehold.co/360x360/10b981/fff?text=Watch+%26+Earn",
-    badge: "Per day/ ₹333.33",
+    badge: "Caps are not guaranteed income",
     badgeColor: "text-emerald-600",
     points: [
       {
@@ -79,11 +77,10 @@ const CONTENT = {
     ],
   },
   creator: {
-    headline: "Keep Up to 90% of Everything You Earn",
-    sub: "Publish videos and shorts with Cloudflare Stream quality. Earn across 6 revenue streams — all with industry-leading splits, instant Direct UPI payouts, and 0% merch & BrandConnect fees on VIP passes.",
+    headline: "Compare Stated Creator Revenue Shares",
+    sub: "Current plan tables describe several creator revenue streams and different shares by pass. Availability, eligible revenue, fees and payout timing require confirmation in the creator agreement.",
     image: "/assets/persona_creator.webp",
-    imageFallback: "https://placehold.co/360x360/8b5cf6/fff?text=Creator+VIP",
-    badge: "Up to 90% Revenue",
+    badge: "Up to 90% stated share",
     badgeColor: "text-violet-600",
     points: [
       {
@@ -113,12 +110,10 @@ const CONTENT = {
     ],
   },
   partner: {
-    headline: "Earn ₹200 Per Active Referral",
-    sub: "Join the Peak Partner Program. Earn ₹100 on registration + ₹100 after 100 watch-minutes per user. District Digital Partners earn tiered commissions: 15% VIP Creator onboarding, 10% Tasker onboarding, 30% on Local Business Ads, 20% Digital Partner commission, and 10% on Video Unlocks (max ₹1,000).",
+    headline: "Review Referral Eligibility and Caps",
+    sub: "The site advertises staged referral rewards and partner commissions. These are conditional program amounts, not guaranteed earnings; validation, holding periods, caps and current terms apply.",
     image: "/assets/persona_referral.webp",
-    imageFallback:
-      "https://placehold.co/360x360/f59e0b/fff?text=Refer+%26+Earn",
-    badge: "Up to ₹200 Per Active User",
+    badge: "Up to ₹200 advertised reward",
     badgeColor: "text-amber-600",
     points: [
       {
@@ -140,7 +135,7 @@ const CONTENT = {
         iconClass: "icon-purple",
       },
       {
-        icon: Infinity,
+        icon: InfinityIcon,
         title: "30% Local Ads · 20% Digital Partner",
         sub: "Earn on ad margins & district expansion",
         iconClass: "icon-cyan",
@@ -174,6 +169,8 @@ export default function PersonaTabs() {
         {/* TAB BUTTONS */}
         <div className="flex justify-center mb-10">
           <div
+            role="tablist"
+            aria-label="YouPeak user types"
             className="glass rounded-2xl p-1.5 flex gap-1"
             style={{ border: "1px solid rgba(15,23,42,0.06)" }}
           >
@@ -182,6 +179,11 @@ export default function PersonaTabs() {
               return (
                 <button
                   key={t.id}
+                  id={`persona-tab-${t.id}`}
+                  role="tab"
+                  aria-selected={active === t.id}
+                  aria-controls="persona-panel"
+                  aria-label={t.label}
                   onClick={() => setActive(t.id)}
                   className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                     active === t.id
@@ -198,7 +200,13 @@ export default function PersonaTabs() {
         </div>
 
         {/* CONTENT PANEL */}
-        <div className="glass-card rounded-3xl overflow-hidden" key={active}>
+        <div
+          id="persona-panel"
+          role="tabpanel"
+          aria-labelledby={`persona-tab-${active}`}
+          className="glass-card rounded-3xl overflow-hidden"
+          key={active}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* LEFT: TEXT */}
             <div className="p-8 sm:p-12 space-y-6">
@@ -271,13 +279,13 @@ export default function PersonaTabs() {
               />
               <img
                 src={data.image}
+                loading="lazy"
+                srcSet={`${data.image.replace(".webp", "-360.webp")} 360w, ${data.image.replace(".webp", "-540.webp")} 540w, ${data.image} 720w`}
+                sizes="(max-width: 640px) 288px, 384px"
                 alt={data.headline}
                 width="720"
                 height="720"
                 className="w-72 sm:w-96 h-auto object-contain drop-shadow-2xl relative z-10 animate-float"
-                onError={(e) => {
-                  e.target.src = data.imageFallback;
-                }}
               />
             </div>
           </div>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  ShieldCheck,
-  Star,
   Zap,
   Users,
   TrendingUp,
@@ -9,6 +7,7 @@ import {
   Trophy,
   Coins,
 } from "lucide-react";
+import StoreAvailability from "./StoreAvailability";
 
 // 3D objects floating around the hero phone. Positions are relative to the
 // phone column. Hidden below lg, where they would cover the phone screen.
@@ -52,24 +51,13 @@ const FLOATERS = [
 ];
 
 const TICKER_ITEMS = [
-  { icon: Trophy, text: "250K+ Active Users" },
-  { icon: TrendingUp, text: "₹2.4 Cr+ Paid Out" },
-  { icon: Zap, text: "Instant UPI Cashouts" },
-  { icon: ShieldCheck, text: "Razorpay Secured" },
-  { icon: Star, text: "4.8/5 Rating" },
-  { icon: Smartphone, text: "Android & iOS" },
+  { icon: Trophy, text: "Start with the free plan" },
+  { icon: TrendingUp, text: "Optional pass upgrades" },
+  { icon: Zap, text: "Earnings are not guaranteed" },
+  { icon: Smartphone, text: "Store listings coming soon" },
   { icon: Coins, text: "100 Coins = ₹1 INR" },
-  { icon: TrendingUp, text: "Up to 90% Ad Revenue" },
-  { icon: Users, text: "Earn Up to ₹200 Per Referral" },
-  { icon: Trophy, text: "250K+ Active Users" },
-  { icon: TrendingUp, text: "₹2.4 Cr+ Paid Out" },
-  { icon: Zap, text: "Instant UPI Cashouts" },
-  { icon: ShieldCheck, text: "Razorpay Secured" },
-  { icon: Star, text: "4.8/5 Rating" },
-  { icon: Smartphone, text: "Android & iOS" },
-  { icon: Coins, text: "100 Coins = ₹1 INR" },
-  { icon: TrendingUp, text: "Up to 90% Ad Revenue" },
-  { icon: Users, text: "Earn Up to ₹200 Per Referral" },
+  { icon: TrendingUp, text: "Creator shares vary by plan" },
+  { icon: Users, text: "Referral eligibility applies" },
 ];
 
 export default function Hero({ onOpenQr }) {
@@ -93,8 +81,11 @@ export default function Hero({ onOpenQr }) {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <img
           src="/assets/bg/hero_bg.webp"
+          loading="lazy"
           alt=""
           aria-hidden="true"
+          width="1920"
+          height="1080"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] animate-glow-pulse" />
@@ -126,11 +117,14 @@ export default function Hero({ onOpenQr }) {
               </span>
               <img
                 src="/assets/emoji/emoji_trophy.webp"
+                loading="lazy"
                 alt=""
+                width="160"
+                height="160"
                 className="w-5 h-5 object-contain"
               />
               <span className="text-xs font-bold text-emerald-600 tracking-wide">
-                INDIA'S #1 WATCH & EARN APP
+                VIDEO REWARDS & CREATOR PLATFORM
               </span>
             </div>
 
@@ -144,13 +138,9 @@ export default function Hero({ onOpenQr }) {
                 <span className="text-slate-800">Repeat Daily.</span>
               </h1>
               <p className="text-lg sm:text-xl text-slate-600 max-w-xl leading-relaxed font-medium">
-                Stop watching for free. YouPeak pays you{" "}
-                <strong className="text-slate-900 font-bold">real money</strong>{" "}
-                for every video you watch, like, and share — straight to your{" "}
-                <strong className="text-emerald-600 font-bold">
-                  UPI in seconds
-                </strong>
-                .
+                Explore YouPeak's stated video rewards, creator monetization,
+                referral rules and optional passes. Earnings depend on valid
+                activity, eligibility and current platform terms.
               </p>
             </div>
 
@@ -160,22 +150,22 @@ export default function Hero({ onOpenQr }) {
                 {
                   emoji: "emoji_money_bag",
                   val: "Up to ₹333.33/day",
-                  sub: "Pass Maximum Income",
+                  sub: "Listed cap, not guaranteed",
                 },
                 {
                   emoji: "emoji_rocket",
-                  val: "Instant Payout",
-                  sub: "UPI / PhonePe / GPay",
+                  val: "Withdrawal requests",
+                  sub: "Eligibility and minimums apply",
                 },
                 {
                   emoji: "emoji_gift",
-                  val: "₹200/Referral",
-                  sub: "Peak Partner 2-Stage",
+                  val: "Referral rewards",
+                  sub: "Qualifying activity required",
                 },
                 {
                   emoji: "emoji_sparkles",
                   val: "Free Joining",
-                  sub: "Per day/ Rs.10/-",
+                  sub: "Optional paid upgrades",
                 },
               ].map((b, i) => (
                 <div
@@ -185,7 +175,10 @@ export default function Hero({ onOpenQr }) {
                 >
                   <img
                     src={`/assets/emoji/${b.emoji}.webp`}
+                    loading="lazy"
                     alt=""
+                    width="160"
+                    height="160"
                     className="w-7 h-7 object-contain shrink-0"
                   />
                   <div>
@@ -201,54 +194,7 @@ export default function Hero({ onOpenQr }) {
             {/* STORE BUTTONS */}
             <div className="space-y-4">
               <div className="flex flex-wrap gap-3">
-                {/* Google Play */}
-                <a
-                  href="https://play.google.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="store-btn bg-white text-gray-900 border border-slate-200 shadow-xl shadow-slate-900/10 hover:shadow-emerald-500/20 hover:shadow-2xl"
-                >
-                  <svg
-                    className="w-7 h-7 text-emerald-600 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                  </svg>
-                  <div className="leading-none">
-                    <div className="text-[10px] font-medium text-gray-500 uppercase tracking-widest">
-                      Get it on
-                    </div>
-                    <div className="text-base font-black tracking-tight font-display mt-0.5">
-                      Google Play
-                    </div>
-                  </div>
-                </a>
-
-                {/* App Store */}
-                <a
-                  href="https://apps.apple.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="store-btn bg-slate-900 text-white shadow-xl shadow-slate-900/20 hover:bg-slate-800"
-                >
-                  <svg
-                    className="w-7 h-7 text-white shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M15.97,4.69C16.55,3.96 16.96,2.94 16.85,1.91C15.96,1.95 14.88,2.51 14.24,3.25C13.67,3.91 13.18,4.96 13.31,5.97C14.31,6.05 15.36,5.43 15.97,4.69Z" />
-                  </svg>
-                  <div className="leading-none">
-                    <div className="text-[10px] font-medium text-white/60 uppercase tracking-widest">
-                      Download on the
-                    </div>
-                    <div className="text-base font-black tracking-tight font-display text-white mt-0.5">
-                      App Store
-                    </div>
-                  </div>
-                </a>
-
+                <StoreAvailability />
                 {/* QR */}
                 <button
                   onClick={onOpenQr}
@@ -258,22 +204,9 @@ export default function Hero({ onOpenQr }) {
                 </button>
               </div>
 
-              {/* Trust line */}
+              {/* Availability line */}
               <div className="flex items-center gap-4 text-xs text-slate-500">
-                <div className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>Verified Safe APK v1.0</span>
-                </div>
-                <span>•</span>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-3 h-3 text-amber-400 fill-amber-400"
-                    />
-                  ))}
-                  <span className="ml-1">4.8 · 12K+ reviews</span>
-                </div>
+                <span>Verified app-store product links have not been published.</span>
               </div>
             </div>
           </div>
@@ -287,8 +220,11 @@ export default function Hero({ onOpenQr }) {
               <img
                 key={f.src}
                 src={`/assets/${f.src}.webp`}
+                loading="lazy"
                 alt=""
                 aria-hidden="true"
+                width="320"
+                height="320"
                 className={`hidden lg:block absolute z-20 pointer-events-none object-contain drop-shadow-xl ${f.anim} ${f.className}`}
                 style={{ animationDelay: f.delay }}
               />
@@ -324,12 +260,11 @@ export default function Hero({ onOpenQr }) {
                     <div className="flex items-center gap-2">
                       <img
                         src="/assets/app_logo.webp"
-                        alt="YP"
+                        loading="lazy"
+                        alt="YouPeak"
+                        width="512"
+                        height="512"
                         className="w-7 h-7 rounded-xl object-contain"
-                        onError={(e) => {
-                          e.target.src =
-                            "https://placehold.co/50/10b981/fff?text=YP";
-                        }}
                       />
                       <span className="font-display font-black text-sm text-slate-900">
                         YouPeak
@@ -359,15 +294,13 @@ export default function Hero({ onOpenQr }) {
                   >
                     <img
                       src="/assets/hero_screen.webp"
+                      srcSet="/assets/hero_screen-360.webp 360w, /assets/hero_screen-540.webp 540w, /assets/hero_screen.webp 720w"
+                      sizes="(min-width: 1024px) 280px, 260px"
                       alt="A young woman earning coins while watching videos on YouPeak"
                       width="720"
                       height="1080"
-                      fetchPriority="high"
+                      loading="lazy"
                       className="w-full h-full object-contain p-2 pt-8"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://placehold.co/280x400/10b981/fff?text=Watch+%26+Earn";
-                      }}
                     />
 
                     {/* Live Badge */}
@@ -394,7 +327,10 @@ export default function Hero({ onOpenQr }) {
                     >
                       <img
                         src="/assets/emoji/emoji_fire.webp"
+                        loading="lazy"
                         alt=""
+                        width="160"
+                        height="160"
                         className="w-6 h-6 object-contain shrink-0"
                       />
                       <div>
@@ -432,7 +368,10 @@ export default function Hero({ onOpenQr }) {
             >
               <img
                 src="/assets/icons/icon_notif_withdrawn.webp"
+                loading="lazy"
                 alt=""
+                width="256"
+                height="256"
                 className="w-10 h-10 object-contain shrink-0"
               />
               <div>
@@ -456,7 +395,10 @@ export default function Hero({ onOpenQr }) {
             >
               <img
                 src="/assets/icons/icon_notif_coins.webp"
+                loading="lazy"
                 alt=""
+                width="256"
+                height="256"
                 className="w-10 h-10 object-contain shrink-0"
               />
               <div>
@@ -478,7 +420,10 @@ export default function Hero({ onOpenQr }) {
             >
               <img
                 src="/assets/icons/icon_notif_referral.webp"
+                loading="lazy"
                 alt=""
+                width="256"
+                height="256"
                 className="w-10 h-10 object-contain shrink-0"
               />
               <div>

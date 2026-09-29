@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   X,
   ShieldCheck,
   CheckCircle2,
   Lock,
-  Phone,
   User,
   ArrowRight,
-  Zap,
   CreditCard,
   Sparkles,
   LogOut,
@@ -24,37 +22,37 @@ const PASS_OPTIONS = [
   {
     id: "bronze",
     name: "Bronze Starter",
-    price: 999,
-    priceLabel: "₹999",
+    price: 990,
+    priceLabel: "₹990",
     color: "from-amber-600 to-yellow-600",
   },
   {
     id: "silver",
     name: "Silver Intermediate",
-    price: 2499,
-    priceLabel: "₹2,499",
+    price: 2490,
+    priceLabel: "₹2,490",
     color: "from-emerald-500 to-cyan-500",
     popular: true,
   },
   {
     id: "gold",
     name: "Gold Advanced",
-    price: 4999,
-    priceLabel: "₹4,999",
+    price: 4990,
+    priceLabel: "₹4,990",
     color: "from-yellow-500 to-amber-600",
   },
   {
     id: "platinum",
     name: "Platinum Regional Pro",
-    price: 9999,
-    priceLabel: "₹9,999",
+    price: 9990,
+    priceLabel: "₹9,990",
     color: "from-violet-500 to-purple-600",
   },
   {
     id: "diamond",
     name: "Diamond Pass",
-    price: 24999,
-    priceLabel: "₹24,999/yr",
+    price: 24990,
+    priceLabel: "₹24,990/yr",
     color: "from-cyan-400 to-blue-600",
   },
 ];
@@ -76,10 +74,6 @@ export default function AuthModal({
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStep, setPaymentStep] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    if (initialTier) setSelectedPass(initialTier);
-  }, [initialTier]);
 
   if (!isOpen) return null;
 
@@ -153,6 +147,9 @@ export default function AuthModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fade-in">
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="YouPeak account and pass demonstration"
         className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh]"
         style={{ animation: "scale-up 0.25s ease-out" }}
       >
@@ -279,7 +276,7 @@ export default function AuthModal({
           <div className="p-8 space-y-6 overflow-y-auto">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200 mb-2">
-                <CreditCard className="w-3.5 h-3.5" /> Razorpay Secured Checkout
+                <CreditCard className="w-3.5 h-3.5" /> Demo Checkout
               </div>
               <h3 className="font-display font-black text-2xl text-slate-900">
                 Pay to Register & Activate Pass
@@ -307,7 +304,7 @@ export default function AuthModal({
               <div className="flex justify-between text-slate-600">
                 <span>Ad Credits Matched:</span>
                 <span className="font-bold text-emerald-600">
-                  100% Instant Deposit
+                  Credit amount shown in plan summary
                 </span>
               </div>
               <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-black text-slate-900">
@@ -355,8 +352,8 @@ export default function AuthModal({
             </div>
 
             <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
-              <Lock className="w-3.5 h-3.5 text-emerald-600" /> 256-Bit Bank
-              Grade Encryption via Razorpay
+              <Lock className="w-3.5 h-3.5 text-emerald-600" /> Do not enter real
+              payment credentials in this demo
             </div>
           </div>
         ) : (
@@ -516,7 +513,7 @@ export default function AuthModal({
 
             <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 text-center">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              Official YouPeak Portal. Direct website registration & payments.
+              Demonstration registration interface. Verify official purchase terms before paying.
             </div>
           </div>
         )}

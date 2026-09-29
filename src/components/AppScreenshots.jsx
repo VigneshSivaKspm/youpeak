@@ -83,7 +83,10 @@ export default function AppScreenshots() {
             See It. <span className="text-gradient-purple">Love It.</span>{" "}
             <img
               src="/assets/emoji/emoji_heart_eyes.webp"
+              loading="lazy"
               alt=""
+              width="160"
+              height="160"
               className="inline w-12 h-12 -mt-2 object-contain"
             />{" "}
             Use It.
@@ -175,12 +178,14 @@ export default function AppScreenshots() {
                   <img
                     key={idx}
                     src={screen.img}
+                    srcSet={`${screen.img.replace(".webp", "-360.webp")} 360w, ${screen.img.replace(".webp", "-540.webp")} 540w, ${screen.img} 720w`}
+                    sizes="260px"
                     alt={screen.title}
+                    width="720"
+                    height="1080"
+                    loading="lazy"
                     className="w-full h-full object-cover"
                     style={{ animation: "slide-up 0.4s ease-out" }}
-                    onError={(e) => {
-                      e.target.src = `https://placehold.co/260x460/10b981/fff?text=${screen.title}`;
-                    }}
                   />
                 </div>
               </div>
@@ -200,8 +205,15 @@ export default function AppScreenshots() {
                   <button
                     key={i}
                     onClick={() => setIdx(i)}
-                    className={`rounded-full transition-all ${i === idx ? "w-6 h-2 bg-emerald-500" : "w-2 h-2 bg-slate-300"}`}
-                  />
+                    aria-label={`Show ${SCREENS[i].title}`}
+                    aria-current={i === idx ? "true" : undefined}
+                    className="flex h-6 w-6 items-center justify-center rounded-full"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`h-2 rounded-full transition-all ${i === idx ? "w-6 bg-emerald-600" : "w-2 bg-slate-400"}`}
+                    />
+                  </button>
                 ))}
               </div>
               <button

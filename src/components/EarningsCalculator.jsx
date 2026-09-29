@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Sparkles,
   ArrowRight,
@@ -9,10 +9,7 @@ import {
   CheckCircle2,
   Zap,
   TrendingUp,
-  Video,
-  Users,
   Eye,
-  Gift,
 } from "lucide-react";
 
 const TIERS = [
@@ -195,6 +192,8 @@ function Slider({
           <img
             src={`/assets/icons/${icon}.webp`}
             alt=""
+            width="256"
+            height="256"
             loading="lazy"
             className="w-8 h-8 object-contain"
           />
@@ -214,6 +213,7 @@ function Slider({
         max={max}
         step={step}
         value={val}
+        aria-label={label}
         onChange={(e) => onChange(Number(e.target.value))}
         className={`w-full h-2 rounded-full cursor-pointer outline-none appearance-none`}
         style={{
@@ -237,7 +237,6 @@ export default function EarningsCalculator({ onOpenQr }) {
   const [watch, setWatch] = useState(120); // 120 mins (2 hrs req done)
   const [engage, setEngage] = useState(20); // 20 actions (10 likes + 5 comments + ads)
   const [refs, setRefs] = useState(0); // 0 refs so Free starts clean at ₹10.00 / day (₹300/mo)
-  const [displayed, setDisplayed] = useState(300);
 
   const activeTier = TIERS.find((t) => t.id === tier) || TIERS[0];
 
@@ -263,32 +262,13 @@ export default function EarningsCalculator({ onOpenQr }) {
     Math.round(rawReferrals),
   );
   const monthly = Math.round(monthlyTasks + monthlyReferrals);
-
-  useEffect(() => {
-    let current = displayed;
-    const target = monthly;
-    const diff = target - current;
-    if (diff === 0) return;
-    const steps = 20;
-    const inc = diff / steps;
-    let step = 0;
-    const t = setInterval(() => {
-      step++;
-      current += inc;
-      if (step >= steps) {
-        setDisplayed(target);
-        clearInterval(t);
-      } else setDisplayed(Math.round(current));
-    }, 16);
-    return () => clearInterval(t);
-  }, [monthly]);
+  const displayed = monthly;
 
   // Creator state
   const [creatorTier, setCreatorTier] = useState("starter");
   const [longViews, setLongViews] = useState(50000);
   const [shortsViews, setShortsViews] = useState(250000);
   const [fanFunding, setFanFunding] = useState(5000);
-  const [displayedCreator, setDisplayedCreator] = useState(0);
 
   const activeCreatorTier =
     CREATOR_TIERS.find((t) => t.id === creatorTier) || CREATOR_TIERS[1];
@@ -312,45 +292,27 @@ export default function EarningsCalculator({ onOpenQr }) {
   const creatorTotalMonthly = Math.round(
     creatorLongRev + creatorShortsRev + creatorFanRev,
   );
-
-  useEffect(() => {
-    let current = displayedCreator;
-    const target = creatorTotalMonthly;
-    const diff = target - current;
-    if (diff === 0) return;
-    const steps = 20;
-    const inc = diff / steps;
-    let step = 0;
-    const t = setInterval(() => {
-      step++;
-      current += inc;
-      if (step >= steps) {
-        setDisplayedCreator(target);
-        clearInterval(t);
-      } else setDisplayedCreator(Math.round(current));
-    }, 16);
-    return () => clearInterval(t);
-  }, [creatorTotalMonthly]);
+  const displayedCreator = creatorTotalMonthly;
 
   const userComparison = () => {
     if (monthly < 500)
       return {
         emoji: "emoji_thumbs_up",
-        text: "Covers your monthly coffee and data!",
+        text: "Illustrative estimate under the selected assumptions.",
       };
     if (monthly < 2000)
       return {
         emoji: "emoji_party",
-        text: "Pays your internet bill every month!",
+        text: "Illustrative estimate under the selected assumptions.",
       };
     if (monthly < 5000)
       return {
         emoji: "emoji_money_face",
-        text: "Monthly pocket money — automatically!",
+        text: "Illustrative estimate, not an expected or guaranteed outcome.",
       };
     return {
       emoji: "emoji_crown",
-      text: "Serious side income — build your savings!",
+      text: "Upper-range projection; actual results may be substantially lower.",
     };
   };
 
@@ -358,21 +320,21 @@ export default function EarningsCalculator({ onOpenQr }) {
     if (creatorTotalMonthly < 5000)
       return {
         emoji: "emoji_sparkles",
-        text: "Monetize from day 1 with instant UPI payouts!",
+        text: "Illustrative creator estimate; monetization eligibility applies.",
       };
     if (creatorTotalMonthly < 20000)
       return {
         emoji: "emoji_party",
-        text: "Strong side income covering all production expenses!",
+        text: "Illustrative creator estimate, not a typical-results statement.",
       };
     if (creatorTotalMonthly < 50000)
       return {
         emoji: "emoji_money_face",
-        text: "Full-time creator income with industry-high revenue splits!",
+        text: "Projection based on entered views and unverified revenue assumptions.",
       };
     return {
       emoji: "emoji_crown",
-      text: "Elite Creator tier — up to 90% direct payout!",
+      text: "Upper-range projection; actual eligible revenue may be much lower.",
     };
   };
 
@@ -402,16 +364,19 @@ export default function EarningsCalculator({ onOpenQr }) {
           >
             <img
               src="/assets/emoji/emoji_sparkles.webp"
+              loading="lazy"
               alt=""
+              width="160"
+              height="160"
               className="w-5 h-5 object-contain"
             />{" "}
-            Live Earnings Calculator
+            Earnings Estimate Calculator
           </div>
           <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight">
-            How Much Will <span className="text-gradient-gold">You Earn?</span>
+            Explore an <span className="text-gradient-gold">Illustrative Estimate</span>
           </h2>
           <p className="text-slate-500 text-base">
-            Select your role below to simulate real-time projected payouts
+            Change the assumptions below. Results are estimates, not promises or typical outcomes.
           </p>
         </div>
 
@@ -484,14 +449,16 @@ export default function EarningsCalculator({ onOpenQr }) {
                         <img
                           src={`/assets/icons/tier_${t.id}.webp`}
                           alt=""
+                          width="256"
+                          height="256"
                           loading="lazy"
                           className="w-8 h-8 mx-auto mb-1 object-contain"
                         />
                         <div className="text-[11px] font-black">{t.name}</div>
-                        <div className="text-[10px] mt-0.5 font-bold opacity-70">
+                        <div className="text-[10px] mt-0.5 font-bold opacity-100">
                           {t.priceLabel}
                         </div>
-                        <div className="text-[9px] mt-1 opacity-50">
+                        <div className="text-[9px] mt-1 opacity-100">
                           ≤₹{t.capINR}/d
                         </div>
                       </button>
@@ -551,9 +518,9 @@ export default function EarningsCalculator({ onOpenQr }) {
                   }}
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" />
-                  Based on official YouPeak user economy: 100 coins = ₹1 INR, 20
-                  ads/day (30s each), daily action caps and user pass
-                  multipliers apply.
+                  Uses the plan settings currently shown on this page. Availability,
+                  valid activity, eligibility, verification, fees and changing terms
+                  can make actual results lower or zero.
                 </div>
               </div>
 
@@ -571,6 +538,8 @@ export default function EarningsCalculator({ onOpenQr }) {
                     <img
                       src="/assets/icons/icon_wallet_big.webp"
                       alt=""
+                      width="256"
+                      height="256"
                       loading="lazy"
                       className="w-28 h-28 object-contain drop-shadow-xl animate-float"
                     />
@@ -629,7 +598,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                   >
                     <img
                       src={`/assets/emoji/${comparisonEmoji}.webp`}
+                      loading="lazy"
                       alt=""
+                      width="160"
+                      height="160"
                       className="w-6 h-6 object-contain shrink-0"
                     />
                     {comparisonText}
@@ -655,7 +627,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                       <span className="text-slate-700 font-bold">
                         Min. ₹500
                       </span>{" "}
-                      (Instant 24/7)
+                      (Processing conditions apply)
                     </div>
                   </div>
 
@@ -709,7 +681,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                         <div className="text-[10px] mt-0.5 font-bold opacity-80">
                           {t.priceLabel}
                         </div>
-                        <div className="text-[9px] mt-1 font-semibold opacity-60">
+                        <div className="text-[9px] mt-1 font-semibold opacity-100">
                           {t.subs}
                         </div>
                         <div className="mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-black/10">
@@ -769,12 +741,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                   }}
                 >
                   <TrendingUp className="w-3.5 h-3.5 text-violet-600 mt-0.5 shrink-0" />
-                  Based on Cloudflare Stream playback quality,{" "}
-                  {Math.round(activeCreatorTier.longSplit * 100)}% long-video ad
-                  split, {Math.round(activeCreatorTier.shortsSplit * 100)}%
-                  shorts share, and{" "}
-                  {Math.round(activeCreatorTier.fanFundingSplit * 100)}% Direct
-                  UPI fan funding (bypassing 30% app store cuts).
+                  Uses assumed gross rates plus the displayed {Math.round(activeCreatorTier.longSplit * 100)}%
+                  long-video, {Math.round(activeCreatorTier.shortsSplit * 100)}% shorts and{" "}
+                  {Math.round(activeCreatorTier.fanFundingSplit * 100)}% fan-funding shares.
+                  These inputs are not independently verified typical results.
                 </div>
               </div>
 
@@ -792,6 +762,8 @@ export default function EarningsCalculator({ onOpenQr }) {
                     <img
                       src="/assets/icons/icon_wallet_big.webp"
                       alt=""
+                      width="256"
+                      height="256"
                       loading="lazy"
                       className="w-28 h-28 object-contain drop-shadow-xl animate-float"
                     />
@@ -855,7 +827,10 @@ export default function EarningsCalculator({ onOpenQr }) {
                   >
                     <img
                       src={`/assets/emoji/${comparisonEmoji}.webp`}
+                      loading="lazy"
                       alt=""
+                      width="160"
+                      height="160"
                       className="w-6 h-6 object-contain shrink-0"
                     />
                     {comparisonText}
@@ -915,23 +890,30 @@ export default function EarningsCalculator({ onOpenQr }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-200">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3 h-3" /> Updated Policy
+                  <CheckCircle2 className="w-3 h-3" /> Unverified Site Summary
                 </span>
                 <h3 className="font-display font-black text-2xl text-slate-900 mt-2">
-                  Updated Payout Rules & Schedules
+                  Stated Payout Minimums & Schedules
                 </h3>
               </div>
               <div className="flex items-center gap-3">
                 <div className="text-xs text-slate-500 flex items-center gap-2">
                   <img
                     src="/assets/emoji/emoji_clock.webp"
+                    loading="lazy"
                     alt=""
+                    width="160"
+                    height="160"
                     className="w-5 h-5 object-contain shrink-0"
                   />
-                  Instant UPI & Bank Settlement
+                  Processing conditions apply
                 </div>
                 <img
                   src="/assets/payout_art.webp"
+                  width="720"
+                  height="720"
+                  srcSet="/assets/payout_art-360.webp 360w, /assets/payout_art.webp 720w"
+                  sizes="112px"
                   alt="Coins flowing into a UPI payout"
                   loading="lazy"
                   className="hidden sm:block w-28 h-28 -my-6 object-contain drop-shadow-xl"
@@ -980,7 +962,7 @@ export default function EarningsCalculator({ onOpenQr }) {
                       <span className="font-black text-slate-900 text-sm">
                         Min. ₹500
                         <span className="text-[10px] text-slate-500 block font-normal text-right">
-                          2nd onwards (Instant 24/7)
+                          2nd onwards (processing conditions apply)
                         </span>
                       </span>
                     </div>
@@ -989,7 +971,8 @@ export default function EarningsCalculator({ onOpenQr }) {
 
                 <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2 text-[11px] text-slate-500">
                   <Zap className="w-3.5 h-3.5 text-amber-600" />
-                  Disbursed instantly to PhonePe, Google Pay, Paytm or UPI ID.
+                  The site describes UPI and bank withdrawal options; provider,
+                  verification and account-review delays may apply.
                 </div>
               </div>
 
@@ -1062,7 +1045,7 @@ export default function EarningsCalculator({ onOpenQr }) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-5 border-b border-slate-200">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-amber-700 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 inline-flex items-center gap-1.5">
-                  <Coins className="w-3 h-3" /> Official Specification
+                  <Coins className="w-3 h-3" /> Advertised Program Settings
                 </span>
                 <h3 className="font-display font-black text-2xl text-slate-900 mt-2">
                   Referral Earning Caps & Multiplier Logic
@@ -1247,8 +1230,7 @@ export default function EarningsCalculator({ onOpenQr }) {
 
                 <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2 text-[11px] text-slate-500">
                   <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-                  Diamond Pass unlocks up to ₹1,00,000/mo maximum referral
-                  earnings.
+                  ₹1,00,000/mo is a listed maximum referral cap, not a promised or typical earning amount.
                 </div>
               </div>
             </div>

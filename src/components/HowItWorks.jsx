@@ -6,7 +6,7 @@ const STEPS = [
     step: "01",
     icon: "icon_step_download",
     title: "Download the App",
-    desc: "Install YouPeak on Android or iOS. Create your account in 30 seconds with OTP login.",
+    desc: "Use a verified app listing when available, then review the current account and eligibility requirements.",
     color: "from-emerald-500 to-cyan-500",
     glow: "rgba(16,185,129,0.3)",
   },
@@ -14,7 +14,7 @@ const STEPS = [
     step: "02",
     icon: "icon_step_watch",
     title: "Watch & Engage",
-    desc: "Browse trending videos and shorts. Like what you enjoy. Comment. Watch daily ads. It all counts!",
+    desc: "Browse videos and complete only activity that the current in-app rules identify as reward-eligible.",
     color: "from-violet-500 to-purple-600",
     glow: "rgba(139,92,246,0.3)",
   },
@@ -22,7 +22,7 @@ const STEPS = [
     step: "03",
     icon: "icon_step_collect",
     title: "Collect Coins",
-    desc: "Coins hit your wallet automatically. Every action rewarded. Check in daily for bonus coins.",
+    desc: "Track validated reward activity and coin entries in the in-app wallet, subject to daily limits.",
     color: "from-amber-400 to-orange-500",
     glow: "rgba(245,158,11,0.3)",
   },
@@ -30,7 +30,7 @@ const STEPS = [
     step: "04",
     icon: "icon_step_withdraw",
     title: "Cash Out to UPI",
-    desc: "100 coins = ₹1. Tap withdraw, choose UPI or bank, done. Arrives in seconds.",
+    desc: "The site lists 100 coins = ₹1. Withdrawal minimums, verification and processing conditions apply.",
     color: "from-blue-500 to-cyan-500",
     glow: "rgba(59,130,246,0.3)",
   },
@@ -64,7 +64,10 @@ export default function HowItWorks({ onOpenQr }) {
             Download{" "}
             <img
               src="/assets/emoji/emoji_phone.webp"
+              loading="lazy"
               alt=""
+              width="160"
+              height="160"
               className="inline w-10 h-10 -mt-2 object-contain"
             />{" "}
             Watch{" "}
@@ -76,7 +79,7 @@ export default function HowItWorks({ onOpenQr }) {
             <span className="text-gradient-blue">Earn · Withdraw</span>
           </h2>
           <p className="text-slate-500 text-base">
-            That's literally it. No surveys. No fake tasks. No waiting weeks.
+            Review the current in-app rules before completing tasks or relying on estimates.
           </p>
         </div>
 
@@ -96,6 +99,8 @@ export default function HowItWorks({ onOpenQr }) {
                     <img
                       src={`/assets/icons/${s.icon}.webp`}
                       alt=""
+                      width="256"
+                      height="256"
                       loading="lazy"
                       className="w-24 h-24 object-contain drop-shadow-xl group-hover:scale-110 transition-transform"
                     />
@@ -137,7 +142,7 @@ export default function HowItWorks({ onOpenQr }) {
             </button>
           </div>
           <p className="text-slate-400 text-xs mt-4">
-            250,000+ users already earning every day
+            Store listings are disabled until first-party product URLs are verified.
           </p>
         </div>
       </div>

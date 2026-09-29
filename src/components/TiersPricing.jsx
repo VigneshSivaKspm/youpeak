@@ -55,7 +55,7 @@ const TASKER_TIERS = [
       "₹1,000 credits bonus",
     ],
     color: "from-amber-700 to-yellow-600",
-    btnClass: "bg-amber-700/80 hover:bg-amber-700 text-white",
+    btnClass: "bg-amber-700 hover:bg-amber-800 text-white",
   },
   {
     id: "silver",
@@ -139,7 +139,7 @@ const TASKER_TIERS = [
     popular: false,
     credits: "25,000 Ad Credits FREE",
     features: [
-      "Unlock up to ₹10,000 monthly income",
+      "Listed monthly task cap up to ₹10,000",
       "20 ads per day",
       "10% Referral (₹2,499/ref) · ~23x Multiplier",
       "Referral Cap: ₹1,00,000/mo",
@@ -252,8 +252,8 @@ export default function TiersPricing() {
             Pick Your <span className="text-gradient-gold">Power Level</span>
           </h2>
           <p className="text-slate-500 text-base">
-            Start free. Upgrade anytime. 100% Ad Credits matched on every paid
-            tier.
+            Compare the plan settings currently advertised. Paid passes are optional;
+            caps and projections are not guaranteed income.
           </p>
         </div>
 
@@ -316,6 +316,8 @@ export default function TiersPricing() {
                       <img
                         src={`/assets/icons/${t.img}.webp`}
                         alt=""
+                        width="256"
+                        height="256"
                         loading="lazy"
                         className="w-10 h-10 -my-1 -ml-1 object-contain drop-shadow-md shrink-0"
                       />
@@ -373,7 +375,7 @@ export default function TiersPricing() {
                     href="#download"
                     className={`w-full py-2.5 rounded-xl text-[12px] font-black text-center block transition-all ${t.btnClass}`}
                   >
-                    {t.price === "₹0" ? "Start Free Now" : `Get ${t.name}`}
+                    {t.price === "₹0" ? "Review Free Plan" : `Review ${t.name}`}
                   </a>
                 </div>
               );
@@ -413,6 +415,8 @@ export default function TiersPricing() {
                       <img
                         src={`/assets/icons/${t.img}.webp`}
                         alt=""
+                        width="256"
+                        height="256"
                         loading="lazy"
                         className="w-10 h-10 -my-1 -ml-1 object-contain drop-shadow-md shrink-0"
                       />
@@ -509,9 +513,10 @@ export default function TiersPricing() {
         )}
 
         <p className="text-center text-slate-500 text-xs mt-10 max-w-2xl mx-auto leading-relaxed">
-          100% matched Ad Credits deposited immediately on tier purchase. User
-          passes (Levels 1–4) are one-time passes; Diamond Pass & Creator VIP
-          passes renew annually. No hidden fees.
+          The site states that paid plans include matched Ad Credits. Confirm credit
+          conditions, pass duration, renewal, cancellation, refunds, fees and earning
+          rules in approved terms before purchase. User passes are listed as one-time
+          except Diamond; Creator VIP passes are listed as annual.
         </p>
       </div>
     </section>

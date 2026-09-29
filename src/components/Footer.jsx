@@ -1,5 +1,7 @@
 import React from "react";
-import { Mail, MapPin, ShieldCheck, Globe } from "lucide-react";
+import { Mail, MapPin, Globe } from "lucide-react";
+import { POLICY_LINKS, SITE } from "../config/site";
+import StoreAvailability from "./StoreAvailability";
 
 const LINKS = {
   Product: [
@@ -10,15 +12,17 @@ const LINKS = {
     { label: "Earnings Calculator", href: "#calculator" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "/privacy.html" },
-    { label: "Terms of Service", href: "/terms.html" },
-    { label: "Cookie Policy", href: "#" },
-    { label: "Content Policy", href: "#" },
-    { label: "Grievance Officer", href: "#compliance" },
+    { label: "Privacy Policy", href: POLICY_LINKS.privacy },
+    { label: "Terms of Service", href: POLICY_LINKS.terms },
+    { label: "Cookie Policy", href: POLICY_LINKS.cookies },
+    { label: "Content Policy", href: POLICY_LINKS.content },
+    { label: "Earnings Disclosure", href: POLICY_LINKS.earnings },
+    { label: "Refund & Cancellation", href: "/refund-cancellation" },
+    { label: "Grievance Information", href: POLICY_LINKS.grievance },
   ],
   Support: [
     { label: "Help Center", href: "#faq" },
-    { label: "Contact Us", href: "mailto:support@youpeak.in" },
+    { label: "Contact Us", href: POLICY_LINKS.contact },
     { label: "Creator Support", href: "mailto:creators@youpeak.in" },
     { label: "Report Content", href: "mailto:grievance@youpeak.in" },
     { label: "Business Enquiry", href: "mailto:business@youpeak.in" },
@@ -44,11 +48,11 @@ export default function Footer() {
               <div className="w-10 h-10 rounded-xl overflow-hidden border border-emerald-500/20">
                 <img
                   src="/assets/app_logo.webp"
+                  loading="lazy"
                   alt="YouPeak"
+                  width="512"
+                  height="512"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.src = "https://placehold.co/80/10b981/fff?text=YP";
-                  }}
                 />
               </div>
               <div>
@@ -56,14 +60,14 @@ export default function Footer() {
                   You<span className="text-gradient-primary">Peak</span>
                 </span>
                 <p className="text-[10px] text-slate-400 -mt-0.5">
-                  YouPeak Digital Solutions Pvt Ltd
+                  Website operator details pending verification
                 </p>
               </div>
             </div>
 
             <p className="text-slate-500 text-sm leading-relaxed">
-              India's leading watch-and-earn platform. Real rewards. Instant UPI
-              cashouts. Up to 90% creator revenue share.
+              Information about YouPeak's stated video rewards, optional passes,
+              creator monetization and withdrawal conditions.
             </p>
 
             <div className="space-y-2 text-xs text-slate-500">
@@ -82,38 +86,21 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-3.5 h-3.5 shrink-0" />
-                <span>youpeak.in</span>
+                <a href={SITE.url} className="hover:text-slate-900">www.youpeak.in</a>
               </div>
             </div>
 
-            {/* Razorpay badge */}
-            <div
-              className="flex items-center gap-2 px-3 py-2 rounded-xl w-fit"
-              style={{
-                background: "rgba(15,23,42,0.03)",
-                border: "1px solid rgba(15,23,42,0.06)",
-              }}
-            >
-              <img
-                src="/assets/razorPay.webp"
-                alt="Razorpay"
-                className="h-5 object-contain"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                }}
-              />
-              <span className="text-[11px] text-slate-400">
-                Powered by Razorpay
-              </span>
-            </div>
+            <p className="text-[11px] text-slate-400">
+              Company registration, address and payment-provider claims require business verification.
+            </p>
           </div>
 
           {/* LINKS */}
           {Object.entries(LINKS).map(([title, links]) => (
             <div key={title} className="col-span-1 md:col-span-2 space-y-4">
-              <h4 className="font-display font-bold text-sm text-slate-900">
+              <h2 className="font-display font-bold text-sm text-slate-900">
                 {title}
-              </h4>
+              </h2>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
@@ -131,84 +118,44 @@ export default function Footer() {
 
           {/* Download column */}
           <div className="col-span-2 md:col-span-2 space-y-4">
-            <h4 className="font-display font-bold text-sm text-slate-900">
-              Download Now
-            </h4>
-            <div className="space-y-2">
-              <a
-                href="https://play.google.com"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 p-3 rounded-xl text-xs font-semibold text-slate-900 transition-all"
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid rgba(15,23,42,0.07)",
-                }}
-              >
-                <svg
-                  className="w-5 h-5 text-emerald-500 shrink-0"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                </svg>
-                Google Play Store
-              </a>
-              <a
-                href="https://apps.apple.com"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 p-3 rounded-xl text-xs font-semibold text-slate-900 transition-all"
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid rgba(15,23,42,0.07)",
-                }}
-              >
-                <svg
-                  className="w-5 h-5 text-slate-900 shrink-0"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M15.97,4.69C16.55,3.96 16.96,2.94 16.85,1.91C15.96,1.95 14.88,2.51 14.24,3.25C13.67,3.91 13.18,4.96 13.31,5.97C14.31,6.05 15.36,5.43 15.97,4.69Z" />
-                </svg>
-                Apple App Store
-              </a>
-            </div>
+            <h2 className="font-display font-bold text-sm text-slate-900">
+              App Availability
+            </h2>
+            <StoreAvailability compact />
           </div>
         </div>
 
         {/* BOTTOM BAR */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-200">
           <p className="text-xs text-slate-400 text-center sm:text-left">
-            © 2026 YouPeak Digital Solutions Pvt Ltd. All rights reserved.
+            © 2026 YouPeak. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-300">
             <a
-              href="/privacy.html"
+              href={POLICY_LINKS.privacy}
               className="hover:text-slate-700 transition-colors"
             >
               Privacy
             </a>
             <a
-              href="/terms.html"
+              href={POLICY_LINKS.terms}
               className="hover:text-slate-700 transition-colors"
             >
               Terms
             </a>
             <a
-              href="#compliance"
+              href={POLICY_LINKS.grievance}
               className="hover:text-slate-700 transition-colors"
             >
               Grievance
             </a>
             <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3 text-emerald-600" /> IT Rules
-              2021 Compliant
-            </span>
-            <span className="flex items-center gap-1">
               <img
                 src="/assets/emoji/emoji_india_flag_heart.webp"
+                loading="lazy"
                 alt=""
+                width="160"
+                height="160"
                 className="w-4 h-4 object-contain"
               />{" "}
               Made in India

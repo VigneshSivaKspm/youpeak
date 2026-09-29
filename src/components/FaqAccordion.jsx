@@ -5,32 +5,32 @@ const FAQS = [
   {
     icon: "icon_faq_free",
     q: "Is YouPeak really free to use?",
-    a: "Yes, 100%. Download, sign up, watch videos, earn coins (up to ₹10 / 1,000 coins per day on the free Level 1 plan), and withdraw to UPI — all without paying a single rupee. You can even unlock Level 2 for FREE by reaching 100 Lifetime Watch Hours, or activate optional Starter Passes to raise your daily earning cap immediately.",
+    a: "The current plan table lists a ₹0 Level 1 option with a maximum cap of ₹10 / 1,000 coins per day. Paid passes are optional. A cap is not a promise of earnings; valid activity, availability, eligibility and withdrawal conditions apply.",
   },
   {
     icon: "icon_faq_coins",
     q: "How does coin conversion work?",
-    a: "100 coins = ₹1 INR. Always. No hidden fees. For example, 50,000 coins = ₹500 which you can withdraw anytime you hit the minimum threshold.",
+    a: "The current site lists a conversion rate of 100 coins = ₹1 INR, so 50,000 coins would equal ₹500 before any applicable conditions or deductions. The binding in-app terms must confirm the rate, fees, expiry and withdrawal rules.",
   },
   {
     icon: "icon_faq_referral",
     q: "How exactly does the referral system work?",
-    a: "YouPeak has two referral programs. (1) Peak Partner Referral: Earn up to ₹200 per active user — ₹100 (held 24h) when your friend registers via OTP, and another ₹100 (held 48h) when they complete 100 watch-minutes within 7 days. (2) User Referral (10% per pass tier): Earn direct 10% commission on passes purchased by your referrals — Bronze Pass (₹990): ₹99, Silver Pass (₹2,490): ₹249, Gold Pass (₹4,990): ₹499, Platinum Pass (₹9,990): ₹999, Diamond Pass (₹24,990): ₹2,499 (Total Base Amount: ₹4,345 for 1 referral of each tier). Your pass level unlocks progressive multipliers and monthly earning caps: Free Pass (1x, cap ₹5,000/mo), Bronze Pass (~2.3x, cap ₹10,000/mo), Silver Pass (~5.7x, cap ₹25,000/mo), Gold Pass (~11.5x, cap ₹50,000/mo), Platinum Pass (~19.3x, cap ₹84,000/mo), and Diamond Pass (~23x, cap ₹1,00,000/mo). District Digital Partners additionally earn tiered commissions.",
+    a: "The site describes a two-stage Peak Partner reward and separate pass-purchase commissions. These amounts are maximum advertised rewards, not guaranteed income. First-time-user, registration, watch-time, validation, holding-period, monthly-cap and anti-abuse conditions may apply. Ask support for approved referral terms before promoting the program.",
   },
   {
     icon: "icon_faq_vip",
     q: "What do Creator VIP Passes do?",
-    a: "By default, you get a 50% long-video ad split on the free Classic Pass. Creator VIP Passes upgrade all 6 revenue streams: long-video splits rise to 60% (Starter), 65% (Silver), 75% (Gold), and 80% (Platinum). Shorts ad share goes from 50% up to 70%. Fan Funding reaches 90% via Direct UPI — bypassing 30% app store fees. VIP members pay 0% merch fees and receive 100% of BrandConnect sponsorships. Platinum VIP is auto-unlocked free at 100K+ subscribers.",
+    a: "The current plan table lists different creator shares by pass and subscriber range, including up to 80% for long-video ads and up to 90% for fan funding. Percentages describe a share of eligible revenue, not an earning amount. Revenue availability, calculations, fees and payout terms require confirmation in the binding creator agreement.",
   },
   {
     icon: "icon_faq_speed",
     q: "How fast are withdrawals and what are the payout rules?",
-    a: "Withdrawals hit your account instantly via UPI or bank transfer through Razorpay. For Users: First Payout is Minimum ₹100 (Immediate withdrawal), and subsequent payouts (2nd onwards) are Minimum ₹500. For Creators: First Payout is Minimum ₹100 (Immediate withdrawal), and subsequent payouts (2nd onwards) are Minimum ₹1,000, processed on a flexible Monthly Payout Cycle between the 21st and 26th of every month.",
+    a: "The site currently lists a ₹100 first-withdrawal minimum, then ₹500 for users and ₹1,000 for creators. It also describes a creator payout window from the 21st to 26th. Processing speed is not guaranteed and can depend on verification, provider availability, account review and current terms.",
   },
   {
     icon: "icon_faq_legal",
     q: "Is this app legal in India?",
-    a: "Absolutely. YouPeak is 100% compliant with Indian law including IT Rules 2021. We have a registered Grievance Officer and a 36-hour statutory response commitment. Our payment infrastructure is fully KYC-compliant via Razorpay.",
+    a: "This repository does not contain enough evidence to confirm broad legal-compliance, officer-registration, payment-provider or response-time claims. YouPeak publishes grievance@youpeak.in for complaints. The business should obtain legal review and publish the verified officer identity, address, policies and applicable timelines.",
   },
 ];
 
@@ -62,12 +62,17 @@ export default function FaqAccordion() {
                 className={`glass-card rounded-2xl overflow-hidden transition-all ${open === i ? "ring-1 ring-emerald-500/30" : ""}`}
               >
                 <button
+                  id={`faq-question-${i}`}
                   onClick={() => setOpen(open === i ? -1 : i)}
+                  aria-expanded={open === i}
+                  aria-controls={`faq-answer-${i}`}
                   className="w-full text-left px-6 py-5 flex items-center gap-4"
                 >
                   <img
                     src={`/assets/icons/${faq.icon}.webp`}
                     alt=""
+                    width="256"
+                    height="256"
                     loading="lazy"
                     className="w-10 h-10 object-contain shrink-0"
                   />
@@ -78,14 +83,15 @@ export default function FaqAccordion() {
                     className={`w-5 h-5 shrink-0 transition-transform duration-300 ${open === i ? "rotate-180 text-emerald-600" : "text-slate-400"}`}
                   />
                 </button>
-                {open === i && (
-                  <div
-                    className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-200 pt-4 ml-14"
-                    style={{ animation: "slide-up 0.2s ease-out" }}
-                  >
-                    {faq.a}
-                  </div>
-                )}
+                <div
+                  id={`faq-answer-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${i}`}
+                  hidden={open !== i}
+                  className="px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-200 pt-4 ml-14"
+                >
+                  {faq.a}
+                </div>
               </div>
             );
           })}
@@ -97,15 +103,17 @@ export default function FaqAccordion() {
             <img
               src="/assets/icons/icon_help.webp"
               alt=""
+              width="256"
+              height="256"
               loading="lazy"
               className="w-20 h-20 object-contain drop-shadow-lg"
             />
           </div>
-          <h4 className="font-display font-bold text-lg text-slate-900 mb-2">
+          <h3 className="font-display font-bold text-lg text-slate-900 mb-2">
             Still have questions?
-          </h4>
+          </h3>
           <p className="text-slate-500 text-sm mb-4">
-            Our support team replies within a few hours.
+            Email support for current product and policy information.
           </p>
           <a
             href="mailto:support@youpeak.in"

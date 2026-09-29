@@ -5,7 +5,7 @@ const FEATURES = [
   {
     icon: "icon_hd_video",
     title: "HD Video & Shorts",
-    desc: "Ultra-smooth 1080p playback powered by Cloudflare. No buffering — ever.",
+    desc: "The product describes adaptive video and short-form playback; actual quality depends on the app, device and network.",
     tag: "Streaming",
     gradient: "from-cyan-500/10 to-blue-500/10",
     border: "rgba(6,182,212,0.2)",
@@ -13,23 +13,23 @@ const FEATURES = [
   {
     icon: "icon_coins",
     title: "Real Coin Rewards",
-    desc: "Earn coins for every video, ad, like and comment. 100 coins = ₹1 INR, always.",
+    desc: "Eligible activity may earn coins under current platform rules. The site lists 100 coins = ₹1 INR.",
     tag: "Earn",
     gradient: "from-amber-500/10 to-orange-500/10",
     border: "rgba(245,158,11,0.2)",
   },
   {
     icon: "icon_referral",
-    title: "₹200 Referral Engine",
-    desc: "Invite a friend, earn ₹100 instantly. They watch 100 mins, you get another ₹100.",
+    title: "Referral Program",
+    desc: "Advertised referral rewards require qualifying registration, activity validation and current program eligibility.",
     tag: "Referrals",
     gradient: "from-violet-500/10 to-purple-500/10",
     border: "rgba(139,92,246,0.2)",
   },
   {
     icon: "icon_upi_cashout",
-    title: "Instant UPI Cashout",
-    desc: "Tap withdraw → money hits PhonePe, GPay or your bank in seconds.",
+    title: "UPI Withdrawal Requests",
+    desc: "Request a withdrawal after meeting the stated minimums; verification and processing conditions apply.",
     tag: "Payments",
     gradient: "from-emerald-500/10 to-green-500/10",
     border: "rgba(16,185,129,0.2)",
@@ -37,15 +37,15 @@ const FEATURES = [
   {
     icon: "icon_ppv_lock",
     title: "Pay-Per-View Content",
-    desc: "Creators lock exclusive videos. Viewers pay coins. Creator gets 80% instantly.",
+    desc: "The site describes paid content with a stated creator share. Binding creator and viewer terms should confirm the calculation.",
     tag: "Creator",
     gradient: "from-rose-500/10 to-pink-500/10",
     border: "rgba(236,72,153,0.2)",
   },
   {
     icon: "icon_legal_shield",
-    title: "Safe & 100% Legal",
-    desc: "IT Rules 2021 compliant. Grievance Officer with 36-hour response guarantee.",
+    title: "Grievance Contact",
+    desc: "A complaint email is published. Complete legal, moderation and officer details still require verification.",
     tag: "Safety",
     gradient: "from-blue-500/10 to-indigo-500/10",
     border: "rgba(59,130,246,0.2)",
@@ -92,6 +92,8 @@ export default function FeaturesGrid() {
                   <img
                     src={`/assets/icons/${f.icon}.webp`}
                     alt=""
+                    width="256"
+                    height="256"
                     loading="lazy"
                     className="w-20 h-20 -my-3 -ml-2 object-contain drop-shadow-lg group-hover:scale-110 transition-transform"
                   />
