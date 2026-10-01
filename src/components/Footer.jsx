@@ -19,6 +19,7 @@ const LINKS = {
     { label: "Earnings Disclosure", href: POLICY_LINKS.earnings },
     { label: "Refund & Cancellation", href: "/refund-cancellation" },
     { label: "Grievance Information", href: POLICY_LINKS.grievance },
+    { label: "HTML Sitemap", href: POLICY_LINKS.sitemap },
   ],
   Support: [
     { label: "Help Center", href: "#faq" },

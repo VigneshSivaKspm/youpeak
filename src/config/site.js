@@ -32,4 +32,5 @@ export const POLICY_LINKS = Object.freeze({
   earnings: "/earnings-disclosure",
   grievance: "/grievance",
   contact: "/contact",
+  sitemap: "/sitemap",
 });

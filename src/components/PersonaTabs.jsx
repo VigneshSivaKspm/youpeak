@@ -151,7 +151,7 @@ export default function PersonaTabs() {
   const TabIcon = tab.icon;
 
   return (
-    <section className="section px-4 sm:px-6 lg:px-8 relative">
+    <section id="personas" className="section px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-4">

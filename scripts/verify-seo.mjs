@@ -56,8 +56,12 @@ for (const match of home.matchAll(/href="([^"]+)"/g)) {
 const robots = fs.readFileSync(path.join(dist, "robots.txt"), "utf8");
 check(robots.includes("Sitemap: https://www.youpeak.in/sitemap.xml"), "robots.txt lacks the canonical sitemap URL.");
 const sitemap = fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8");
-check((sitemap.match(/<loc>/g) || []).length === 1, "Sitemap should include only the canonical homepage.");
+const locCount = (sitemap.match(/<loc>/g) || []).length;
+check(locCount >= 8, `Sitemap must be detailed with all accessible pages (found ${locCount} URLs).`);
 check(sitemap.includes("<loc>https://www.youpeak.in/</loc>"), "Sitemap canonical URL is incorrect.");
+check(sitemap.includes("<loc>https://www.youpeak.in/sitemap</loc>"), "Sitemap HTML index URL is missing.");
+check(sitemap.includes("<loc>https://www.youpeak.in/privacy</loc>"), "Sitemap privacy URL is missing.");
+check(sitemap.includes("<loc>https://www.youpeak.in/terms</loc>"), "Sitemap terms URL is missing.");
 JSON.parse(fs.readFileSync(path.join(dist, "site.webmanifest"), "utf8"));
 
 const bundles = fs.readdirSync(path.join(dist, "assets"))
@@ -66,6 +70,7 @@ const bundles = fs.readdirSync(path.join(dist, "assets"))
   .join("\n");
 check(!/VITE_GROQ|api\.groq\.com|GROQ_API_KEY/.test(bundles), "Client JavaScript contains Groq endpoint or secret identifiers.");
 check(fs.existsSync(path.join(dist, "404.html")), "Custom noindex 404 document is missing.");
+check(fs.existsSync(path.join(dist, "sitemap.html")), "HTML sitemap document is missing.");
 
 if (failures.length) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));

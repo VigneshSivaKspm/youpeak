@@ -70,6 +70,7 @@ export default function AppScreenshots() {
 
   return (
     <section
+      id="app-preview"
       className="section px-4 sm:px-6 lg:px-8 relative"
       style={{ background: "#f8fafc" }}
     >
