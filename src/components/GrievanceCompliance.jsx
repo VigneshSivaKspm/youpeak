@@ -104,11 +104,11 @@ export default function GrievanceCompliance() {
             </div>
             <div className="flex flex-col gap-3 shrink-0">
               <a
-                href="mailto:grievance@youpeak.in"
+                href="mailto:grievance@youpeak.org"
                 className="btn-primary flex items-center gap-2 whitespace-nowrap"
               >
                 <Mail className="w-4 h-4" />
-                grievance@youpeak.in
+                grievance@youpeak.org
               </a>
               <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />

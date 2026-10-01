@@ -463,8 +463,8 @@ export default function ChatWidget({ initialOpen = false }) {
             </form>
             <p className="text-[10.5px] text-slate-400 text-center mt-2 leading-snug">
               AI answers can be imperfect. For account help email{" "}
-              <a href="mailto:support@youpeak.in" className="underline hover:text-slate-600">
-                support@youpeak.in
+              <a href="mailto:support@youpeak.org" className="underline hover:text-slate-600">
+                support@youpeak.org
               </a>
             </p>
           </div>

@@ -30,7 +30,7 @@ const FAQS = [
   {
     icon: "icon_faq_legal",
     q: "Is this app legal in India?",
-    a: "This repository does not contain enough evidence to confirm broad legal-compliance, officer-registration, payment-provider or response-time claims. YouPeak publishes grievance@youpeak.in for complaints. The business should obtain legal review and publish the verified officer identity, address, policies and applicable timelines.",
+    a: "This repository does not contain enough evidence to confirm broad legal-compliance, officer-registration, payment-provider or response-time claims. YouPeak publishes grievance@youpeak.org for complaints. The business should obtain legal review and publish the verified officer identity, address, policies and applicable timelines.",
   },
 ];
 
@@ -116,7 +116,7 @@ export default function FaqAccordion() {
             Email support for current product and policy information.
           </p>
           <a
-            href="mailto:support@youpeak.in"
+            href="mailto:support@youpeak.org"
             className="btn-primary inline-flex items-center gap-2 text-sm"
           >
             <Mail className="w-4 h-4" /> Email Support

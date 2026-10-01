@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.youpeak.in/sitemap.xml
+Sitemap: https://www.youpeak.org/sitemap.xml

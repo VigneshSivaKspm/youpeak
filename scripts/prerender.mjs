@@ -24,7 +24,7 @@ const pages = [
       "Engagement coins and milestone records are stored securely in bank-grade infrastructure.",
       "YouPeak never shares, sells, or rents personal identifiable information to unauthorized third-party advertisers.",
       "In-app activities operate with engagement coins; payments for optional passes take place via encrypted Razorpay/UPI gateways on the web portal.",
-      "For data modification or account deletion requests, email our compliance team at support@youpeak.in.",
+      "For data modification or account deletion requests, email our compliance team at support@youpeak.org.",
     ],
   },
   {
@@ -59,7 +59,7 @@ const pages = [
       "Monetization Splits: Up to 80% long-video ad split, 70% shorts share, and 90% direct fan funding via Creator VIP Passes.",
       "Prohibited Material: Explicit adult content, hate speech, violence, defamation, copyright infringement, and deceptive scams are strictly forbidden.",
       "Automated Screening: YouPeak uses real-time keyword screening and media analysis to safeguard community safety.",
-      "Report Infringements: To report copyright or community violations, email grievance@youpeak.in with relevant video timestamps and links.",
+      "Report Infringements: To report copyright or community violations, email grievance@youpeak.org with relevant video timestamps and links.",
     ],
   },
   {
@@ -80,7 +80,7 @@ const pages = [
     summary: "Conditions regarding pass upgrades, ad credits allocation, and billing inquiries.",
     items: [
       "Pass Activation: User passes and Creator VIP passes are digital memberships activated immediately with 100% matched Ad Credits.",
-      "Billing Inquiries: In case of accidental duplicate payment or technical billing errors, notify support@youpeak.in within 48 hours with your transaction reference ID.",
+      "Billing Inquiries: In case of accidental duplicate payment or technical billing errors, notify support@youpeak.org within 48 hours with your transaction reference ID.",
       "Security Notice: Never send passwords, OTPs, UPI PINs, or confidential card CVVs to any support agent.",
       "Renewal Rules: User Passes (Levels 1–4) are one-time passes that do not renew. Diamond Pass and Creator VIP Passes renew annually with upfront notification.",
     ],
@@ -90,7 +90,7 @@ const pages = [
     title: "Grievance Redressal Mechanism",
     summary: "Statutory compliance under the Information Technology (Intermediary Guidelines) Rules, 2021.",
     items: [
-      "Designated Channel: Formal grievances, legal notices, and compliance complaints must be submitted to grievance@youpeak.in.",
+      "Designated Channel: Formal grievances, legal notices, and compliance complaints must be submitted to grievance@youpeak.org.",
       "Enforceable SLA: Acknowledgment within 24 hours and statutory resolution within 36 hours of receipt.",
       "Submission Details: State your full name, registered mobile number, clear description of the issue, and supporting evidence or URLs.",
       "Jurisdiction: Operating under the jurisdiction and legal framework of the Republic of India.",
@@ -101,11 +101,11 @@ const pages = [
     title: "Official Contact Directory",
     summary: "Direct communication channels for customer support, creator partnerships, grievances, and business queries.",
     items: [
-      "General User Support: support@youpeak.in (Replies within a few hours)",
-      "Creator Partnerships & VIP Passes: creators@youpeak.in",
-      "Business & Advertiser Enquiries: business@youpeak.in",
-      "Statutory Grievance Officer: grievance@youpeak.in (36-hour resolution SLA)",
-      "Official Web Portal: https://www.youpeak.in",
+      "General User Support: support@youpeak.org (Replies within a few hours)",
+      "Creator Partnerships & VIP Passes: creators@youpeak.org",
+      "Business & Advertiser Enquiries: business@youpeak.org",
+      "Statutory Grievance Officer: grievance@youpeak.org (36-hour resolution SLA)",
+      "Official Web Portal: https://www.youpeak.org",
     ],
   },
 ];

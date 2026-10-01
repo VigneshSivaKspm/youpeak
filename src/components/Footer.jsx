@@ -24,9 +24,9 @@ const LINKS = {
   Support: [
     { label: "Help Center", href: "#faq" },
     { label: "Contact Us", href: POLICY_LINKS.contact },
-    { label: "Creator Support", href: "mailto:creators@youpeak.in" },
-    { label: "Report Content", href: "mailto:grievance@youpeak.in" },
-    { label: "Business Enquiry", href: "mailto:business@youpeak.in" },
+    { label: "Creator Support", href: "mailto:creators@youpeak.org" },
+    { label: "Report Content", href: "mailto:grievance@youpeak.org" },
+    { label: "Business Enquiry", href: "mailto:business@youpeak.org" },
   ],
 };
 
@@ -61,7 +61,7 @@ export default function Footer() {
                   You<span className="text-gradient-primary">Peak</span>
                 </span>
                 <p className="text-[10px] text-slate-400 -mt-0.5">
-                  Website operator details pending verification
+                  Official Platform & Web Portal
                 </p>
               </div>
             </div>
@@ -75,10 +75,10 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 shrink-0" />
                 <a
-                  href="mailto:support@youpeak.in"
+                  href="mailto:support@youpeak.org"
                   className="hover:text-slate-900 transition-colors"
                 >
-                  support@youpeak.in
+                  support@youpeak.org
                 </a>
               </div>
               <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-3.5 h-3.5 shrink-0" />
-                <a href={SITE.url} className="hover:text-slate-900">www.youpeak.in</a>
+                <a href={SITE.url} className="hover:text-slate-900">www.youpeak.org</a>
               </div>
             </div>
 
