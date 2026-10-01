@@ -15,8 +15,8 @@ for (const text of ["Watch Videos", "Everything You Need", "How It Works", "Illu
   check(home.includes(text), `Prerendered homepage is missing: ${text}`);
 }
 check(home.includes('<main id="main-content">'), "Main landmark is missing.");
-check(home.includes('href="https://www.youpeak.in/"'), "Absolute canonical is missing.");
-check(home.includes('property="og:url" content="https://www.youpeak.in/"'), "Absolute og:url is missing.");
+check(home.includes('href="https://www.youpeak.org/"'), "Absolute canonical is missing.");
+check(home.includes('property="og:url" content="https://www.youpeak.org/"'), "Absolute og:url is missing.");
 check(home.includes('name="twitter:card"'), "Twitter card must use the name attribute.");
 check(!/name="keywords"/i.test(home), "Obsolete meta keywords tag remains.");
 check(!/placehold\.co|href="https:\/\/(play\.google\.com|apps\.apple\.com)"/.test(home), "Placeholder or unverified store URL remains.");
@@ -54,14 +54,14 @@ for (const match of home.matchAll(/href="([^"]+)"/g)) {
 }
 
 const robots = fs.readFileSync(path.join(dist, "robots.txt"), "utf8");
-check(robots.includes("Sitemap: https://www.youpeak.in/sitemap.xml"), "robots.txt lacks the canonical sitemap URL.");
+check(robots.includes("Sitemap: https://www.youpeak.org/sitemap.xml"), "robots.txt lacks the canonical sitemap URL.");
 const sitemap = fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8");
 const locCount = (sitemap.match(/<loc>/g) || []).length;
 check(locCount >= 8, `Sitemap must be detailed with all accessible pages (found ${locCount} URLs).`);
-check(sitemap.includes("<loc>https://www.youpeak.in/</loc>"), "Sitemap canonical URL is incorrect.");
-check(sitemap.includes("<loc>https://www.youpeak.in/sitemap</loc>"), "Sitemap HTML index URL is missing.");
-check(sitemap.includes("<loc>https://www.youpeak.in/privacy</loc>"), "Sitemap privacy URL is missing.");
-check(sitemap.includes("<loc>https://www.youpeak.in/terms</loc>"), "Sitemap terms URL is missing.");
+check(sitemap.includes("<loc>https://www.youpeak.org/</loc>"), "Sitemap canonical URL is incorrect.");
+check(sitemap.includes("<loc>https://www.youpeak.org/sitemap</loc>"), "Sitemap HTML index URL is missing.");
+check(sitemap.includes("<loc>https://www.youpeak.org/privacy</loc>"), "Sitemap privacy URL is missing.");
+check(sitemap.includes("<loc>https://www.youpeak.org/terms</loc>"), "Sitemap terms URL is missing.");
 JSON.parse(fs.readFileSync(path.join(dist, "site.webmanifest"), "utf8"));
 
 const bundles = fs.readdirSync(path.join(dist, "assets"))

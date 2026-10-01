@@ -9,8 +9,20 @@
   "redirects": [
     {
       "source": "/(.*)",
+      "has": [{ "type": "host", "value": "youpeak.org" }],
+      "destination": "https://www.youpeak.org/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "youpeak.in" }],
-      "destination": "https://www.youpeak.in/$1",
+      "destination": "https://www.youpeak.org/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.youpeak.in" }],
+      "destination": "https://www.youpeak.org/$1",
       "permanent": true
     }
   ],

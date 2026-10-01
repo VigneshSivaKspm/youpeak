@@ -118,7 +118,7 @@ const linkifyEmail = (value) => escapeHtml(value).replace(
 
 // Render Trust Pages
 for (const page of pages) {
-  const canonical = `https://www.youpeak.in/${page.slug}`;
+  const canonical = `https://www.youpeak.org/${page.slug}`;
   const html = `<!doctype html>
 <html lang="en-IN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${escapeHtml(page.title)} | YouPeak</title>
@@ -132,7 +132,7 @@ for (const page of pages) {
 <h1 class="mt-3 text-4xl font-black tracking-tight">${escapeHtml(page.title)}</h1>
 <p class="mt-5 text-lg leading-8 text-slate-600">${escapeHtml(page.summary)}</p>
 <ul class="mt-8 list-disc space-y-4 pl-6 text-slate-700">${page.items.map((item) => `<li>${linkifyEmail(item)}</li>`).join("")}</ul>
-<p class="mt-10 border-t border-slate-200 pt-6 text-sm text-slate-500">Effective Date: October 2026. For questions regarding this policy, contact our compliance team at support@youpeak.in or grievance@youpeak.in.</p>
+<p class="mt-10 border-t border-slate-200 pt-6 text-sm text-slate-500">Effective Date: October 2026. For questions regarding this policy, contact our compliance team at support@youpeak.org or grievance@youpeak.org.</p>
 </article></main></body></html>`;
   await fs.writeFile(path.join(DIST, `${page.slug}.html`), html);
 }
@@ -146,7 +146,7 @@ const sitemapHtml = `<!doctype html>
   <title>YouPeak Sitemap | Complete Index of Pages, Tiers & Features</title>
   <meta name="description" content="Explore the full sitemap of YouPeak, including interactive sections, User Passes, Creator VIP tiers, earnings calculators, legal documents, and contact channels.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.youpeak.in/sitemap">
+  <link rel="canonical" href="https://www.youpeak.org/sitemap">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_32.png">
   ${stylesheet ? `<link rel="stylesheet" crossorigin href="${stylesheet}">` : ""}
 </head>
@@ -471,22 +471,22 @@ const sitemapHtml = `<!doctype html>
           <ul class="space-y-3 text-sm text-slate-600">
             <li>
               <span class="font-bold text-slate-900 block">General User Support</span>
-              <a href="mailto:support@youpeak.in" class="text-xs text-emerald-700 underline font-semibold">support@youpeak.in</a>
+              <a href="mailto:support@youpeak.org" class="text-xs text-emerald-700 underline font-semibold">support@youpeak.org</a>
               <p class="text-xs text-slate-500">Response within a few hours</p>
             </li>
             <li>
               <span class="font-bold text-slate-900 block">Creator Partnership Desk</span>
-              <a href="mailto:creators@youpeak.in" class="text-xs text-emerald-700 underline font-semibold">creators@youpeak.in</a>
+              <a href="mailto:creators@youpeak.org" class="text-xs text-emerald-700 underline font-semibold">creators@youpeak.org</a>
               <p class="text-xs text-slate-500">VIP onboarding and publisher inquiries</p>
             </li>
             <li>
               <span class="font-bold text-slate-900 block">Brand & Business Enquiries</span>
-              <a href="mailto:business@youpeak.in" class="text-xs text-emerald-700 underline font-semibold">business@youpeak.in</a>
+              <a href="mailto:business@youpeak.org" class="text-xs text-emerald-700 underline font-semibold">business@youpeak.org</a>
               <p class="text-xs text-slate-500">Advertiser campaigns and local ad slots</p>
             </li>
             <li>
               <span class="font-bold text-slate-900 block">Statutory Grievance Redressal</span>
-              <a href="mailto:grievance@youpeak.in" class="text-xs text-emerald-700 underline font-semibold">grievance@youpeak.in</a>
+              <a href="mailto:grievance@youpeak.org" class="text-xs text-emerald-700 underline font-semibold">grievance@youpeak.org</a>
               <p class="text-xs text-slate-500">Enforceable 36-hour statutory SLA</p>
             </li>
           </ul>
